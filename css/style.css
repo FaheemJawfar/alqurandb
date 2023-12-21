@@ -351,7 +351,6 @@ ul, ul li {
 	text-align: center;
 }
 
-.social-box-bot ul{}
 .social-box-bot ul li{
 	display: inline-block;
 }
@@ -431,6 +430,13 @@ ul, ul li {
 .md-headline p{
 	font-size: 18px;
 	color: #ffffff;
+}
+
+.md-headline h2{
+	font-family: 'Josefin Sans', sans-serif; 
+	color: #fd6802;
+	font-size: 48px;
+	font-style: italic;
 }
 
 .btn-box{}
