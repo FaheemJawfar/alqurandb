@@ -1,108 +1,100 @@
 #!/usr/bin/env python3
 """
-Parse Tanzil translation XML file and display verses
+Convert Tanzil translation XML files to JSON format
 """
 
 import xml.etree.ElementTree as ET
 from pathlib import Path
 import sys
 import json
+import re
 
 
-def parse_translation(xml_file_path, surah=None, ayah=None, limit=10):
-    """Parse translation XML and print verses
+def extract_metadata_from_header(content):
+    """Extract metadata from XML header comments"""
+    metadata = {
+        'id': '',
+        'language': '',
+        'name_in_language': '',
+        'translator': '',
+        'source': 'tanzil.net'
+    }
 
-    Args:
-        xml_file_path: Path to the XML file
-        surah: Optional surah number to display (1-114)
-        ayah: Optional ayah number to display (requires surah)
-        limit: Maximum number of verses to display (default 10)
-    """
+    # Extract header comment section
+    comment_start = content.find('<!--')
+    comment_end = content.find('-->')
 
-    # Parse XML file
-    tree = ET.parse(xml_file_path)
-    root = tree.getroot()
+    if comment_start != -1 and comment_end != -1:
+        header = content[comment_start:comment_end]
 
-    print(f"\nParsing: {xml_file_path.name}")
-    print("=" * 80)
+        # Extract ID
+        id_match = re.search(r'#\s*ID:\s*(.+)', header)
+        if id_match:
+            metadata['id'] = id_match.group(1).strip()
 
-    verse_count = 0
+        # Extract Language
+        lang_match = re.search(r'#\s*Language:\s*(.+)', header)
+        if lang_match:
+            metadata['language'] = lang_match.group(1).strip()
 
-    # Iterate through surahs
-    for sura in root.findall('sura'):
-        sura_index = int(sura.get('index'))
-        sura_name = sura.get('name', '')
+        # Extract Name (in original language)
+        name_match = re.search(r'#\s*Name:\s*(.+)', header)
+        if name_match:
+            metadata['name_in_language'] = name_match.group(1).strip()
 
-        # Filter by surah if specified
-        if surah is not None and sura_index != surah:
-            continue
+        # Extract Translator
+        trans_match = re.search(r'#\s*Translator:\s*(.+)', header)
+        if trans_match:
+            metadata['translator'] = trans_match.group(1).strip()
 
-        # Print surah header
-        print(f"\n📖 Surah {sura_index}{': ' + sura_name if sura_name else ''}")
-        print("-" * 80)
-
-        # Iterate through ayahs
-        for aya in sura.findall('aya'):
-            aya_index = int(aya.get('index'))
-            aya_text = aya.get('text', '')
-
-            # Filter by ayah if specified
-            if ayah is not None and aya_index != ayah:
-                continue
-
-            # Print ayah
-            print(f"[{sura_index}:{aya_index}] {aya_text}")
-            verse_count += 1
-
-            # Check limit
-            if limit and verse_count >= limit:
-                print(f"\n... (showing first {limit} verses)")
-                return
-
-            # If specific ayah requested, return after showing it
-            if ayah is not None:
-                return
-
-        # If specific surah requested without ayah, show all ayahs of that surah
-        if surah is not None:
-            return
-
-    print(f"\n{'=' * 80}")
-    print(f"Total verses displayed: {verse_count}")
+    return metadata
 
 
-def get_stats(xml_file_path):
-    """Get statistics about the translation file"""
-
-    tree = ET.parse(xml_file_path)
-    root = tree.getroot()
-
-    total_surahs = len(root.findall('sura'))
-    total_ayahs = sum(len(sura.findall('aya')) for sura in root.findall('sura'))
-
-    print(f"\n📊 Translation Statistics")
-    print("=" * 80)
-    print(f"File: {xml_file_path.name}")
-    print(f"Total Surahs: {total_surahs}")
-    print(f"Total Ayahs: {total_ayahs}")
-    print("=" * 80)
-
-
-def xml_to_json(xml_file_path, output_file_path=None):
+def xml_to_json(xml_file_path, output_file_path=None, quiet=False):
     """Convert XML translation to JSON format
 
     Args:
         xml_file_path: Path to the XML file
         output_file_path: Optional output JSON file path. If not provided,
-                         will use the same name as XML with .json extension
+                         will save to translations_json folder
+        quiet: If True, suppress output messages
 
     Returns:
         Dictionary with "surah:ayah" keys and translation text values
     """
 
-    # Parse XML file
-    tree = ET.parse(xml_file_path)
-    root = tree.getroot()
+    # Read and clean XML file (skip header comments)
+    try:
+        with open(xml_file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        # Extract metadata from header
+        metadata = extract_metadata_from_header(content)
+
+        # Find the start of the actual XML content (after comments)
+        # Look for the <quran> tag
+        quran_start = content.find('<quran')
+        if quran_start == -1:
+            if not quiet:
+                print(f"❌ Error: No <quran> tag found in {xml_file_path.name}")
+            return None
+
+        # Extract XML declaration if present
+        xml_decl = ''
+        if content.startswith('<?xml'):
+            xml_decl_end = content.find('?>') + 2
+            xml_decl = content[:xml_decl_end] + '\n'
+
+        # Combine XML declaration with the quran content
+        clean_content = xml_decl + content[quran_start:]
+
+        # Parse the cleaned XML
+        root = ET.fromstring(clean_content)
+
+    except Exception as e:
+        if not quiet:
+            print(f"❌ Error parsing {xml_file_path.name}: {e}")
+        return None
 
     # Build translation dictionary
     translation = {}
@@ -122,73 +114,119 @@ def xml_to_json(xml_file_path, output_file_path=None):
 
     # Determine output file path
     if output_file_path is None:
-        output_file_path = xml_file_path.with_suffix('.json')
+        # Create translations_json folder in the same directory as script
+        script_dir = Path(__file__).parent
+        json_dir = script_dir / 'translations_json'
+        json_dir.mkdir(exist_ok=True)
+
+        # Use the same filename but save in translations_json folder
+        output_file_path = json_dir / xml_file_path.with_suffix('.json').name
 
     # Save to JSON
     with open(output_file_path, 'w', encoding='utf-8') as f:
         json.dump(translation, f, ensure_ascii=False, indent=2)
 
-    print(f"\n✅ JSON file created successfully!")
-    print(f"Input:  {xml_file_path}")
-    print(f"Output: {output_file_path}")
-    print(f"Total verses: {len(translation)}")
+    if not quiet:
+        print(f"\n✅ JSON file created successfully!")
+        print(f"Input:  {xml_file_path}")
+        print(f"Output: {output_file_path}")
+        print(f"Total verses: {len(translation)}")
 
     return translation
+
+
+def convert_all_translations():
+    """Convert all XML translations to JSON format"""
+
+    script_dir = Path(__file__).parent
+    xml_dir = script_dir / 'translations_xml'
+
+    if not xml_dir.exists():
+        print(f"❌ Error: {xml_dir} directory not found")
+        return
+
+    # Find all XML files
+    xml_files = sorted(xml_dir.glob('*.xml'))
+
+    if not xml_files:
+        print(f"❌ No XML files found in {xml_dir}")
+        return
+
+    print(f"\n🔄 Converting {len(xml_files)} translations to JSON...")
+    print("=" * 80)
+
+    successful = 0
+    failed = 0
+    failed_files = []
+
+    for i, xml_file in enumerate(xml_files, 1):
+        print(f"[{i}/{len(xml_files)}] Converting {xml_file.name}...", end=" ")
+
+        result = xml_to_json(xml_file, quiet=True)
+
+        if result:
+            successful += 1
+            print(f"✅ ({len(result)} verses)")
+        else:
+            failed += 1
+            failed_files.append(xml_file.name)
+            print("❌ Failed")
+
+    # Summary
+    print("\n" + "=" * 80)
+    print("📊 Conversion Summary")
+    print("=" * 80)
+    print(f"Total files: {len(xml_files)}")
+    print(f"Successful: {successful}")
+    print(f"Failed: {failed}")
+
+    if failed_files:
+        print(f"\nFailed files:")
+        for filename in failed_files[:10]:  # Show first 10
+            print(f"  - {filename}")
+        if len(failed_files) > 10:
+            print(f"  ... and {len(failed_files) - 10} more")
+
+    print(f"\nOutput directory: {script_dir / 'translations_json'}")
+    print("=" * 80)
 
 
 def main():
     """Main function"""
 
-    # Default to Tamil translation
     script_dir = Path(__file__).parent
     default_file = script_dir / 'translations_xml' / 'ta.tamil.xml'
 
     # Parse command line arguments
     if len(sys.argv) > 1:
-        if sys.argv[1] == '--stats':
-            # Show statistics
-            xml_file = Path(sys.argv[2]) if len(sys.argv) > 2 else default_file
-            get_stats(xml_file)
-            return
-        elif sys.argv[1] == '--json':
+        if sys.argv[1] == '--json':
             # Convert to JSON
             xml_file = Path(sys.argv[2]) if len(sys.argv) > 2 else default_file
             output_file = Path(sys.argv[3]) if len(sys.argv) > 3 else None
             xml_to_json(xml_file, output_file)
             return
-        elif sys.argv[1] == '--help':
-            print("Usage:")
-            print("  python parse_translation.py                       # Show first 10 verses")
-            print("  python parse_translation.py --stats [FILE]        # Show statistics")
-            print("  python parse_translation.py --json [FILE] [OUT]   # Convert to JSON")
-            print("  python parse_translation.py SURAH [AYAH]          # Show specific verse(s)")
-            print("  python parse_translation.py --all [FILE]          # Show all verses")
-            print("\nExamples:")
-            print("  python parse_translation.py                       # First 10 verses")
-            print("  python parse_translation.py 1                     # All verses of Surah 1")
-            print("  python parse_translation.py 2 255                 # Ayat al-Kursi")
-            print("  python parse_translation.py --stats               # Statistics")
-            print("  python parse_translation.py --json                # Convert to JSON")
-            print("  python parse_translation.py --json ta.tamil.xml   # Convert specific file")
+        elif sys.argv[1] == '--convert-all' or sys.argv[1] == '--all':
+            # Convert all XML files to JSON
+            convert_all_translations()
             return
-        elif sys.argv[1] == '--all':
-            # Show all verses
-            xml_file = Path(sys.argv[2]) if len(sys.argv) > 2 else default_file
-            parse_translation(xml_file, limit=None)
+        elif sys.argv[1] == '--help' or sys.argv[1] == '-h':
+            print("Tanzil Translation Converter - Convert XML to JSON")
+            print("\nUsage:")
+            print("  python parse_translation.py --json [FILE] [OUT]   # Convert single file")
+            print("  python parse_translation.py --all                 # Convert all XML files")
+            print("\nExamples:")
+            print("  python parse_translation.py --json                        # Convert default (Tamil)")
+            print("  python parse_translation.py --json ta.tamil.xml           # Convert specific file")
+            print("  python parse_translation.py --json input.xml output.json  # Custom output")
+            print("  python parse_translation.py --all                         # Convert all files")
             return
         else:
-            # Show specific surah/ayah
-            try:
-                surah = int(sys.argv[1])
-                ayah = int(sys.argv[2]) if len(sys.argv) > 2 else None
-                parse_translation(default_file, surah=surah, ayah=ayah, limit=None)
-                return
-            except ValueError:
-                print("Error: Invalid surah/ayah number")
-                return
+            print(f"Unknown option: {sys.argv[1]}")
+            print("Use --help for usage information")
+            return
 
-    # Default: show first 10 verses
-    parse_translation(default_file, limit=10)
+    # Default: convert all translations
+    convert_all_translations()
 
 
 if __name__ == '__main__':
