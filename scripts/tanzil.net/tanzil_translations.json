@@ -696,18 +696,6 @@
     }
   },
   {
-    "id": "ps.abdulwali",
-    "language": "Pashto",
-    "name": "عبدالولي",
-    "translator": "Abdulwali Khan",
-    "download": {
-      "text": "http://tanzil.net/trans/?transID=ps.abdulwali&type=txt",
-      "text_with_numbers": "http://tanzil.net/trans/?transID=ps.abdulwali&type=txt-2",
-      "xml": "http://tanzil.net/trans/?transID=ps.abdulwali&type=xml",
-      "sql": "http://tanzil.net/trans/?transID=ps.abdulwali&type=sql"
-    }
-  },
-  {
     "id": "fa.ansarian",
     "language": "Persian",
     "name": "انصاریان",

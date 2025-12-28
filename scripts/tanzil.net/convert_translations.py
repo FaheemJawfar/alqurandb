@@ -10,6 +10,30 @@ import json
 import re
 
 
+# Load metadata at module level
+_metadata = None
+
+
+def get_id_mapping():
+    """Load and cache the ID mapping from metadata"""
+    global _metadata
+    if _metadata is None:
+        script_dir = Path(__file__).parent
+        metadata_file = script_dir / 'metadata.json'
+        with open(metadata_file, 'r', encoding='utf-8') as f:
+            metadata_list = json.load(f)
+            # Create mapping: tanzilnet_id -> new_id
+            _metadata = {}
+            for entry in metadata_list:
+                if 'tanzilnet_id' in entry:
+                    _metadata[entry['tanzilnet_id']] = {
+                        'new_id': entry['id'],
+                        'language': entry['language'],
+                        'translator': entry['translator']
+                    }
+    return _metadata
+
+
 def extract_metadata_from_header(content):
     """Extract metadata from XML header comments"""
     metadata = {
@@ -119,8 +143,21 @@ def xml_to_json(xml_file_path, output_file_path=None, quiet=False):
         json_dir = script_dir / 'translations_json'
         json_dir.mkdir(exist_ok=True)
 
-        # Use the same filename but save in translations_json folder
-        output_file_path = json_dir / xml_file_path.with_suffix('.json').name
+        # Extract old ID from XML filename (e.g., "ta.tamil" from "ta.tamil.xml")
+        old_id = xml_file_path.stem
+
+        # Get ID mapping and look up new ID
+        id_mapping = get_id_mapping()
+        if old_id in id_mapping:
+            new_id = id_mapping[old_id]['new_id']
+        else:
+            # Fallback to old ID if not found in mapping
+            new_id = old_id
+            if not quiet:
+                print(f"⚠️  Warning: No mapping found for {old_id}, using original ID")
+
+        # Use new ID for output filename
+        output_file_path = json_dir / f"{new_id}.json"
 
     # Save to JSON
     with open(output_file_path, 'w', encoding='utf-8') as f:

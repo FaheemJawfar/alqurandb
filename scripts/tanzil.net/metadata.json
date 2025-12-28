@@ -1,0 +1,922 @@
+[
+  {
+    "id": "albanian_nahi",
+    "language": "Albanian",
+    "name_in_language": "Efendi Nahi",
+    "translator": "Hasan Efendi Nahi",
+    "source": "tanzil.net",
+    "tanzilnet_id": "sq.nahi"
+  },
+  {
+    "id": "albanian_mehdiu",
+    "language": "Albanian",
+    "name_in_language": "Feti Mehdiu",
+    "translator": "Feti Mehdiu",
+    "source": "tanzil.net",
+    "tanzilnet_id": "sq.mehdiu"
+  },
+  {
+    "id": "albanian_ahmeti",
+    "language": "Albanian",
+    "name_in_language": "Sherif Ahmeti",
+    "translator": "Sherif Ahmeti",
+    "source": "tanzil.net",
+    "tanzilnet_id": "sq.ahmeti"
+  },
+  {
+    "id": "amazigh_mensur",
+    "language": "Amazigh",
+    "name_in_language": "At Mensur",
+    "translator": "Ramdane At Mansour",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ber.mensur"
+  },
+  {
+    "id": "arabic_jalalayn",
+    "language": "Arabic",
+    "name_in_language": "تفسير الجلالين",
+    "translator": "Jalal ad-Din al-Mahalli and Jalal ad-Din as-Suyuti",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ar.jalalayn"
+  },
+  {
+    "id": "arabic_muyassar",
+    "language": "Arabic",
+    "name_in_language": "تفسير المیسر",
+    "translator": "King Fahad Quran Complex",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ar.muyassar"
+  },
+  {
+    "id": "amharic_sadiq",
+    "language": "Amharic",
+    "name_in_language": "ሳዲቅ &amp; ሳኒ ሐቢብ",
+    "translator": "Muhammed Sadiq and Muhammed Sani Habib",
+    "source": "tanzil.net",
+    "tanzilnet_id": "am.sadiq"
+  },
+  {
+    "id": "azerbaijani_mammadaliyev",
+    "language": "Azerbaijani",
+    "name_in_language": "Məmmədəliyev &amp; Bünyadov",
+    "translator": "Vasim Mammadaliyev and Ziya Bunyadov",
+    "source": "tanzil.net",
+    "tanzilnet_id": "az.mammadaliyev"
+  },
+  {
+    "id": "azerbaijani_musayev",
+    "language": "Azerbaijani",
+    "name_in_language": "Musayev",
+    "translator": "Alikhan Musayev",
+    "source": "tanzil.net",
+    "tanzilnet_id": "az.musayev"
+  },
+  {
+    "id": "bengali_hoque",
+    "language": "Bengali",
+    "name_in_language": "জহুরুল হক",
+    "translator": "Zohurul Hoque",
+    "source": "tanzil.net",
+    "tanzilnet_id": "bn.hoque"
+  },
+  {
+    "id": "bengali_khan",
+    "language": "Bengali",
+    "name_in_language": "মুহিউদ্দীন খান",
+    "translator": "Muhiuddin Khan",
+    "source": "tanzil.net",
+    "tanzilnet_id": "bn.bengali"
+  },
+  {
+    "id": "bosnian_korkut",
+    "language": "Bosnian",
+    "name_in_language": "Korkut",
+    "translator": "Besim Korkut",
+    "source": "tanzil.net",
+    "tanzilnet_id": "bs.korkut"
+  },
+  {
+    "id": "bosnian_mlivo",
+    "language": "Bosnian",
+    "name_in_language": "Mlivo",
+    "translator": "Mustafa Mlivo",
+    "source": "tanzil.net",
+    "tanzilnet_id": "bs.mlivo"
+  },
+  {
+    "id": "bulgarian_theophanov",
+    "language": "Bulgarian",
+    "name_in_language": "Теофанов",
+    "translator": "Tzvetan Theophanov",
+    "source": "tanzil.net",
+    "tanzilnet_id": "bg.theophanov"
+  },
+  {
+    "id": "chinese_jian",
+    "language": "Chinese",
+    "name_in_language": "Ma Jian",
+    "translator": "Ma Jian",
+    "source": "tanzil.net",
+    "tanzilnet_id": "zh.jian"
+  },
+  {
+    "id": "chinese_majian",
+    "language": "Chinese",
+    "name_in_language": "Ma Jian (Traditional)",
+    "translator": "Ma Jian",
+    "source": "tanzil.net",
+    "tanzilnet_id": "zh.majian"
+  },
+  {
+    "id": "czech_hrbek",
+    "language": "Czech",
+    "name_in_language": "Hrbek",
+    "translator": "Preklad I. Hrbek",
+    "source": "tanzil.net",
+    "tanzilnet_id": "cs.hrbek"
+  },
+  {
+    "id": "czech_nykl",
+    "language": "Czech",
+    "name_in_language": "Nykl",
+    "translator": "A. R. Nykl",
+    "source": "tanzil.net",
+    "tanzilnet_id": "cs.nykl"
+  },
+  {
+    "id": "divehi_maldives",
+    "language": "Divehi",
+    "name_in_language": "ދިވެހި",
+    "translator": "Office of the President of Maldives",
+    "source": "tanzil.net",
+    "tanzilnet_id": "dv.divehi"
+  },
+  {
+    "id": "dutch_keyzer",
+    "language": "Dutch",
+    "name_in_language": "Keyzer",
+    "translator": "Salomo Keyzer ",
+    "source": "tanzil.net",
+    "tanzilnet_id": "nl.keyzer"
+  },
+  {
+    "id": "dutch_leemhuis",
+    "language": "Dutch",
+    "name_in_language": "Leemhuis",
+    "translator": "Fred Leemhuis",
+    "source": "tanzil.net",
+    "tanzilnet_id": "nl.leemhuis"
+  },
+  {
+    "id": "dutch_siregar",
+    "language": "Dutch",
+    "name_in_language": "Siregar",
+    "translator": "Sofian S. Siregar",
+    "source": "tanzil.net",
+    "tanzilnet_id": "nl.siregar"
+  },
+  {
+    "id": "english_ahmedali",
+    "language": "English",
+    "name_in_language": "Ahmed Ali",
+    "translator": "Ahmed Ali",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.ahmedali"
+  },
+  {
+    "id": "english_ahmedraza",
+    "language": "English",
+    "name_in_language": "Ahmed Raza Khan",
+    "translator": "Ahmed Raza Khan",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.ahmedraza"
+  },
+  {
+    "id": "english_arberry",
+    "language": "English",
+    "name_in_language": "Arberry",
+    "translator": "A. J. Arberry",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.arberry"
+  },
+  {
+    "id": "english_daryabadi",
+    "language": "English",
+    "name_in_language": "Daryabadi",
+    "translator": "Abdul Majid Daryabadi",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.daryabadi"
+  },
+  {
+    "id": "english_hilali",
+    "language": "English",
+    "name_in_language": "Hilali &amp; Khan",
+    "translator": "Muhammad Taqi-ud-Din al-Hilali and Muhammad Muhsin Khan",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.hilali"
+  },
+  {
+    "id": "english_itani",
+    "language": "English",
+    "name_in_language": "Itani",
+    "translator": "Talal Itani",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.itani"
+  },
+  {
+    "id": "english_maududi",
+    "language": "English",
+    "name_in_language": "Maududi",
+    "translator": "Abul Ala Maududi",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.maududi"
+  },
+  {
+    "id": "english_mubarakpuri",
+    "language": "English",
+    "name_in_language": "Mubarakpuri",
+    "translator": "Safi-ur-Rahman al-Mubarakpuri",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.mubarakpuri"
+  },
+  {
+    "id": "english_pickthall",
+    "language": "English",
+    "name_in_language": "Pickthall",
+    "translator": "Mohammed Marmaduke William Pickthall",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.pickthall"
+  },
+  {
+    "id": "english_qarai",
+    "language": "English",
+    "name_in_language": "Qarai",
+    "translator": "Ali Quli Qarai",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.qarai"
+  },
+  {
+    "id": "english_qaribullah",
+    "language": "English",
+    "name_in_language": "Qaribullah &amp; Darwish",
+    "translator": "Hasan al-Fatih Qaribullah and Ahmad Darwish",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.qaribullah"
+  },
+  {
+    "id": "english_sahih",
+    "language": "English",
+    "name_in_language": "Saheeh International",
+    "translator": "Saheeh International",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.sahih"
+  },
+  {
+    "id": "english_sarwar",
+    "language": "English",
+    "name_in_language": "Sarwar",
+    "translator": "Muhammad Sarwar",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.sarwar"
+  },
+  {
+    "id": "english_shakir",
+    "language": "English",
+    "name_in_language": "Shakir",
+    "translator": "Mohammad Habib Shakir",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.shakir"
+  },
+  {
+    "id": "english_transliteration",
+    "language": "English",
+    "name_in_language": "Transliteration",
+    "translator": "English Transliteration",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.transliteration"
+  },
+  {
+    "id": "english_wahiduddin",
+    "language": "English",
+    "name_in_language": "Wahiduddin Khan",
+    "translator": "Wahiduddin Khan",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.wahiduddin"
+  },
+  {
+    "id": "english_yusufali",
+    "language": "English",
+    "name_in_language": "Yusuf Ali",
+    "translator": "Abdullah Yusuf Ali",
+    "source": "tanzil.net",
+    "tanzilnet_id": "en.yusufali"
+  },
+  {
+    "id": "french_hamidullah",
+    "language": "French",
+    "name_in_language": "Hamidullah",
+    "translator": "Muhammad Hamidullah",
+    "source": "tanzil.net",
+    "tanzilnet_id": "fr.hamidullah"
+  },
+  {
+    "id": "german_aburida",
+    "language": "German",
+    "name_in_language": "Abu Rida",
+    "translator": "Abu Rida Muhammad ibn Ahmad ibn Rassoul",
+    "source": "tanzil.net",
+    "tanzilnet_id": "de.aburida"
+  },
+  {
+    "id": "german_bubenheim",
+    "language": "German",
+    "name_in_language": "Bubenheim &amp; Elyas",
+    "translator": "A. S. F. Bubenheim and N. Elyas",
+    "source": "tanzil.net",
+    "tanzilnet_id": "de.bubenheim"
+  },
+  {
+    "id": "german_khoury",
+    "language": "German",
+    "name_in_language": "Khoury",
+    "translator": "Adel Theodor Khoury",
+    "source": "tanzil.net",
+    "tanzilnet_id": "de.khoury"
+  },
+  {
+    "id": "german_zaidan",
+    "language": "German",
+    "name_in_language": "Zaidan",
+    "translator": "Amir Zaidan",
+    "source": "tanzil.net",
+    "tanzilnet_id": "de.zaidan"
+  },
+  {
+    "id": "hausa_gumi",
+    "language": "Hausa",
+    "name_in_language": "Gumi",
+    "translator": "Abubakar Mahmoud Gumi",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ha.gumi"
+  },
+  {
+    "id": "hindi_farooq",
+    "language": "Hindi",
+    "name_in_language": "फ़ारूक़ ख़ान &amp; अहमद",
+    "translator": "Muhammad Farooq Khan and Muhammad Ahmed  ",
+    "source": "tanzil.net",
+    "tanzilnet_id": "hi.farooq"
+  },
+  {
+    "id": "hindi_khan_nadwi",
+    "language": "Hindi",
+    "name_in_language": "फ़ारूक़ ख़ान &amp; नदवी",
+    "translator": "Suhel Farooq Khan and Saifur Rahman Nadwi",
+    "source": "tanzil.net",
+    "tanzilnet_id": "hi.hindi"
+  },
+  {
+    "id": "indonesian_ministry",
+    "language": "Indonesian",
+    "name_in_language": "Bahasa Indonesia",
+    "translator": "Indonesian Ministry of Religious Affairs",
+    "source": "tanzil.net",
+    "tanzilnet_id": "id.indonesian"
+  },
+  {
+    "id": "indonesian_muntakhab",
+    "language": "Indonesian",
+    "name_in_language": "Quraish Shihab",
+    "translator": "Muhammad Quraish Shihab et al.",
+    "source": "tanzil.net",
+    "tanzilnet_id": "id.muntakhab"
+  },
+  {
+    "id": "indonesian_jalalayn",
+    "language": "Indonesian",
+    "name_in_language": "Tafsir Jalalayn",
+    "translator": "Jalal ad-Din al-Mahalli and Jalal ad-Din as-Suyuti",
+    "source": "tanzil.net",
+    "tanzilnet_id": "id.jalalayn"
+  },
+  {
+    "id": "italian_piccardo",
+    "language": "Italian",
+    "name_in_language": "Piccardo",
+    "translator": "Hamza Roberto Piccardo",
+    "source": "tanzil.net",
+    "tanzilnet_id": "it.piccardo"
+  },
+  {
+    "id": "japanese_standard",
+    "language": "Japanese",
+    "name_in_language": "Japanese",
+    "translator": "Unknown",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ja.japanese"
+  },
+  {
+    "id": "korean_standard",
+    "language": "Korean",
+    "name_in_language": "Korean",
+    "translator": "Unknown",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ko.korean"
+  },
+  {
+    "id": "kurdish_asan",
+    "language": "Kurdish",
+    "name_in_language": "ته‌فسیری ئاسان",
+    "translator": "Burhan Muhammad-Amin",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ku.asan"
+  },
+  {
+    "id": "malay_basmeih",
+    "language": "Malay",
+    "name_in_language": "Basmeih",
+    "translator": "Abdullah Muhammad Basmeih",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ms.basmeih"
+  },
+  {
+    "id": "malayalam_abdulhameed",
+    "language": "Malayalam",
+    "name_in_language": "അബ്ദുല്‍ ഹമീദ് &amp; പറപ്പൂര്‍",
+    "translator": "Cheriyamundam Abdul Hameed and Kunhi Mohammed Parappoor",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ml.abdulhameed"
+  },
+  {
+    "id": "malayalam_karakunnu",
+    "language": "Malayalam",
+    "name_in_language": "കാരകുന്ന് &amp; എളയാവൂര്",
+    "translator": "Muhammad Karakunnu and Vanidas Elayavoor",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ml.karakunnu"
+  },
+  {
+    "id": "norwegian_berg",
+    "language": "Norwegian",
+    "name_in_language": "Einar Berg",
+    "translator": "Einar Berg",
+    "source": "tanzil.net",
+    "tanzilnet_id": "no.berg"
+  },
+  {
+    "id": "pashto_abdulwali",
+    "language": "Pashto",
+    "name_in_language": "عبدالولي",
+    "translator": "Abdulwali Khan",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ps.abdulwali"
+  },
+  {
+    "id": "persian_ansarian",
+    "language": "Persian",
+    "name_in_language": "انصاریان",
+    "translator": "Hussain Ansarian",
+    "source": "tanzil.net",
+    "tanzilnet_id": "fa.ansarian"
+  },
+  {
+    "id": "persian_ayati",
+    "language": "Persian",
+    "name_in_language": "آیتی",
+    "translator": "AbdolMohammad Ayati",
+    "source": "tanzil.net",
+    "tanzilnet_id": "fa.ayati"
+  },
+  {
+    "id": "persian_bahrampour",
+    "language": "Persian",
+    "name_in_language": "بهرام‌پور",
+    "translator": "Abolfazl Bahrampour",
+    "source": "tanzil.net",
+    "tanzilnet_id": "fa.bahrampour"
+  },
+  {
+    "id": "persian_gharaati",
+    "language": "Persian",
+    "name_in_language": "قرائتی",
+    "translator": "Mohsen Gharaati",
+    "source": "tanzil.net",
+    "tanzilnet_id": "fa.gharaati"
+  },
+  {
+    "id": "persian_ghomshei",
+    "language": "Persian",
+    "name_in_language": "الهی قمشه‌ای",
+    "translator": "Mahdi Elahi Ghomshei",
+    "source": "tanzil.net",
+    "tanzilnet_id": "fa.ghomshei"
+  },
+  {
+    "id": "persian_khorramdel",
+    "language": "Persian",
+    "name_in_language": "خرمدل",
+    "translator": "Mostafa Khorramdel",
+    "source": "tanzil.net",
+    "tanzilnet_id": "fa.khorramdel"
+  },
+  {
+    "id": "persian_khorramshahi",
+    "language": "Persian",
+    "name_in_language": "خرمشاهی",
+    "translator": "Baha'oddin Khorramshahi",
+    "source": "tanzil.net",
+    "tanzilnet_id": "fa.khorramshahi"
+  },
+  {
+    "id": "persian_sadeqi",
+    "language": "Persian",
+    "name_in_language": "صادقی تهرانی",
+    "translator": "Mohammad Sadeqi Tehrani",
+    "source": "tanzil.net",
+    "tanzilnet_id": "fa.sadeqi"
+  },
+  {
+    "id": "persian_safavi",
+    "language": "Persian",
+    "name_in_language": "صفوی",
+    "translator": "Sayyed Mohammad Reza Safavi",
+    "source": "tanzil.net",
+    "tanzilnet_id": "fa.safavi"
+  },
+  {
+    "id": "persian_fooladvand",
+    "language": "Persian",
+    "name_in_language": "فولادوند",
+    "translator": "Mohammad Mahdi Fooladvand",
+    "source": "tanzil.net",
+    "tanzilnet_id": "fa.fooladvand"
+  },
+  {
+    "id": "persian_mojtabavi",
+    "language": "Persian",
+    "name_in_language": "مجتبوی",
+    "translator": "Sayyed Jalaloddin Mojtabavi",
+    "source": "tanzil.net",
+    "tanzilnet_id": "fa.mojtabavi"
+  },
+  {
+    "id": "persian_moezzi",
+    "language": "Persian",
+    "name_in_language": "معزی",
+    "translator": "Mohammad Kazem Moezzi",
+    "source": "tanzil.net",
+    "tanzilnet_id": "fa.moezzi"
+  },
+  {
+    "id": "persian_makarem",
+    "language": "Persian",
+    "name_in_language": "مکارم شیرازی",
+    "translator": "Naser Makarem Shirazi",
+    "source": "tanzil.net",
+    "tanzilnet_id": "fa.makarem"
+  },
+  {
+    "id": "polish_bielawskiego",
+    "language": "Polish",
+    "name_in_language": "Bielawskiego",
+    "translator": "Józefa Bielawskiego",
+    "source": "tanzil.net",
+    "tanzilnet_id": "pl.bielawskiego"
+  },
+  {
+    "id": "portuguese_elhayek",
+    "language": "Portuguese",
+    "name_in_language": "El-Hayek",
+    "translator": "Samir El-Hayek ",
+    "source": "tanzil.net",
+    "tanzilnet_id": "pt.elhayek"
+  },
+  {
+    "id": "romanian_grigore",
+    "language": "Romanian",
+    "name_in_language": "Grigore",
+    "translator": "George Grigore",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ro.grigore"
+  },
+  {
+    "id": "russian_abuadel",
+    "language": "Russian",
+    "name_in_language": "Абу Адель",
+    "translator": "Abu Adel",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ru.abuadel"
+  },
+  {
+    "id": "russian_muntahab",
+    "language": "Russian",
+    "name_in_language": "Аль-Мунтахаб",
+    "translator": "Ministry of Awqaf, Egypt",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ru.muntahab"
+  },
+  {
+    "id": "russian_kalam",
+    "language": "Russian",
+    "name_in_language": "Калям Шариф",
+    "translator": "Muslim Religious Board of the Republiс of Tatarstan",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ru.kalam"
+  },
+  {
+    "id": "russian_krachkovsky",
+    "language": "Russian",
+    "name_in_language": "Крачковский",
+    "translator": "Ignaty Yulianovich Krachkovsky",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ru.krachkovsky"
+  },
+  {
+    "id": "russian_kuliev",
+    "language": "Russian",
+    "name_in_language": "Кулиев",
+    "translator": "Elmir Kuliev",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ru.kuliev"
+  },
+  {
+    "id": "russian_kuliev-alsaadi",
+    "language": "Russian",
+    "name_in_language": "Кулиев + ас-Саади",
+    "translator": "Elmir Kuliev (with Abd ar-Rahman as-Saadi's commentaries)",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ru.kuliev-alsaadi"
+  },
+  {
+    "id": "russian_osmanov",
+    "language": "Russian",
+    "name_in_language": "Османов",
+    "translator": "Magomed-Nuri Osmanovich Osmanov",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ru.osmanov"
+  },
+  {
+    "id": "russian_porokhova",
+    "language": "Russian",
+    "name_in_language": "Порохова",
+    "translator": "V. Porokhova",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ru.porokhova"
+  },
+  {
+    "id": "russian_sablukov",
+    "language": "Russian",
+    "name_in_language": "Саблуков",
+    "translator": "Gordy Semyonovich Sablukov",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ru.sablukov"
+  },
+  {
+    "id": "sindhi_amroti",
+    "language": "Sindhi",
+    "name_in_language": "امروٽي",
+    "translator": "Taj Mehmood Amroti",
+    "source": "tanzil.net",
+    "tanzilnet_id": "sd.amroti"
+  },
+  {
+    "id": "somali_abduh",
+    "language": "Somali",
+    "name_in_language": "Abduh",
+    "translator": "Mahmud Muhammad Abduh",
+    "source": "tanzil.net",
+    "tanzilnet_id": "so.abduh"
+  },
+  {
+    "id": "spanish_bornez",
+    "language": "Spanish",
+    "name_in_language": "Bornez",
+    "translator": "Raúl González Bórnez",
+    "source": "tanzil.net",
+    "tanzilnet_id": "es.bornez"
+  },
+  {
+    "id": "spanish_cortes",
+    "language": "Spanish",
+    "name_in_language": "Cortes",
+    "translator": "Julio Cortes ",
+    "source": "tanzil.net",
+    "tanzilnet_id": "es.cortes"
+  },
+  {
+    "id": "spanish_garcia",
+    "language": "Spanish",
+    "name_in_language": "Garcia",
+    "translator": "Muhammad Isa García",
+    "source": "tanzil.net",
+    "tanzilnet_id": "es.garcia"
+  },
+  {
+    "id": "swahili_barwani",
+    "language": "Swahili",
+    "name_in_language": "Al-Barwani",
+    "translator": "Ali Muhsin Al-Barwani",
+    "source": "tanzil.net",
+    "tanzilnet_id": "sw.barwani"
+  },
+  {
+    "id": "swedish_bernstrom",
+    "language": "Swedish",
+    "name_in_language": "Bernström",
+    "translator": "Knut Bernström",
+    "source": "tanzil.net",
+    "tanzilnet_id": "sv.bernstrom"
+  },
+  {
+    "id": "tajik_ayati",
+    "language": "Tajik",
+    "name_in_language": "Оятӣ",
+    "translator": "AbdolMohammad Ayati",
+    "source": "tanzil.net",
+    "tanzilnet_id": "tg.ayati"
+  },
+  {
+    "id": "tamil_jantrust",
+    "language": "Tamil",
+    "name_in_language": "ஜான் டிரஸ்ட்",
+    "translator": "Jan Turst Foundation",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ta.tamil"
+  },
+  {
+    "id": "tatar_nugman",
+    "language": "Tatar",
+    "name_in_language": "Yakub Ibn Nugman",
+    "translator": "Yakub Ibn Nugman",
+    "source": "tanzil.net",
+    "tanzilnet_id": "tt.nugman"
+  },
+  {
+    "id": "thai_kfqc",
+    "language": "Thai",
+    "name_in_language": "ภาษาไทย",
+    "translator": "King Fahad Quran Complex",
+    "source": "tanzil.net",
+    "tanzilnet_id": "th.thai"
+  },
+  {
+    "id": "turkish_golpinarli",
+    "language": "Turkish",
+    "name_in_language": "Abdulbakî Gölpınarlı",
+    "translator": "Abdulbaki Golpinarli",
+    "source": "tanzil.net",
+    "tanzilnet_id": "tr.golpinarli"
+  },
+  {
+    "id": "turkish_bulac",
+    "language": "Turkish",
+    "name_in_language": "Alİ Bulaç",
+    "translator": "Alİ Bulaç",
+    "source": "tanzil.net",
+    "tanzilnet_id": "tr.bulac"
+  },
+  {
+    "id": "turkish_transliteration",
+    "language": "Turkish",
+    "name_in_language": "Çeviriyazı",
+    "translator": "Muhammet Abay",
+    "source": "tanzil.net",
+    "tanzilnet_id": "tr.transliteration"
+  },
+  {
+    "id": "turkish_diyanet",
+    "language": "Turkish",
+    "name_in_language": "Diyanet İşleri",
+    "translator": "Diyanet Isleri",
+    "source": "tanzil.net",
+    "tanzilnet_id": "tr.diyanet"
+  },
+  {
+    "id": "turkish_vakfi",
+    "language": "Turkish",
+    "name_in_language": "Diyanet Vakfı",
+    "translator": "Diyanet Vakfi",
+    "source": "tanzil.net",
+    "tanzilnet_id": "tr.vakfi"
+  },
+  {
+    "id": "turkish_yuksel",
+    "language": "Turkish",
+    "name_in_language": "Edip Yüksel",
+    "translator": "Edip Yüksel",
+    "source": "tanzil.net",
+    "tanzilnet_id": "tr.yuksel"
+  },
+  {
+    "id": "turkish_yazir",
+    "language": "Turkish",
+    "name_in_language": "Elmalılı Hamdi Yazır",
+    "translator": "Elmalili Hamdi Yazir",
+    "source": "tanzil.net",
+    "tanzilnet_id": "tr.yazir"
+  },
+  {
+    "id": "turkish_ozturk",
+    "language": "Turkish",
+    "name_in_language": "Öztürk",
+    "translator": "Yasar Nuri Ozturk",
+    "source": "tanzil.net",
+    "tanzilnet_id": "tr.ozturk"
+  },
+  {
+    "id": "turkish_yildirim",
+    "language": "Turkish",
+    "name_in_language": "Suat Yıldırım",
+    "translator": "Suat Yildirim",
+    "source": "tanzil.net",
+    "tanzilnet_id": "tr.yildirim"
+  },
+  {
+    "id": "turkish_ates",
+    "language": "Turkish",
+    "name_in_language": "Süleyman Ateş",
+    "translator": "Suleyman Ates",
+    "source": "tanzil.net",
+    "tanzilnet_id": "tr.ates"
+  },
+  {
+    "id": "urdu_maududi",
+    "language": "Urdu",
+    "name_in_language": "ابوالاعلی مودودی",
+    "translator": "Abul A'ala Maududi",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ur.maududi"
+  },
+  {
+    "id": "urdu_kanzuliman",
+    "language": "Urdu",
+    "name_in_language": "احمد رضا خان",
+    "translator": "Ahmed Raza Khan",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ur.kanzuliman"
+  },
+  {
+    "id": "urdu_ahmedali",
+    "language": "Urdu",
+    "name_in_language": "احمد علی",
+    "translator": "Ahmed Ali",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ur.ahmedali"
+  },
+  {
+    "id": "urdu_jalandhry",
+    "language": "Urdu",
+    "name_in_language": "جالندہری",
+    "translator": "Fateh Muhammad Jalandhry",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ur.jalandhry"
+  },
+  {
+    "id": "urdu_qadri",
+    "language": "Urdu",
+    "name_in_language": "طاہر القادری",
+    "translator": "Tahir ul Qadri",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ur.qadri"
+  },
+  {
+    "id": "urdu_jawadi",
+    "language": "Urdu",
+    "name_in_language": "علامہ جوادی",
+    "translator": "Syed Zeeshan Haider Jawadi",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ur.jawadi"
+  },
+  {
+    "id": "urdu_junagarhi",
+    "language": "Urdu",
+    "name_in_language": "محمد جوناگڑھی",
+    "translator": "Muhammad Junagarhi",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ur.junagarhi"
+  },
+  {
+    "id": "urdu_najafi",
+    "language": "Urdu",
+    "name_in_language": "محمد حسین نجفی",
+    "translator": "Muhammad Hussain Najafi ",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ur.najafi"
+  },
+  {
+    "id": "uyghur_saleh",
+    "language": "Uyghur",
+    "name_in_language": "محمد صالح",
+    "translator": "Muhammad Saleh",
+    "source": "tanzil.net",
+    "tanzilnet_id": "ug.saleh"
+  },
+  {
+    "id": "uzbek_sodik",
+    "language": "Uzbek",
+    "name_in_language": "Мухаммад Содик",
+    "translator": "Muhammad Sodik Muhammad Yusuf",
+    "source": "tanzil.net",
+    "tanzilnet_id": "uz.sodik"
+  }
+]
