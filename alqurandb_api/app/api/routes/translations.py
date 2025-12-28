@@ -1,87 +1,59 @@
-from fastapi import APIRouter, HTTPException, Path as PathParam
+"""Translation API endpoints"""
+from fastapi import APIRouter, Depends, Path as PathParam
 from fastapi.responses import FileResponse
-from pathlib import Path
-from enum import Enum
-import json
+
+from app.services.translation_service import TranslationService
+from app.schemas.translation import TranslationList
+from app.models.translation import FileType
+
 
 router = APIRouter()
 
-# Data directory paths
-DATA_DIR = Path(__file__).parent.parent.parent.parent / "data"
-METADATA_FILE = DATA_DIR / "metadata.json"
-TRANSLATIONS_DIR = DATA_DIR / "translations"
+
+def get_translation_service() -> TranslationService:
+    """Dependency injection for translation service"""
+    return TranslationService()
 
 
-class FileType(str, Enum):
-    json = "json"
-    csv = "csv"
+@router.get("/", response_model=TranslationList)
+async def list_translations(service: TranslationService = Depends(get_translation_service)):
+    """
+    Get list of all available translations
+
+    Returns:
+    - total: Total number of translations
+    - translations: List of translation metadata
+    """
+    return service.get_all_translations()
 
 
-def load_metadata():
-    """Load translation metadata from JSON file"""
-    try:
-        with open(METADATA_FILE, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        raise HTTPException(status_code=500, detail="Metadata file not found")
-    except json.JSONDecodeError:
-        raise HTTPException(status_code=500, detail="Invalid metadata file")
-
-
-@router.get("/")
-async def list_translations():
-    """Get list of all available translations"""
-    metadata = load_metadata()
-
-    return {
-        "total": len(metadata),
-        "translations": [
-            {
-                "id": t["id"],
-                "language": t["language"],
-                "translator": t["translator"],
-                "name_in_language": t.get("name_in_language", ""),
-                "source": t.get("source", "tanzil.net")
-            }
-            for t in metadata
-        ]
-    }
-
-
-@router.get("/download/{id}/{filetype}")
+@router.get("/download/{translation_id}/{filetype}")
 async def download_translation(
-    id: str = PathParam(..., description="Translation ID"),
-    filetype: FileType = PathParam(..., description="File type (json or csv)")
+    translation_id: str = PathParam(..., description="Translation ID"),
+    filetype: FileType = PathParam(..., description="File type (json or csv)"),
+    service: TranslationService = Depends(get_translation_service)
 ):
     """
     Download a translation file
 
     Parameters:
-    - id: Translation ID
+    - translation_id: Translation ID
     - filetype: File type (json or csv)
 
     Examples:
     - /api/v1/translations/download/tamil_johntrust/json
     - /api/v1/translations/download/tamil_johntrust/csv
     """
-    metadata = load_metadata()
-
-    # Verify translation exists
-    if not any(t["id"] == id for t in metadata):
-        raise HTTPException(status_code=404, detail=f"Translation '{id}' not found")
-
-    # Build file path based on filetype
-    file_extension = filetype.value
-    file_path = TRANSLATIONS_DIR / filetype.value / f"{id}.{file_extension}"
-
-    if not file_path.exists():
-        raise HTTPException(status_code=404, detail=f"Translation file not found")
+    file_path = service.get_translation_file(translation_id, filetype)
 
     # Set media type based on file type
-    media_type = "application/json" if filetype == FileType.json else "text/csv"
+    if filetype == FileType.JSON:
+        media_type = "application/json"
+    else:
+        media_type = "text/csv"
 
     return FileResponse(
         path=file_path,
         media_type=media_type,
-        filename=f"{id}.{file_extension}"
+        filename=f"{translation_id}.{filetype.value}"
     )

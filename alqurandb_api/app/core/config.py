@@ -1,5 +1,6 @@
 from pydantic_settings import BaseSettings
 from typing import List
+from pathlib import Path
 
 
 class Settings(BaseSettings):
@@ -9,6 +10,9 @@ class Settings(BaseSettings):
         "http://localhost:3000",
         "http://localhost:3001",
     ]
+
+    # Data directory path
+    DATA_DIR: Path = Path(__file__).parent.parent.parent / "data"
 
     class Config:
         env_file = ".env"

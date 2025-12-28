@@ -464,14 +464,6 @@
     "source_id": "no.berg"
   },
   {
-    "id": "pashto_abdulwali",
-    "language": "Pashto",
-    "name_in_language": "عبدالولي",
-    "translator": "Abdulwali Khan",
-    "source": "tanzil.net",
-    "source_id": "ps.abdulwali"
-  },
-  {
     "id": "persian_ansarian",
     "language": "Persian",
     "name_in_language": "انصاریان",
