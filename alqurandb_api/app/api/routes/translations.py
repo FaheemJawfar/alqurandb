@@ -14,6 +14,7 @@ TRANSLATIONS_DIR = DATA_DIR / "translations"
 
 class FileType(str, Enum):
     json = "json"
+    csv = "csv"
 
 
 def load_metadata():
@@ -50,17 +51,18 @@ async def list_translations():
 @router.get("/download/{id}/{filetype}")
 async def download_translation(
     id: str = PathParam(..., description="Translation ID"),
-    filetype: FileType = PathParam(..., description="File type (json)")
+    filetype: FileType = PathParam(..., description="File type (json or csv)")
 ):
     """
     Download a translation file
 
     Parameters:
     - id: Translation ID
-    - filetype: File type (json)
+    - filetype: File type (json or csv)
 
-    Example:
+    Examples:
     - /api/v1/translations/download/tamil_johntrust/json
+    - /api/v1/translations/download/tamil_johntrust/csv
     """
     metadata = load_metadata()
 
@@ -69,13 +71,17 @@ async def download_translation(
         raise HTTPException(status_code=404, detail=f"Translation '{id}' not found")
 
     # Build file path based on filetype
-    file_path = TRANSLATIONS_DIR / filetype.value / f"{id}.json"
+    file_extension = filetype.value
+    file_path = TRANSLATIONS_DIR / filetype.value / f"{id}.{file_extension}"
 
     if not file_path.exists():
         raise HTTPException(status_code=404, detail=f"Translation file not found")
 
+    # Set media type based on file type
+    media_type = "application/json" if filetype == FileType.json else "text/csv"
+
     return FileResponse(
         path=file_path,
-        media_type="application/json",
-        filename=f"{id}.json"
+        media_type=media_type,
+        filename=f"{id}.{file_extension}"
     )
