@@ -125,7 +125,7 @@ export default function Home() {
                     <th>Translator</th>
                     <th>Native Name</th>
                     <th className="text-end" style={{ width: '360px' }}>Downloads</th>
-                    <th>Source</th>
+                    <th style={{ width: '100px' }}>Source</th>
                   </tr>
                 </thead>
                 <tbody>
