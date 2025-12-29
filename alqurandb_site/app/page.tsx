@@ -167,7 +167,7 @@ export default function Home() {
                             title="Download as SQLite database"
                           >
                             <i className="ti ti-database me-1"></i>
-                            DB
+                            SQLite
                           </button>
                           <button
                             onClick={() => handleDownload(translation.id, 'xml')}
