@@ -121,10 +121,10 @@ export default function Home() {
               <table className="table table-vcenter card-table table-striped">
                 <thead>
                   <tr>
-                    <th>Language</th>
-                    <th>Translator</th>
-                    <th>Native Name</th>
-                    <th className="text-end" style={{ width: '360px' }}>Downloads</th>
+                    <th style={{ width: '150px' }}>Language</th>
+                    <th style={{ width: '250px' }}>Translator</th>
+                    <th style={{ width: '200px' }}>Native Name</th>
+                    <th className="text-end" style={{ width: '400px' }}>Downloads</th>
                     <th style={{ width: '100px' }}>Source</th>
                   </tr>
                 </thead>
