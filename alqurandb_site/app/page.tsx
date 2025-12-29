@@ -46,7 +46,7 @@ export default function Home() {
     }
   }
 
-  function handleDownload(translationId: string, fileType: 'json' | 'csv') {
+  function handleDownload(translationId: string, fileType: 'json' | 'csv' | 'sqlite' | 'xml' | 'xlsx') {
     const downloadUrl = `${API_BASE_URL}/translations/download/${translationId}/${fileType}`;
     window.open(downloadUrl, '_blank');
   }
@@ -124,7 +124,7 @@ export default function Home() {
                     <th>Language</th>
                     <th>Translator</th>
                     <th>Native Name</th>
-                    <th className="text-end" style={{ width: '180px' }}>Downloads</th>
+                    <th className="text-end" style={{ width: '360px' }}>Downloads</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -148,6 +148,7 @@ export default function Home() {
                           <button
                             onClick={() => handleDownload(translation.id, 'json')}
                             className="btn btn-sm btn-primary"
+                            title="Download as JSON"
                           >
                             <i className="ti ti-download me-1"></i>
                             JSON
@@ -155,9 +156,34 @@ export default function Home() {
                           <button
                             onClick={() => handleDownload(translation.id, 'csv')}
                             className="btn btn-sm btn-success"
+                            title="Download as CSV"
                           >
                             <i className="ti ti-download me-1"></i>
                             CSV
+                          </button>
+                          <button
+                            onClick={() => handleDownload(translation.id, 'sqlite')}
+                            className="btn btn-sm btn-secondary"
+                            title="Download as SQLite database"
+                          >
+                            <i className="ti ti-database me-1"></i>
+                            DB
+                          </button>
+                          <button
+                            onClick={() => handleDownload(translation.id, 'xml')}
+                            className="btn btn-sm btn-info"
+                            title="Download as XML"
+                          >
+                            <i className="ti ti-file-code me-1"></i>
+                            XML
+                          </button>
+                          <button
+                            onClick={() => handleDownload(translation.id, 'xlsx')}
+                            className="btn btn-sm btn-warning"
+                            title="Download as Excel"
+                          >
+                            <i className="ti ti-file-spreadsheet me-1"></i>
+                            Excel
                           </button>
                         </div>
                       </td>

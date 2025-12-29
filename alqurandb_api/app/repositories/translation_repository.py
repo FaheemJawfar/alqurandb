@@ -72,7 +72,15 @@ class TranslationRepository:
 
     def get_translation_file_path(self, translation_id: str, file_type: str) -> Path:
         """Get path to translation file"""
-        file_path = self.translations_dir / file_type / f"{translation_id}.{file_type}"
+        # Map file types to their extensions and directory names
+        if file_type == "sqlite":
+            file_extension = "db"
+            directory = "sqlite"
+        else:
+            file_extension = file_type
+            directory = file_type
+
+        file_path = self.translations_dir / directory / f"{translation_id}.{file_extension}"
         if not file_path.exists():
             raise TranslationFileNotFoundException(translation_id, file_type)
         return file_path
