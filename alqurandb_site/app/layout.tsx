@@ -41,6 +41,28 @@ export default function RootLayout({
                   AlQuranDB
                 </a>
               </h1>
+              <div className="collapse navbar-collapse" id="navbar-menu">
+                <div className="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
+                  <ul className="navbar-nav">
+                    <li className="nav-item">
+                      <a className="nav-link" href="/">
+                        <span className="nav-link-icon d-md-none d-lg-inline-block">
+                          <i className="ti ti-download"></i>
+                        </span>
+                        <span className="nav-link-title">Translations</span>
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/api-docs">
+                        <span className="nav-link-icon d-md-none d-lg-inline-block">
+                          <i className="ti ti-code"></i>
+                        </span>
+                        <span className="nav-link-title">API Documentation</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
               <div className="navbar-nav flex-row order-md-last">
                 <div className="nav-item d-none d-md-flex me-3">
                   <div className="btn-list">

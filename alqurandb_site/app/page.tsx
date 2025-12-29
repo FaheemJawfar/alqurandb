@@ -15,11 +15,31 @@ interface TranslationsResponse {
   translations: Translation[];
 }
 
+interface Verse {
+  translation_id: string;
+  surah: number;
+  ayah: number;
+  text: string;
+}
+
+interface VersesResponse {
+  translation_id: string;
+  surah: number | null;
+  total: number;
+  verses: Verse[];
+}
+
 export default function Home() {
   const [translations, setTranslations] = useState<Translation[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+
+  const [showVerses, setShowVerses] = useState(false);
+  const [selectedTranslation, setSelectedTranslation] = useState<Translation | null>(null);
+  const [selectedSurah, setSelectedSurah] = useState<number>(1);
+  const [verses, setVerses] = useState<Verse[]>([]);
+  const [versesLoading, setVersesLoading] = useState(false);
 
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
 
@@ -51,6 +71,39 @@ export default function Home() {
     window.open(downloadUrl, '_blank');
   }
 
+  async function handleViewVerses(translation: Translation) {
+    setSelectedTranslation(translation);
+    setShowVerses(true);
+    setSelectedSurah(1);
+    await fetchVerses(translation.id, 1);
+  }
+
+  async function fetchVerses(translationId: string, surah: number) {
+    try {
+      setVersesLoading(true);
+      const response = await fetch(`${API_BASE_URL}/translations/${translationId}/${surah}`);
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch verses');
+      }
+
+      const data: VersesResponse = await response.json();
+      setVerses(data.verses);
+    } catch (err) {
+      console.error('Error fetching verses:', err);
+      setVerses([]);
+    } finally {
+      setVersesLoading(false);
+    }
+  }
+
+  async function handleSurahChange(surah: number) {
+    setSelectedSurah(surah);
+    if (selectedTranslation) {
+      await fetchVerses(selectedTranslation.id, surah);
+    }
+  }
+
   const filteredTranslations = translations.filter(
     (translation) =>
       translation.language.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -70,6 +123,33 @@ export default function Home() {
               <h2 className="page-title">Quran Translations</h2>
               <div className="text-muted mt-1">
                 Download {translations.length} translations in {uniqueLanguages.size} languages
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* API Info Card */}
+        <div className="row mb-3">
+          <div className="col-12">
+            <div className="card bg-primary-lt">
+              <div className="card-body">
+                <div className="row align-items-center">
+                  <div className="col">
+                    <h3 className="card-title mb-1">
+                      <i className="ti ti-code me-2"></i>
+                      Developer API Available
+                    </h3>
+                    <p className="text-muted mb-0">
+                      Access Quran translations programmatically with our RESTful API. Get verses by surah, ayah, or download complete translations.
+                    </p>
+                  </div>
+                  <div className="col-auto">
+                    <a href="/api-docs" className="btn btn-primary">
+                      <i className="ti ti-book me-1"></i>
+                      View API Docs
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -125,6 +205,7 @@ export default function Home() {
                     <th style={{ width: '250px' }}>Translator</th>
                     <th style={{ width: '200px' }}>Native Name</th>
                     <th style={{ width: '400px' }}>Downloads</th>
+                    <th style={{ width: '120px' }}>Actions</th>
                     <th style={{ width: '100px' }}>Source</th>
                   </tr>
                 </thead>
@@ -189,6 +270,16 @@ export default function Home() {
                         </div>
                       </td>
                       <td>
+                        <button
+                          onClick={() => handleViewVerses(translation)}
+                          className="btn btn-sm btn-ghost-primary"
+                          title="View verses"
+                        >
+                          <i className="ti ti-book-2 me-1"></i>
+                          View
+                        </button>
+                      </td>
+                      <td>
                         <span className="text-muted small">{translation.source}</span>
                       </td>
                     </tr>
@@ -211,6 +302,64 @@ export default function Home() {
             </p>
           </div>
         )}
+
+        {/* Verses Modal */}
+        {showVerses && selectedTranslation && (
+          <div className="modal modal-blur fade show" style={{ display: 'block' }}>
+            <div className="modal-dialog modal-lg modal-dialog-scrollable">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title">{selectedTranslation.language} - {selectedTranslation.translator}</h5>
+                  <button type="button" className="btn-close" onClick={() => setShowVerses(false)}></button>
+                </div>
+                <div className="modal-body">
+                  <div className="mb-3">
+                    <label className="form-label">Select Surah</label>
+                    <select
+                      className="form-select"
+                      value={selectedSurah}
+                      onChange={(e) => handleSurahChange(Number(e.target.value))}
+                    >
+                      {Array.from({ length: 114 }, (_, i) => i + 1).map((surah) => (
+                        <option key={surah} value={surah}>
+                          Surah {surah}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {versesLoading ? (
+                    <div className="text-center py-5">
+                      <div className="spinner-border" role="status"></div>
+                      <div className="mt-2">Loading verses...</div>
+                    </div>
+                  ) : (
+                    <div className="list-group list-group-flush">
+                      {verses.map((verse) => (
+                        <div key={`${verse.surah}:${verse.ayah}`} className="list-group-item">
+                          <div className="row align-items-start">
+                            <div className="col-auto">
+                              <span className="badge bg-primary">{verse.ayah}</span>
+                            </div>
+                            <div className="col">
+                              <p className="mb-0">{verse.text}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-secondary" onClick={() => setShowVerses(false)}>
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        {showVerses && <div className="modal-backdrop fade show"></div>}
       </div>
     </div>
   );
