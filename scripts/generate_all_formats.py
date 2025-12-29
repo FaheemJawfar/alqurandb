@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Generate all translation formats from JSON base files
+Generate all translation formats from CSV base files
 
 This script runs all format converters to generate CSV, XML, Excel (XLSX),
-and SQLite database files from the base JSON translations.
+and SQLite database files from the base CSV translations.
 
-JSON files are the source of truth - all other formats are derived from them.
+CSV files are the source of truth - all other formats are derived from them.
 """
 import subprocess
 import sys
@@ -39,21 +39,21 @@ def main():
 
     # Define converters in order of execution
     converters = [
-        (converters_dir / 'json_to_csv.py', 'CSV'),
-        (converters_dir / 'json_to_xml.py', 'XML'),
-        (converters_dir / 'json_to_excel.py', 'Excel (XLSX)'),
-        (converters_dir / 'json_to_sqlite.py', 'SQLite'),
+        (converters_dir / 'csv_to_json.py', 'JSON'),
+        (converters_dir / 'csv_to_xml.py', 'XML'),
+        (converters_dir / 'csv_to_excel.py', 'Excel (XLSX)'),
+        (converters_dir / 'csv_to_sqlite.py', 'SQLite'),
     ]
 
     print("\n" + "="*80)
     print("  AlQuranDB - Generate All Translation Formats")
     print("="*80)
-    print("\nThis will generate all translation files from the base JSON format:")
+    print("\nThis will generate all translation files from the base CSV format:")
     print("  • CSV files (spreadsheets, data analysis)")
     print("  • XML files (religious software, enterprise systems)")
     print("  • Excel files (business users, researchers)")
     print("  • SQLite databases (mobile apps, desktop applications)")
-    print("\nSource: alqurandb_api/data/translations/json/")
+    print("\nSource: alqurandb_api/data/translations/csv/")
     print("="*80)
 
     # Track results

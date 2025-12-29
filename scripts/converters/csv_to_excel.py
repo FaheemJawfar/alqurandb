@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 """
-Convert JSON translations to Excel (XLSX) format
+Convert CSV translations to Excel (XLSX) format
 
-Reads from: alqurandb_api/data/translations/json/ (base format)
+Reads from: alqurandb_api/data/translations/csv/ (base format)
 Outputs to: alqurandb_api/data/translations/xlsx/
 
-JSON is the source of truth - this converter generates Excel files from JSON.
+CSV is the source of truth - this converter generates Excel files from CSV.
 """
-import json
+import csv
 from pathlib import Path
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 
 
-def create_translation_excel(translation_id, translation_data, metadata_item, output_file):
-    """Create Excel file for a single translation"""
+def create_translation_excel(translation_id, csv_file_path, metadata_item, output_file):
+    """Create Excel file for a single translation from CSV"""
 
     # Create workbook
     wb = Workbook()
@@ -58,22 +58,26 @@ def create_translation_excel(translation_id, translation_data, metadata_item, ou
         cell.font = header_font
         cell.alignment = header_alignment
 
-    # Add verses
+    # Add verses from CSV
+    verse_count = 0
     row = header_row + 1
-    for key, text in translation_data.items():
-        surah, ayah = key.split(':')
-        ws.cell(row=row, column=1, value=int(surah))
-        ws.cell(row=row, column=2, value=int(ayah))
-        ws.cell(row=row, column=3, value=text)
 
-        # Align numbers to center
-        ws.cell(row=row, column=1).alignment = Alignment(horizontal="center")
-        ws.cell(row=row, column=2).alignment = Alignment(horizontal="center")
+    with open(csv_file_path, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for data_row in reader:
+            ws.cell(row=row, column=1, value=int(data_row['surah']))
+            ws.cell(row=row, column=2, value=int(data_row['ayah']))
+            ws.cell(row=row, column=3, value=data_row['text'])
 
-        # Wrap text for better readability
-        ws.cell(row=row, column=3).alignment = Alignment(wrap_text=True, vertical="top")
+            # Align numbers to center
+            ws.cell(row=row, column=1).alignment = Alignment(horizontal="center")
+            ws.cell(row=row, column=2).alignment = Alignment(horizontal="center")
 
-        row += 1
+            # Wrap text for better readability
+            ws.cell(row=row, column=3).alignment = Alignment(wrap_text=True, vertical="top")
+
+            row += 1
+            verse_count += 1
 
     # Freeze the header row
     ws.freeze_panes = ws.cell(row=header_row + 1, column=1)
@@ -81,48 +85,50 @@ def create_translation_excel(translation_id, translation_data, metadata_item, ou
     # Save workbook
     wb.save(output_file)
 
-    return len(translation_data)
+    return verse_count
 
 
 def main():
-    """Create Excel files for all translations"""
+    """Convert all CSV translations to Excel format"""
 
-    # Paths
+    import json
+
+    # Paths (CSV is the base format)
     script_dir = Path(__file__).parent
-    api_data_dir = script_dir.parent / 'alqurandb_api' / 'data'
+    api_data_dir = script_dir.parent.parent / 'alqurandb_api' / 'data'
     metadata_file = api_data_dir / 'metadata.json'
-    translations_json_dir = api_data_dir / 'translations' / 'json'
-    output_dir = api_data_dir / 'translations' / 'xlsx'
+    csv_dir = api_data_dir / 'translations' / 'csv'
+    xlsx_dir = api_data_dir / 'translations' / 'xlsx'
 
     # Create output directory
-    output_dir.mkdir(parents=True, exist_ok=True)
+    xlsx_dir.mkdir(parents=True, exist_ok=True)
 
     # Load metadata
     with open(metadata_file, 'r', encoding='utf-8') as f:
         metadata = json.load(f)
 
-    print(f"Creating Excel files for {len(metadata)} translations...")
+    # Create metadata lookup
+    metadata_dict = {item['id']: item for item in metadata}
+
+    # Find all CSV files
+    csv_files = sorted(csv_dir.glob('*.csv'))
+
+    if not csv_files:
+        print(f"❌ No CSV files found in {csv_dir}")
+        return
+
+    print(f"Converting {len(csv_files)} translations from CSV to Excel...")
 
     successful = 0
     failed = 0
 
-    for item in metadata:
-        translation_id = item['id']
-        json_file = translations_json_dir / f"{translation_id}.json"
-        output_file = output_dir / f"{translation_id}.xlsx"
-
-        if not json_file.exists():
-            print(f"  ✗ {translation_id}: JSON file not found")
-            failed += 1
-            continue
+    for csv_file in csv_files:
+        translation_id = csv_file.stem
+        output_file = xlsx_dir / f"{translation_id}.xlsx"
 
         try:
-            # Load translation data
-            with open(json_file, 'r', encoding='utf-8') as f:
-                translation_data = json.load(f)
-
-            # Create Excel file
-            verse_count = create_translation_excel(translation_id, translation_data, item, output_file)
+            metadata_item = metadata_dict.get(translation_id, {})
+            verse_count = create_translation_excel(translation_id, csv_file, metadata_item, output_file)
 
             # Get file size
             size_kb = output_file.stat().st_size / 1024

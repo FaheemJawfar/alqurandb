@@ -7,15 +7,15 @@ This directory contains scripts for extracting, processing, and converting Quran
 ```
 scripts/
 ├── tanzil.net/              # Source data extraction from Tanzil.net
-│   ├── parse_translation.py  # Parse XML translations to JSON (BASE FORMAT)
+│   ├── parse_translation.py  # Parse XML translations to CSV (BASE FORMAT)
 │   ├── extract_metadata.py   # Extract translation metadata
 │   └── ...
 │
-├── converters/              # Convert JSON (base) to other formats
-│   ├── json_to_csv.py       # JSON → CSV conversion
-│   ├── json_to_xml.py       # JSON → XML conversion
-│   ├── json_to_excel.py     # JSON → Excel (XLSX) conversion
-│   └── json_to_sqlite.py    # JSON → SQLite database conversion
+├── converters/              # Convert CSV (base) to other formats
+│   ├── csv_to_csv.py       # JSON → CSV conversion
+│   ├── csv_to_xml.py       # JSON → XML conversion
+│   ├── csv_to_excel.py     # JSON → Excel (XLSX) conversion
+│   └── csv_to_sqlite.py    # JSON → SQLite database conversion
 │
 ├── generate_all_formats.py # Generate all formats from JSON (one command)
 └── create_sqlite_db.py      # Create complete database (optional)
@@ -25,11 +25,11 @@ scripts/
 
 1. **Source Extraction** (`tanzil.net/`)
    - Download XML translations from Tanzil.net
-   - Parse and extract to **JSON format** (stored in `alqurandb_api/data/translations/json/`)
-   - **JSON is the base format** - all other formats are generated from it
+   - Parse and extract to **JSON format** (stored in `alqurandb_api/data/translations/csv/`)
+   - **CSV is the base format** - all other formats are generated from it
 
 2. **Format Conversion** (`converters/`)
-   - Each converter reads from `data/translations/json/`
+   - Each converter reads from `data/translations/csv/`
    - Generates format-specific files in respective directories:
      - CSV → `data/translations/csv/`
      - XML → `data/translations/xml/`
@@ -44,19 +44,19 @@ scripts/
 python scripts/generate_all_formats.py
 ```
 
-This will generate CSV, XML, Excel, and SQLite files for all 114 translations from the base JSON files.
+This will generate CSV, XML, Excel, and SQLite files for all 114 translations from the base CSV files.
 
 ### Generate Individual Formats
 
 ```bash
 # Generate XML files
-python scripts/converters/json_to_xml.py
+python scripts/converters/csv_to_xml.py
 
 # Generate Excel files
-python scripts/converters/json_to_excel.py
+python scripts/converters/csv_to_excel.py
 
 # Generate SQLite databases
-python scripts/converters/json_to_sqlite.py
+python scripts/converters/csv_to_sqlite.py
 ```
 
 ### Extract from Source (Tanzil.net)
