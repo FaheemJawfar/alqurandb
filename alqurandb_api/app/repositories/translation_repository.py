@@ -1,6 +1,7 @@
 """Translation repository for data access"""
 from pathlib import Path
 import json
+import sqlite3
 from typing import Optional
 
 from app.core.config import settings
@@ -17,58 +18,74 @@ class TranslationRepository:
 
     def __init__(self):
         self.data_dir = Path(settings.DATA_DIR)
-        self.metadata_file = self.data_dir / "metadata.json"
+        self.db_path = self.data_dir / "quran_translations.db"
         self.translations_dir = self.data_dir / "translations"
-        self._metadata_cache: Optional[list[dict]] = None
+        self._metadata_cache: Optional[list[TranslationMetadata]] = None
 
-    def get_metadata(self) -> list[dict]:
-        """Load and cache metadata from JSON file"""
+    def _get_db_connection(self) -> sqlite3.Connection:
+        """Get database connection"""
+        if not self.db_path.exists():
+            raise MetadataNotFoundException()
+        return sqlite3.connect(self.db_path)
+
+    def get_metadata(self) -> list[TranslationMetadata]:
+        """Load and cache metadata from database"""
         if self._metadata_cache is None:
             try:
-                with open(self.metadata_file, 'r', encoding='utf-8') as f:
-                    self._metadata_cache = json.load(f)
-            except FileNotFoundError:
-                raise MetadataNotFoundException()
-            except json.JSONDecodeError:
+                conn = self._get_db_connection()
+                cursor = conn.cursor()
+                cursor.execute(
+                    'SELECT id, language, translator, name_in_language, source FROM translations ORDER BY language, translator'
+                )
+                rows = cursor.fetchall()
+                conn.close()
+
+                self._metadata_cache = []
+                for row in rows:
+                    self._metadata_cache.append(TranslationMetadata(
+                        id=row[0],
+                        language=row[1],
+                        translator=row[2],
+                        name_in_language=row[3],
+                        source=row[4]
+                    ))
+            except Exception as e:
                 raise InvalidMetadataException()
+
         return self._metadata_cache
 
     def get_all_translations(self) -> list[TranslationMetadata]:
         """Get all translation metadata"""
-        metadata = self.get_metadata()
-        translations = []
-        for item in metadata:
-            # Create a copy without source_id
-            data = item.copy()
-            data.pop('source_id', None)  # Remove source_id if it exists
-            translations.append(TranslationMetadata(**data))
-        return translations
+        return self.get_metadata()
 
     def get_translation_by_id(self, translation_id: str) -> Optional[TranslationMetadata]:
         """Get translation metadata by ID"""
-        metadata = self.get_metadata()
+        try:
+            conn = self._get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute(
+                'SELECT id, language, translator, name_in_language, source FROM translations WHERE id = ?',
+                (translation_id,)
+            )
+            row = cursor.fetchone()
+            conn.close()
 
-        # Find the translation with matching ID
-        translation_data = None
-        for item in metadata:
-            if item["id"] == translation_id:
-                translation_data = item
-                break
-
-        if translation_data:
-            # Create a copy without source_id
-            data = translation_data.copy()
-            data.pop('source_id', None)  # Remove source_id if it exists
-            return TranslationMetadata(**data)
-
-        return None
+            if row:
+                return TranslationMetadata(
+                    id=row[0],
+                    language=row[1],
+                    translator=row[2],
+                    name_in_language=row[3],
+                    source=row[4]
+                )
+            return None
+        except Exception:
+            return None
 
     def translation_exists(self, translation_id: str) -> bool:
         """Check if translation exists"""
         translation = self.get_translation_by_id(translation_id)
-        if translation:
-            return True
-        return False
+        return translation is not None
 
     def get_translation_file_path(self, translation_id: str, file_type: str) -> Path:
         """Get path to translation file"""
@@ -86,10 +103,26 @@ class TranslationRepository:
         return file_path
 
     def load_translation_data(self, translation_id: str) -> dict:
-        """Load translation data from JSON file"""
-        file_path = self.get_translation_file_path(translation_id, "json")
-        with open(file_path, 'r', encoding='utf-8') as f:
-            return json.load(f)
+        """Load translation data from database"""
+        try:
+            conn = self._get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute(
+                'SELECT surah, ayah, text FROM verses WHERE translation_id = ? ORDER BY surah, ayah',
+                (translation_id,)
+            )
+            rows = cursor.fetchall()
+            conn.close()
+
+            # Convert to dictionary format: "surah:ayah" -> "text"
+            data = {}
+            for row in rows:
+                key = f"{row[0]}:{row[1]}"
+                data[key] = row[2]
+
+            return data
+        except Exception as e:
+            raise TranslationFileNotFoundException(translation_id, "data")
 
     def clear_cache(self):
         """Clear metadata cache"""
