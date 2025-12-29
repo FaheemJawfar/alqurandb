@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """
-Create individual XML files for each translation
+Convert JSON translations to XML format
+
+Reads from: alqurandb_api/data/translations/json/ (base format)
+Outputs to: alqurandb_api/data/translations/xml/
+
+JSON is the source of truth - this converter generates XML from JSON.
 """
 import json
 import xml.etree.ElementTree as ET

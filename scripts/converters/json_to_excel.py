@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """
-Create individual Excel (XLSX) files for each translation
+Convert JSON translations to Excel (XLSX) format
+
+Reads from: alqurandb_api/data/translations/json/ (base format)
+Outputs to: alqurandb_api/data/translations/xlsx/
+
+JSON is the source of truth - this converter generates Excel files from JSON.
 """
 import json
 from pathlib import Path

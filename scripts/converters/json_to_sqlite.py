@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """
-Create individual SQLite database files for each translation
+Convert JSON translations to individual SQLite database files
+
+Reads from: alqurandb_api/data/translations/json/ (base format)
+Outputs to: alqurandb_api/data/translations/sqlite/
+
+JSON is the source of truth - this converter generates SQLite databases from JSON.
 """
 import json
 import sqlite3
