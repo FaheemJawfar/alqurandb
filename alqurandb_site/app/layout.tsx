@@ -51,7 +51,7 @@ export default function RootLayout({
                       rel="noreferrer"
                     >
                       <i className="ti ti-brand-github"></i>
-                      Source code
+                      GitHub
                     </a>
                   </div>
                 </div>
