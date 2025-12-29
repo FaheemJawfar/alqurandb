@@ -728,12 +728,28 @@
     "source_id": "tg.ayati"
   },
   {
+    "id": "tamil_ift",
+    "language": "Tamil",
+    "name_in_language": "இஸ்லாமிய நிறுவனம் அறக்கட்டளை",
+    "translator": "Islamic Foundation Trust",
+    "source": "tamililquran.com",
+    "source_id": "ift"
+  },
+  {
     "id": "tamil_johntrust",
     "language": "Tamil",
     "name_in_language": "ஜான் டிரஸ்ட்",
     "translator": "John Trust Foundation",
     "source": "tanzil.net",
     "source_id": "ta.tamil"
+  },
+  {
+    "id": "tamil_kingfahd",
+    "language": "Tamil",
+    "name_in_language": "மன்னர் ஃபஹத் வளாகம்",
+    "translator": "King Fahd Quran Complex",
+    "source": "tamililquran.com",
+    "source_id": "king_fahd"
   },
   {
     "id": "tatar_nugman",
