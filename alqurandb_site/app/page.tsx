@@ -124,7 +124,7 @@ export default function Home() {
                     <th style={{ width: '150px' }}>Language</th>
                     <th style={{ width: '250px' }}>Translator</th>
                     <th style={{ width: '200px' }}>Native Name</th>
-                    <th className="text-end" style={{ width: '400px' }}>Downloads</th>
+                    <th className="text-center" style={{ width: '400px' }}>Downloads</th>
                     <th style={{ width: '100px' }}>Source</th>
                   </tr>
                 </thead>
@@ -144,8 +144,8 @@ export default function Home() {
                         <div className="text-muted small">{translation.id}</div>
                       </td>
                       <td className="text-muted">{translation.name_in_language}</td>
-                      <td className="text-end">
-                        <div className="btn-list justify-content-end">
+                      <td className="text-center">
+                        <div className="btn-list justify-content-center">
                           <button
                             onClick={() => handleDownload(translation.id, 'json')}
                             className="btn btn-sm btn-primary"
