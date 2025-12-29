@@ -12,12 +12,12 @@ scripts/
 │   └── ...
 │
 ├── converters/              # Convert CSV (base) to other formats
-│   ├── csv_to_csv.py       # JSON → CSV conversion
-│   ├── csv_to_xml.py       # JSON → XML conversion
-│   ├── csv_to_excel.py     # JSON → Excel (XLSX) conversion
-│   └── csv_to_sqlite.py    # JSON → SQLite database conversion
+│   ├── csv_to_json.py      # CSV → JSON conversion
+│   ├── csv_to_xml.py       # CSV → XML conversion
+│   ├── csv_to_excel.py     # CSV → Excel (XLSX) conversion
+│   └── csv_to_sqlite.py    # CSV → SQLite database conversion
 │
-├── generate_all_formats.py # Generate all formats from JSON (one command)
+├── generate_all_formats.py # Generate all formats from CSV (one command)
 └── create_sqlite_db.py      # Create complete database (optional)
 ```
 
@@ -25,7 +25,7 @@ scripts/
 
 1. **Source Extraction** (`tanzil.net/`)
    - Download XML translations from Tanzil.net
-   - Parse and extract to **JSON format** (stored in `alqurandb_api/data/translations/csv/`)
+   - Parse and extract to **CSV format** (stored in `alqurandb_api/data/translations/csv/`)
    - **CSV is the base format** - all other formats are generated from it
 
 2. **Format Conversion** (`converters/`)
@@ -44,7 +44,7 @@ scripts/
 python scripts/generate_all_formats.py
 ```
 
-This will generate CSV, XML, Excel, and SQLite files for all 114 translations from the base CSV files.
+This will generate JSON, XML, Excel, and SQLite files for all 114 translations from the base CSV files.
 
 ### Generate Individual Formats
 
@@ -62,7 +62,7 @@ python scripts/converters/csv_to_sqlite.py
 ### Extract from Source (Tanzil.net)
 
 ```bash
-# Extract all translations from Tanzil XML to JSON
+# Extract all translations from Tanzil XML to CSV
 cd scripts/tanzil.net
 python parse_translation.py
 ```
@@ -71,8 +71,8 @@ python parse_translation.py
 
 | Format | Extension | Use Case |
 |--------|-----------|----------|
-| JSON | `.json` | **Base format** - Web APIs, JavaScript apps |
-| CSV | `.csv` | Excel, data analysis, spreadsheets |
+| CSV | `.csv` | **Base format** - Excel, data analysis, spreadsheets |
+| JSON | `.json` | Web APIs, JavaScript apps |
 | XML | `.xml` | Religious software, enterprise systems |
 | Excel | `.xlsx` | Business users, researchers, non-technical users |
 | SQLite | `.db` | Mobile apps, desktop applications, embedded databases |

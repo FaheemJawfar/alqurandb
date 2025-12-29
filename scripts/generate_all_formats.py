@@ -15,7 +15,7 @@ from pathlib import Path
 def run_converter(script_path, format_name):
     """Run a format converter script"""
     print(f"\n{'='*80}")
-    print(f"  Generating {format_name} files from JSON...")
+    print(f"  Generating {format_name} files from CSV...")
     print(f"{'='*80}\n")
 
     try:
