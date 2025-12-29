@@ -926,5 +926,13 @@
     "translator": "Muhammad Sodik Muhammad Yusuf",
     "source": "tanzil.net",
     "source_id": "uz.sodik"
+  },
+  {
+    "id": "sinhala_acju",
+    "language": "Sinhala",
+    "name_in_language": "සමස්ත ලංකා ජමියතුල් උලමා",
+    "translator": "All Ceylon Jamiyyathul Ulama",
+    "source": "acju.lk",
+    "source_id": "acju"
   }
 ]
