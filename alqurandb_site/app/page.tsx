@@ -124,8 +124,8 @@ export default function Home() {
                     <th>Language</th>
                     <th>Translator</th>
                     <th>Native Name</th>
-                    <th>Source</th>
                     <th className="text-end" style={{ width: '360px' }}>Downloads</th>
+                    <th>Source</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -144,9 +144,6 @@ export default function Home() {
                         <div className="text-muted small">{translation.id}</div>
                       </td>
                       <td className="text-muted">{translation.name_in_language}</td>
-                      <td>
-                        <span className="badge badge-outline text-muted">{translation.source}</span>
-                      </td>
                       <td className="text-end">
                         <div className="btn-list justify-content-end">
                           <button
@@ -190,6 +187,9 @@ export default function Home() {
                             Excel
                           </button>
                         </div>
+                      </td>
+                      <td>
+                        <span className="text-muted small">{translation.source}</span>
                       </td>
                     </tr>
                   ))}
