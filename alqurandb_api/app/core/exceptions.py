@@ -36,3 +36,19 @@ class InvalidMetadataException(HTTPException):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Invalid metadata file"
         )
+
+
+class VerseNotFoundException(HTTPException):
+    """Raised when a verse is not found"""
+    def __init__(self, translation_id: str, surah: int | None = None, ayah: int | None = None):
+        if ayah is not None and surah is not None:
+            detail = f"Verse {surah}:{ayah} not found in translation '{translation_id}'"
+        elif surah is not None:
+            detail = f"Surah {surah} not found in translation '{translation_id}'"
+        else:
+            detail = f"No verses found for translation '{translation_id}'"
+
+        super().__init__(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=detail
+        )
