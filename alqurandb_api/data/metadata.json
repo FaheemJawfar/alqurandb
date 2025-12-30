@@ -54,13 +54,6 @@
     "source_id": "am.sadiq"
   },
   {
-    "id": "amharic_zain",
-    "language": "Amharic",
-    "translator": "Africa Academy",
-    "name_in_language": "Amharic translation - Africa Academy",
-    "source": "quranenc.com"
-  },
-  {
     "id": "arabic_jalalayn",
     "language": "Arabic",
     "name_in_language": "تفسير الجلالين",
@@ -90,13 +83,6 @@
     "translator": "Vasim Mammadaliyev and Ziya Bunyadov",
     "source": "tanzil.net",
     "source_id": "az.mammadaliyev"
-  },
-  {
-    "id": "azeri_musayev",
-    "language": "Azerbaijani",
-    "translator": "Alikhan Musayev",
-    "name_in_language": "Azerbaijani translation - Alikhan Musayev",
-    "source": "quranenc.com"
   },
   {
     "id": "bengali_hoque",
@@ -169,24 +155,10 @@
     "source_id": "zh.majian"
   },
   {
-    "id": "chinese_suliman",
-    "language": "Chinese",
-    "translator": "Muhammad Sulaiman",
-    "name_in_language": "Chinese translation - Muhammad Sulaiman",
-    "source": "quranenc.com"
-  },
-  {
     "id": "chinese_makin",
     "language": "Chinese",
     "translator": "Muhammad Makin",
     "name_in_language": "Chinese translation - Muhammad Makin",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "croatian_rwwad",
-    "language": "Croatian",
-    "translator": "Rowwad Translation Center",
-    "name_in_language": "Croatian translation - Rowwad Translation Center",
     "source": "quranenc.com"
   },
   {
@@ -236,13 +208,6 @@
     "translator": "Sofian S. Siregar",
     "source": "tanzil.net",
     "source_id": "nl.siregar"
-  },
-  {
-    "id": "dutch_center",
-    "language": "Dutch",
-    "translator": "Rowwad Translation Center",
-    "name_in_language": "Dutch translation - Rowwad Translation Center",
-    "source": "quranenc.com"
   },
   {
     "id": "english_ahmedali",
@@ -381,13 +346,6 @@
     "source_id": "en.yusufali"
   },
   {
-    "id": "english_rwwad",
-    "language": "English",
-    "translator": "Rowwad Translation Center",
-    "name_in_language": "English translation - Rowwad Translation Center",
-    "source": "quranenc.com"
-  },
-  {
     "id": "english_hilali_khan",
     "language": "English",
     "translator": "Hilali and Khan",
@@ -399,13 +357,6 @@
     "language": "English",
     "translator": "Noor International Center",
     "name_in_language": "English translation - Noor International Center",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "bisayan_rwwad",
-    "language": "Filipino (Bisayan)",
-    "translator": "Rowwad Translation Center",
-    "name_in_language": "Filipino translation (Bisayan) - Rowwad Translation Center",
     "source": "quranenc.com"
   },
   {
@@ -422,20 +373,6 @@
     "translator": "Muhammad Hamidullah",
     "source": "tanzil.net",
     "source_id": "fr.hamidullah"
-  },
-  {
-    "id": "french_montada",
-    "language": "French",
-    "translator": "issued by Noor International",
-    "name_in_language": "French translation - issued by Noor International",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "french_rashid",
-    "language": "French",
-    "translator": "Rashid Maash",
-    "name_in_language": "French translation - Rashid Maash",
-    "source": "quranenc.com"
   },
   {
     "id": "german_aburida",
@@ -470,26 +407,12 @@
     "source_id": "de.zaidan"
   },
   {
-    "id": "gujarati_omari",
-    "language": "Gujarati",
-    "translator": "Rabila Al-Omari",
-    "name_in_language": "Gujarati translation - Rabila Al-Omari",
-    "source": "quranenc.com"
-  },
-  {
     "id": "hausa_gumi",
     "language": "Hausa",
     "name_in_language": "Gumi",
     "translator": "Abubakar Mahmoud Gumi",
     "source": "tanzil.net",
     "source_id": "ha.gumi"
-  },
-  {
-    "id": "hausa_gummi",
-    "language": "Hausa",
-    "translator": "Abu Bakr Jomy",
-    "name_in_language": "Hausa translation - Abu Bakr Jomy",
-    "source": "quranenc.com"
   },
   {
     "id": "hindi_farooq",
@@ -506,13 +429,6 @@
     "translator": "Suhel Farooq Khan and Saifur Rahman Nadwi",
     "source": "tanzil.net",
     "source_id": "hi.hindi"
-  },
-  {
-    "id": "hindi_omari",
-    "language": "Hindi",
-    "translator": "Azizul Haq Al-Omari",
-    "name_in_language": "Hindi translation - Azizul Haq Al-Omari",
-    "source": "quranenc.com"
   },
   {
     "id": "indonesian_ministry",
@@ -546,13 +462,6 @@
     "source": "quranenc.com"
   },
   {
-    "id": "indonesian_complex",
-    "language": "Indonesian",
-    "translator": "The Assembly",
-    "name_in_language": "Indonesian translation - The Assembly",
-    "source": "quranenc.com"
-  },
-  {
     "id": "indonesian_sabiq",
     "language": "Indonesian",
     "translator": "Sabeq Company",
@@ -576,48 +485,6 @@
     "source_id": "ja.japanese"
   },
   {
-    "id": "japanese_saeedsato",
-    "language": "Japanese",
-    "translator": "Saeed Sato",
-    "name_in_language": "Japanese translation - Saeed Sato",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "kannada_hamza",
-    "language": "Kannada",
-    "translator": "Hamza Butur",
-    "name_in_language": "Kannada translation - Hamza Butur",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "khmer_cambodia",
-    "language": "Khmer",
-    "translator": "Islamic Community Development Association",
-    "name_in_language": "Khmer translation - Islamic Community Development Association",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "khmer_rwwad",
-    "language": "Khmer",
-    "translator": "Rowwad Translation Center",
-    "name_in_language": "Khmer translation - Rowwad Translation Center",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "kinyarwanda_assoc",
-    "language": "Kinyarwanda",
-    "translator": "Rwanda Muslim Association",
-    "name_in_language": "Kinyarwanda translation - Rwanda Muslim Association",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "ikirundi_gehiti",
-    "language": "Kirundi",
-    "translator": "Yusuf Gheti",
-    "name_in_language": "Kirundi translation - Yusuf Gheti",
-    "source": "quranenc.com"
-  },
-  {
     "id": "korean_standard",
     "language": "Korean",
     "name_in_language": "Korean",
@@ -634,38 +501,10 @@
     "source_id": "ku.asan"
   },
   {
-    "id": "kurdish_bamoki",
-    "language": "Kurdish",
-    "translator": "Muhammad Salih Bamoki",
-    "name_in_language": "Kurdish translation - Muhammad Salih Bamoki",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "kyrgyz_hakimov",
-    "language": "Kyrgyz",
-    "translator": "Shamsuddin Hakimov",
-    "name_in_language": "Kyrgyz translation - Shamsuddin Hakimov",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "lingala_zakaria",
-    "language": "Lingala",
-    "translator": "Mohammed Balangogo",
-    "name_in_language": "Lingala translation - Mohammed Balangogo",
-    "source": "quranenc.com"
-  },
-  {
     "id": "lithuanian_rwwad",
     "language": "Lithuanian",
     "translator": "Rowwad Translation Center",
     "name_in_language": "Lithuanian translation - Rowwad Translation Center",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "macedonian_group",
-    "language": "Macedonian",
-    "translator": "a group of Macedonian scholars",
-    "name_in_language": "Macedonian translation - a group of Macedonian scholars",
     "source": "quranenc.com"
   },
   {
@@ -693,40 +532,12 @@
     "source_id": "ml.karakunnu"
   },
   {
-    "id": "malayalam_kunhi",
-    "language": "Malayalam",
-    "translator": "Abdulhamid Haidar Al-Madany & Kunhi Muhammad",
-    "name_in_language": "Malayalam translation - Abdulhamid Haidar Al-Madany & Kunhi Muhammad",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "moore_rwwad",
-    "language": "Moore",
-    "translator": "Rowwad Translation Center",
-    "name_in_language": "Moore translation - Rowwad Translation Center",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "ankobambara_dayyan",
-    "language": "N'ko",
-    "translator": "Baba Mamadi",
-    "name_in_language": "N'ko translation - Baba Mamadi",
-    "source": "quranenc.com"
-  },
-  {
     "id": "norwegian_berg",
     "language": "Norwegian",
     "name_in_language": "Einar Berg",
     "translator": "Einar Berg",
     "source": "tanzil.net",
     "source_id": "no.berg"
-  },
-  {
-    "id": "oromo_ababor",
-    "language": "Oromo",
-    "translator": "Gali Ababor",
-    "name_in_language": "Oromo translation - Gali Ababor",
-    "source": "quranenc.com"
   },
   {
     "id": "pashto_rwwad",
@@ -840,13 +651,6 @@
     "source_id": "fa.makarem"
   },
   {
-    "id": "persian_ih",
-    "language": "Persian",
-    "translator": "Rowwad Translation Center",
-    "name_in_language": "Persian translation - Rowwad Translation Center",
-    "source": "quranenc.com"
-  },
-  {
     "id": "polish_bielawskiego",
     "language": "Polish",
     "name_in_language": "Bielawskiego",
@@ -863,33 +667,12 @@
     "source_id": "pt.elhayek"
   },
   {
-    "id": "portuguese_nasr",
-    "language": "Portuguese",
-    "translator": "Helmi Nasr",
-    "name_in_language": "Portuguese translation - Helmi Nasr",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "punjabi_arif",
-    "language": "Punjabi",
-    "translator": "Arif Halim",
-    "name_in_language": "Punjabi translation - Arif Halim",
-    "source": "quranenc.com"
-  },
-  {
     "id": "romanian_grigore",
     "language": "Romanian",
     "name_in_language": "Grigore",
     "translator": "George Grigore",
     "source": "tanzil.net",
     "source_id": "ro.grigore"
-  },
-  {
-    "id": "romanian_project",
-    "language": "Romanian",
-    "translator": "Islam4ro.com",
-    "name_in_language": "Romanian translation - Islam4ro.com",
-    "source": "quranenc.com"
   },
   {
     "id": "russian_abuadel",
@@ -964,13 +747,6 @@
     "source_id": "ru.sablukov"
   },
   {
-    "id": "serbian_rwwad",
-    "language": "Serbian",
-    "translator": "Rowwad Translation Center",
-    "name_in_language": "Serbian translation - Rowwad Translation Center",
-    "source": "quranenc.com"
-  },
-  {
     "id": "sindhi_amroti",
     "language": "Sindhi",
     "name_in_language": "امروٽي",
@@ -1033,20 +809,6 @@
     "source_id": "es.garcia"
   },
   {
-    "id": "spanish_montada_eu",
-    "language": "Spanish",
-    "translator": "issued by Noor International",
-    "name_in_language": "Spanish translation - issued by Noor International",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "spanish_montada_latin",
-    "language": "Spanish (Latin)",
-    "translator": "issued by Noor International",
-    "name_in_language": "Spanish (Latin) translation - issued by Noor International",
-    "source": "quranenc.com"
-  },
-  {
     "id": "swahili_barwani",
     "language": "Swahili",
     "name_in_language": "Al-Barwani",
@@ -1085,13 +847,6 @@
     "source_id": "tg.ayati"
   },
   {
-    "id": "tajik_arifi",
-    "language": "Tajik",
-    "translator": "Rowwad Translation Center",
-    "name_in_language": "Tajik translation - Rowwad Translation Center",
-    "source": "quranenc.com"
-  },
-  {
     "id": "tamil_ift",
     "language": "Tamil",
     "name_in_language": "இஸ்லாமிய நிறுவனம் அறக்கட்டளை",
@@ -1116,33 +871,12 @@
     "source_id": "king_fahd"
   },
   {
-    "id": "tamil_baqavi",
-    "language": "Tamil",
-    "translator": "Abdulhamid Albaqoi",
-    "name_in_language": "Tamil translation - Abdulhamid Albaqoi",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "tamil_omar",
-    "language": "Tamil",
-    "translator": "Omar Sharif",
-    "name_in_language": "Tamil translation - Omar Sharif",
-    "source": "quranenc.com"
-  },
-  {
     "id": "tatar_nugman",
     "language": "Tatar",
     "name_in_language": "Yakub Ibn Nugman",
     "translator": "Yakub Ibn Nugman",
     "source": "tanzil.net",
     "source_id": "tt.nugman"
-  },
-  {
-    "id": "telugu_muhammad",
-    "language": "Telugu",
-    "translator": "Abdurrahim ibn Muhammad",
-    "name_in_language": "Telugu translation - Abdurrahim ibn Muhammad",
-    "source": "quranenc.com"
   },
   {
     "id": "thai_kfqc",
@@ -1233,20 +967,6 @@
     "source_id": "tr.ates"
   },
   {
-    "id": "turkish_rwwad",
-    "language": "Turkish",
-    "translator": "Rowwad Translation Center",
-    "name_in_language": "Turkish translation - Rowwad Translation Center",
-    "source": "quranenc.com"
-  },
-  {
-    "id": "turkish_shahin",
-    "language": "Turkish",
-    "translator": "Dr. Ali Ozek and others",
-    "name_in_language": "Turkish translation - Dr. Ali Ozek and others",
-    "source": "quranenc.com"
-  },
-  {
     "id": "turkish_shaban",
     "language": "Turkish",
     "translator": "Shaaban British",
@@ -1310,6 +1030,294 @@
     "source_id": "ur.najafi"
   },
   {
+    "id": "uzbek_sodik",
+    "language": "Uzbek",
+    "name_in_language": "Мухаммад Содик",
+    "translator": "Muhammad Sodik Muhammad Yusuf",
+    "source": "tanzil.net",
+    "source_id": "uz.sodik"
+  },
+  {
+    "id": "amharic_zain",
+    "language": "Amharic",
+    "translator": "Africa Academy",
+    "name_in_language": "Amharic translation - Africa Academy",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "ankobambara_dayyan",
+    "language": "N'ko",
+    "translator": "Baba Mamadi",
+    "name_in_language": "N'ko translation - Baba Mamadi",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "azeri_musayev",
+    "language": "Azerbaijani",
+    "translator": "Alikhan Musayev",
+    "name_in_language": "Azerbaijani translation - Alikhan Musayev",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "bisayan_rwwad",
+    "language": "Filipino (Bisayan)",
+    "translator": "Rowwad Translation Center",
+    "name_in_language": "Filipino translation (Bisayan) - Rowwad Translation Center",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "chinese_suliman",
+    "language": "Chinese",
+    "translator": "Muhammad Sulaiman",
+    "name_in_language": "Chinese translation - Muhammad Sulaiman",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "croatian_rwwad",
+    "language": "Croatian",
+    "translator": "Rowwad Translation Center",
+    "name_in_language": "Croatian translation - Rowwad Translation Center",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "dutch_center",
+    "language": "Dutch",
+    "translator": "Rowwad Translation Center",
+    "name_in_language": "Dutch translation - Rowwad Translation Center",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "english_rwwad",
+    "language": "English",
+    "translator": "Rowwad Translation Center",
+    "name_in_language": "English translation - Rowwad Translation Center",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "french_montada",
+    "language": "French",
+    "translator": "issued by Noor International",
+    "name_in_language": "French translation - issued by Noor International",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "french_rashid",
+    "language": "French",
+    "translator": "Rashid Maash",
+    "name_in_language": "French translation - Rashid Maash",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "gujarati_omari",
+    "language": "Gujarati",
+    "translator": "Rabila Al-Omari",
+    "name_in_language": "Gujarati translation - Rabila Al-Omari",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "hausa_gummi",
+    "language": "Hausa",
+    "translator": "Abu Bakr Jomy",
+    "name_in_language": "Hausa translation - Abu Bakr Jomy",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "hindi_omari",
+    "language": "Hindi",
+    "translator": "Azizul Haq Al-Omari",
+    "name_in_language": "Hindi translation - Azizul Haq Al-Omari",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "ikirundi_gehiti",
+    "language": "Kirundi",
+    "translator": "Yusuf Gheti",
+    "name_in_language": "Kirundi translation - Yusuf Gheti",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "indonesian_complex",
+    "language": "Indonesian",
+    "translator": "The Assembly",
+    "name_in_language": "Indonesian translation - The Assembly",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "japanese_saeedsato",
+    "language": "Japanese",
+    "translator": "Saeed Sato",
+    "name_in_language": "Japanese translation - Saeed Sato",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "kannada_hamza",
+    "language": "Kannada",
+    "translator": "Hamza Butur",
+    "name_in_language": "Kannada translation - Hamza Butur",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "khmer_cambodia",
+    "language": "Khmer",
+    "translator": "Islamic Community Development Association",
+    "name_in_language": "Khmer translation - Islamic Community Development Association",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "khmer_rwwad",
+    "language": "Khmer",
+    "translator": "Rowwad Translation Center",
+    "name_in_language": "Khmer translation - Rowwad Translation Center",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "kinyarwanda_assoc",
+    "language": "Kinyarwanda",
+    "translator": "Rwanda Muslim Association",
+    "name_in_language": "Kinyarwanda translation - Rwanda Muslim Association",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "kurdish_bamoki",
+    "language": "Kurdish",
+    "translator": "Muhammad Salih Bamoki",
+    "name_in_language": "Kurdish translation - Muhammad Salih Bamoki",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "kyrgyz_hakimov",
+    "language": "Kyrgyz",
+    "translator": "Shamsuddin Hakimov",
+    "name_in_language": "Kyrgyz translation - Shamsuddin Hakimov",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "lingala_zakaria",
+    "language": "Lingala",
+    "translator": "Mohammed Balangogo",
+    "name_in_language": "Lingala translation - Mohammed Balangogo",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "macedonian_group",
+    "language": "Macedonian",
+    "translator": "a group of Macedonian scholars",
+    "name_in_language": "Macedonian translation - a group of Macedonian scholars",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "malayalam_kunhi",
+    "language": "Malayalam",
+    "translator": "Abdulhamid Haidar Al-Madany & Kunhi Muhammad",
+    "name_in_language": "Malayalam translation - Abdulhamid Haidar Al-Madany & Kunhi Muhammad",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "moore_rwwad",
+    "language": "Moore",
+    "translator": "Rowwad Translation Center",
+    "name_in_language": "Moore translation - Rowwad Translation Center",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "oromo_ababor",
+    "language": "Oromo",
+    "translator": "Gali Ababor",
+    "name_in_language": "Oromo translation - Gali Ababor",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "persian_ih",
+    "language": "Persian",
+    "translator": "Rowwad Translation Center",
+    "name_in_language": "Persian translation - Rowwad Translation Center",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "portuguese_nasr",
+    "language": "Portuguese",
+    "translator": "Helmi Nasr",
+    "name_in_language": "Portuguese translation - Helmi Nasr",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "punjabi_arif",
+    "language": "Punjabi",
+    "translator": "Arif Halim",
+    "name_in_language": "Punjabi translation - Arif Halim",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "romanian_project",
+    "language": "Romanian",
+    "translator": "Islam4ro.com",
+    "name_in_language": "Romanian translation - Islam4ro.com",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "serbian_rwwad",
+    "language": "Serbian",
+    "translator": "Rowwad Translation Center",
+    "name_in_language": "Serbian translation - Rowwad Translation Center",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "spanish_montada_eu",
+    "language": "Spanish",
+    "translator": "issued by Noor International",
+    "name_in_language": "Spanish translation - issued by Noor International",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "spanish_montada_latin",
+    "language": "Spanish (Latin)",
+    "translator": "issued by Noor International",
+    "name_in_language": "Spanish (Latin) translation - issued by Noor International",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "tajik_arifi",
+    "language": "Tajik",
+    "translator": "Rowwad Translation Center",
+    "name_in_language": "Tajik translation - Rowwad Translation Center",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "tamil_baqavi",
+    "language": "Tamil",
+    "translator": "Abdulhamid Albaqoi",
+    "name_in_language": "Tamil translation - Abdulhamid Albaqoi",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "tamil_omar",
+    "language": "Tamil",
+    "translator": "Omar Sharif",
+    "name_in_language": "Tamil translation - Omar Sharif",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "telugu_muhammad",
+    "language": "Telugu",
+    "translator": "Abdurrahim ibn Muhammad",
+    "name_in_language": "Telugu translation - Abdurrahim ibn Muhammad",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "turkish_rwwad",
+    "language": "Turkish",
+    "translator": "Rowwad Translation Center",
+    "name_in_language": "Turkish translation - Rowwad Translation Center",
+    "source": "quranenc.com"
+  },
+  {
+    "id": "turkish_shahin",
+    "language": "Turkish",
+    "translator": "Dr. Ali Ozek and others",
+    "name_in_language": "Turkish translation - Dr. Ali Ozek and others",
+    "source": "quranenc.com"
+  },
+  {
     "id": "urdu_junagarhi",
     "language": "Urdu",
     "translator": "Muhammad Junagarhi",
@@ -1322,14 +1330,6 @@
     "translator": "Muhammad Saleh",
     "name_in_language": "Uyghur translation - Muhammad Saleh",
     "source": "quranenc.com"
-  },
-  {
-    "id": "uzbek_sodik",
-    "language": "Uzbek",
-    "name_in_language": "Мухаммад Содик",
-    "translator": "Muhammad Sodik Muhammad Yusuf",
-    "source": "tanzil.net",
-    "source_id": "uz.sodik"
   },
   {
     "id": "uzbek_mansour",
