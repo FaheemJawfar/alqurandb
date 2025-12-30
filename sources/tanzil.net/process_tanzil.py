@@ -40,7 +40,7 @@ def load_metadata() -> Tuple[Dict, Dict]:
     metadata_mapping = {}
 
     for entry in metadata_list:
-        if entry.get('source') == 'tanzil' and 'source_id' in entry:
+        if entry.get('source') == 'tanzil.net' and 'source_id' in entry:
             id_mapping[entry['source_id']] = entry['id']
             metadata_mapping[entry['id']] = entry
 
@@ -59,9 +59,21 @@ def xml_to_csv(xml_file: Path, csv_file: Path, translation_id: str) -> int:
     Returns:
         Number of verses converted
     """
-    # Parse XML
-    tree = ET.parse(xml_file)
-    root = tree.getroot()
+    # Read file content and strip XML comment header
+    with open(xml_file, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    # Remove comment header if present (skip the header as instructed)
+    # Find and remove the comment block between <!-- and -->
+    comment_start = content.find('<!--')
+    if comment_start != -1:
+        comment_end = content.find('-->', comment_start)
+        if comment_end != -1:
+            # Remove the comment section, keeping everything before and after
+            content = content[:comment_start] + content[comment_end + 3:]
+
+    # Parse XML from cleaned content
+    root = ET.fromstring(content)
 
     # Write CSV
     with open(csv_file, 'w', newline='', encoding='utf-8') as f:

@@ -39,20 +39,21 @@ def load_existing_translations():
 def load_quranenc_metadata():
     """Load QuranEnc translation metadata"""
     script_dir = Path(__file__).parent
-    metadata_file = script_dir / 'metadata.json'
+    metadata_file = script_dir / 'quranenc_metadata.json'
 
     with open(metadata_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
         return data['translations']
 
 
-def download_csv_from_quranenc(translation_id: str, csv_file: Path) -> bool:
+def download_csv_from_quranenc(translation_id: str, source_file: Path, csv_file: Path) -> bool:
     """
-    Download CSV directly from QuranEnc and normalize format
+    Download CSV from QuranEnc to source folder and normalize to csv_output
 
     Args:
         translation_id: Translation identifier (e.g., 'uzbek_mansour')
-        csv_file: Path to output CSV file
+        source_file: Path to save raw downloaded CSV
+        csv_file: Path to save normalized CSV file
 
     Returns:
         True if download successful, False otherwise
@@ -62,19 +63,20 @@ def download_csv_from_quranenc(translation_id: str, csv_file: Path) -> bool:
     try:
         print(f"    Downloading CSV from {url}...", flush=True)
 
-        # Download the file to a temporary location
-        temp_file = csv_file.with_suffix('.tmp')
+        # Download the raw file to source directory
         with urllib.request.urlopen(url) as response:
             content = response.read()
-            with open(temp_file, 'wb') as f:
+            with open(source_file, 'wb') as f:
                 f.write(content)
+
+        print(f"    ✅ Downloaded to source folder", flush=True)
 
         # Normalize the CSV format
         print(f"    Normalizing CSV format...", flush=True)
 
         # Read the QuranEnc CSV (skip metadata header, normalize columns)
         normalized_rows = []
-        with open(temp_file, 'r', encoding='utf-8') as f:
+        with open(source_file, 'r', encoding='utf-8') as f:
             lines = f.readlines()
 
             # Find the actual CSV header (should be around line 12)
@@ -86,7 +88,6 @@ def download_csv_from_quranenc(translation_id: str, csv_file: Path) -> bool:
 
             if csv_start_idx is None:
                 print(f"    ❌ Could not find CSV header", flush=True)
-                temp_file.unlink()
                 return False
 
             # Parse CSV data
@@ -106,9 +107,6 @@ def download_csv_from_quranenc(translation_id: str, csv_file: Path) -> bool:
             writer.writeheader()
             writer.writerows(normalized_rows)
 
-        # Remove temp file
-        temp_file.unlink()
-
         # Verify the normalized file
         if csv_file.exists() and len(normalized_rows) > 6000:  # Should have ~6236 verses
             print(f"    ✅ Downloaded and normalized ({len(normalized_rows)} verses)", flush=True)
@@ -125,9 +123,11 @@ def download_csv_from_quranenc(translation_id: str, csv_file: Path) -> bool:
 def extract_all_csv():
     """Download CSV files from QuranEnc"""
     script_dir = Path(__file__).parent
+    source_dir = script_dir / 'source'
     csv_dir = script_dir / 'csv_output'
 
-    # Create directory
+    # Create directories
+    source_dir.mkdir(exist_ok=True)
     csv_dir.mkdir(exist_ok=True)
 
     # Load existing translations
@@ -182,6 +182,7 @@ def extract_all_csv():
 
     for i, trans in enumerate(translations_to_process, 1):
         trans_id = trans['key']
+        source_file = source_dir / f"{trans_id}.csv"
         csv_file = csv_dir / f"{trans_id}.csv"
 
         print(f"\n[{i}/{len(translations_to_process)}] {trans_id}...", flush=True)
@@ -199,7 +200,7 @@ def extract_all_csv():
                 pass
 
         # Download CSV from QuranEnc
-        if download_csv_from_quranenc(trans_id, csv_file):
+        if download_csv_from_quranenc(trans_id, source_file, csv_file):
             successful += 1
             print(f"    ✅ CSV downloaded ({successful}/{len(translations_to_process)} completed)", flush=True)
         else:
@@ -277,7 +278,7 @@ def remove_translation_files(translation_id):
 def load_quranenc_metadata_mapping():
     """Load QuranEnc metadata for translation info"""
     script_dir = Path(__file__).parent
-    metadata_file = script_dir / 'metadata.json'
+    metadata_file = script_dir / 'quranenc_metadata.json'
 
     with open(metadata_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
