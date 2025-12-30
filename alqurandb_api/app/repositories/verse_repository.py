@@ -17,65 +17,65 @@ class VerseRepository:
         """Get database connection"""
         return sqlite3.connect(self.db_path)
 
-    def get_verse(self, translation_id: str, surah: int, ayah: int) -> Verse:
-        """Get a specific verse by translation, surah, and ayah"""
+    def get_verse(self, translation_id: str, sura: int, aya: int) -> Verse:
+        """Get a specific verse by translation, sura, and aya"""
         conn = self._get_connection()
         cursor = conn.cursor()
 
         cursor.execute(
-            'SELECT translation_id, surah, ayah, text FROM verses WHERE translation_id = ? AND surah = ? AND ayah = ?',
-            (translation_id, surah, ayah)
+            'SELECT translation_id, sura, aya, text FROM verses WHERE translation_id = ? AND sura = ? AND aya = ?',
+            (translation_id, sura, aya)
         )
 
         row = cursor.fetchone()
         conn.close()
 
         if not row:
-            raise VerseNotFoundException(translation_id, surah, ayah)
+            raise VerseNotFoundException(translation_id, sura, aya)
 
         return Verse(*row)
 
-    def get_verses_by_surah(self, translation_id: str, surah: int) -> list[Verse]:
-        """Get all verses from a specific surah"""
+    def get_verses_by_sura(self, translation_id: str, sura: int) -> list[Verse]:
+        """Get all verses from a specific sura"""
         conn = self._get_connection()
         cursor = conn.cursor()
 
         cursor.execute(
-            'SELECT translation_id, surah, ayah, text FROM verses WHERE translation_id = ? AND surah = ? ORDER BY ayah',
-            (translation_id, surah)
+            'SELECT translation_id, sura, aya, text FROM verses WHERE translation_id = ? AND sura = ? ORDER BY aya',
+            (translation_id, sura)
         )
 
         rows = cursor.fetchall()
         conn.close()
 
         if not rows:
-            raise VerseNotFoundException(translation_id, surah)
+            raise VerseNotFoundException(translation_id, sura)
 
         return [Verse(*row) for row in rows]
 
     def get_verses_by_range(
         self,
         translation_id: str,
-        surah: int,
-        from_ayah: int,
-        to_ayah: int
+        sura: int,
+        from_aya: int,
+        to_aya: int
     ) -> list[Verse]:
-        """Get verses within a specific ayah range in a surah"""
+        """Get verses within a specific aya range in a sura"""
         conn = self._get_connection()
         cursor = conn.cursor()
 
         cursor.execute(
-            '''SELECT translation_id, surah, ayah, text FROM verses
-               WHERE translation_id = ? AND surah = ? AND ayah >= ? AND ayah <= ?
-               ORDER BY ayah''',
-            (translation_id, surah, from_ayah, to_ayah)
+            '''SELECT translation_id, sura, aya, text FROM verses
+               WHERE translation_id = ? AND sura = ? AND aya >= ? AND aya <= ?
+               ORDER BY aya''',
+            (translation_id, sura, from_aya, to_aya)
         )
 
         rows = cursor.fetchall()
         conn.close()
 
         if not rows:
-            raise VerseNotFoundException(translation_id, surah, from_ayah)
+            raise VerseNotFoundException(translation_id, sura, from_aya)
 
         return [Verse(*row) for row in rows]
 
@@ -85,7 +85,7 @@ class VerseRepository:
         cursor = conn.cursor()
 
         cursor.execute(
-            'SELECT translation_id, surah, ayah, text FROM verses WHERE translation_id = ? ORDER BY surah, ayah',
+            'SELECT translation_id, sura, aya, text FROM verses WHERE translation_id = ? ORDER BY sura, aya',
             (translation_id,)
         )
 

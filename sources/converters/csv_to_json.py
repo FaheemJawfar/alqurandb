@@ -29,7 +29,7 @@ def csv_to_json(csv_file_path, output_file_path):
     with open(csv_file_path, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            key = f"{row['surah']}:{row['ayah']}"
+            key = f"{row['sura']}:{row['aya']}"
             translation[key] = row['text']
 
     # Write JSON file

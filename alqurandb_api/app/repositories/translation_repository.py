@@ -108,13 +108,13 @@ class TranslationRepository:
             conn = self._get_db_connection()
             cursor = conn.cursor()
             cursor.execute(
-                'SELECT surah, ayah, text FROM verses WHERE translation_id = ? ORDER BY surah, ayah',
+                'SELECT sura, aya, text FROM verses WHERE translation_id = ? ORDER BY sura, aya',
                 (translation_id,)
             )
             rows = cursor.fetchall()
             conn.close()
 
-            # Convert to dictionary format: "surah:ayah" -> "text"
+            # Convert to dictionary format: "sura:aya" -> "text"
             data = {}
             for row in rows:
                 key = f"{row[0]}:{row[1]}"

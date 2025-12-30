@@ -43,8 +43,8 @@ def create_database(db_path, csv_dir, metadata_file):
         CREATE TABLE verses (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             translation_id TEXT NOT NULL,
-            surah INTEGER NOT NULL,
-            ayah INTEGER NOT NULL,
+            sura INTEGER NOT NULL,
+            aya INTEGER NOT NULL,
             text TEXT NOT NULL,
             FOREIGN KEY (translation_id) REFERENCES translations(id)
         )
@@ -52,10 +52,10 @@ def create_database(db_path, csv_dir, metadata_file):
 
     # Create indexes for fast queries
     cursor.execute('CREATE INDEX idx_translation_id ON verses(translation_id)')
-    cursor.execute('CREATE INDEX idx_surah ON verses(surah)')
-    cursor.execute('CREATE INDEX idx_surah_ayah ON verses(surah, ayah)')
-    cursor.execute('CREATE INDEX idx_translation_surah ON verses(translation_id, surah)')
-    cursor.execute('CREATE INDEX idx_translation_surah_ayah ON verses(translation_id, surah, ayah)')
+    cursor.execute('CREATE INDEX idx_sura ON verses(sura)')
+    cursor.execute('CREATE INDEX idx_sura_aya ON verses(sura, aya)')
+    cursor.execute('CREATE INDEX idx_translation_sura ON verses(translation_id, sura)')
+    cursor.execute('CREATE INDEX idx_translation_sura_aya ON verses(translation_id, sura, aya)')
 
     # Load metadata
     with open(metadata_file, 'r', encoding='utf-8') as f:
@@ -104,13 +104,13 @@ def create_database(db_path, csv_dir, metadata_file):
                 for row in reader:
                     verses.append((
                         translation_id,
-                        int(row['surah']),
-                        int(row['ayah']),
+                        int(row['sura']),
+                        int(row['aya']),
                         row['text']
                     ))
 
             cursor.executemany(
-                'INSERT INTO verses (translation_id, surah, ayah, text) VALUES (?, ?, ?, ?)',
+                'INSERT INTO verses (translation_id, sura, aya, text) VALUES (?, ?, ?, ?)',
                 verses
             )
 

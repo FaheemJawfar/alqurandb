@@ -50,7 +50,7 @@ def create_translation_excel(translation_id, csv_file_path, metadata_item, outpu
         header_row = 6
 
     # Add column headers
-    headers = ['Surah', 'Ayah', 'Text']
+    headers = ['Sura', 'Aya', 'Text']
     for col, header in enumerate(headers, start=1):
         cell = ws.cell(row=header_row, column=col)
         cell.value = header
@@ -65,8 +65,8 @@ def create_translation_excel(translation_id, csv_file_path, metadata_item, outpu
     with open(csv_file_path, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for data_row in reader:
-            ws.cell(row=row, column=1, value=int(data_row['surah']))
-            ws.cell(row=row, column=2, value=int(data_row['ayah']))
+            ws.cell(row=row, column=1, value=int(data_row['sura']))
+            ws.cell(row=row, column=2, value=int(data_row['aya']))
             ws.cell(row=row, column=3, value=data_row['text'])
 
             # Align numbers to center

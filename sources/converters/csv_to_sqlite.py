@@ -26,25 +26,25 @@ def create_translation_database(translation_id, csv_file_path, output_file):
     # Create table
     cursor.execute('''
         CREATE TABLE verses (
-            surah INTEGER NOT NULL,
-            ayah INTEGER NOT NULL,
+            sura INTEGER NOT NULL,
+            aya INTEGER NOT NULL,
             text TEXT NOT NULL,
-            PRIMARY KEY (surah, ayah)
+            PRIMARY KEY (sura, aya)
         )
     ''')
 
     # Create index for better query performance
-    cursor.execute('CREATE INDEX idx_surah ON verses(surah)')
+    cursor.execute('CREATE INDEX idx_sura ON verses(sura)')
 
     # Insert verses from CSV
     verses = []
     with open(csv_file_path, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            verses.append((int(row['surah']), int(row['ayah']), row['text']))
+            verses.append((int(row['sura']), int(row['aya']), row['text']))
 
     cursor.executemany(
-        'INSERT INTO verses (surah, ayah, text) VALUES (?, ?, ?)',
+        'INSERT INTO verses (sura, aya, text) VALUES (?, ?, ?)',
         verses
     )
 

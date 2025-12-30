@@ -66,15 +66,15 @@ def xml_to_csv(xml_file: Path, csv_file: Path, translation_id: str) -> int:
     # Write CSV
     with open(csv_file, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
-        writer.writerow(['surah', 'ayah', 'text'])
+        writer.writerow(['sura', 'aya', 'text'])
 
         verse_count = 0
         for sura in root.findall('sura'):
-            surah_num = int(sura.get('index'))
+            sura_num = int(sura.get('index'))
             for aya in sura.findall('aya'):
-                ayah_num = int(aya.get('index'))
+                aya_num = int(aya.get('index'))
                 text = aya.get('text', '').strip()
-                writer.writerow([surah_num, ayah_num, text])
+                writer.writerow([sura_num, aya_num, text])
                 verse_count += 1
 
     return verse_count

@@ -40,11 +40,11 @@ class InvalidMetadataException(HTTPException):
 
 class VerseNotFoundException(HTTPException):
     """Raised when a verse is not found"""
-    def __init__(self, translation_id: str, surah: int | None = None, ayah: int | None = None):
-        if ayah is not None and surah is not None:
-            detail = f"Verse {surah}:{ayah} not found in translation '{translation_id}'"
-        elif surah is not None:
-            detail = f"Surah {surah} not found in translation '{translation_id}'"
+    def __init__(self, translation_id: str, sura: int | None = None, aya: int | None = None):
+        if aya is not None and sura is not None:
+            detail = f"Verse {sura}:{aya} not found in translation '{translation_id}'"
+        elif sura is not None:
+            detail = f"Sura {sura} not found in translation '{translation_id}'"
         else:
             detail = f"No verses found for translation '{translation_id}'"
 

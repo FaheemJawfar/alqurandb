@@ -32,4 +32,4 @@ class TranslationList(BaseModel):
 class TranslationData(BaseModel):
     """Translation data with metadata"""
     metadata: TranslationMetadata
-    data: dict[str, str] = Field(..., description="Translation verses in 'surah:ayah' format")
+    data: dict[str, str] = Field(..., description="Translation verses in 'sura:aya' format")

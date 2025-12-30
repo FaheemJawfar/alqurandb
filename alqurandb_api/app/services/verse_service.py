@@ -9,23 +9,23 @@ class VerseService:
     def __init__(self, repository: VerseRepository):
         self.repository = repository
 
-    def get_verse(self, translation_id: str, surah: int, ayah: int) -> Verse:
+    def get_verse(self, translation_id: str, sura: int, aya: int) -> Verse:
         """Get a specific verse"""
-        return self.repository.get_verse(translation_id, surah, ayah)
+        return self.repository.get_verse(translation_id, sura, aya)
 
-    def get_verses_by_surah(self, translation_id: str, surah: int) -> list[Verse]:
-        """Get all verses from a surah"""
-        return self.repository.get_verses_by_surah(translation_id, surah)
+    def get_verses_by_sura(self, translation_id: str, sura: int) -> list[Verse]:
+        """Get all verses from a sura"""
+        return self.repository.get_verses_by_sura(translation_id, sura)
 
     def get_verses_by_range(
         self,
         translation_id: str,
-        surah: int,
-        from_ayah: int,
-        to_ayah: int
+        sura: int,
+        from_aya: int,
+        to_aya: int
     ) -> list[Verse]:
         """Get verses within a range"""
-        return self.repository.get_verses_by_range(translation_id, surah, from_ayah, to_ayah)
+        return self.repository.get_verses_by_range(translation_id, sura, from_aya, to_aya)
 
     def get_all_verses(self, translation_id: str) -> list[Verse]:
         """Get all verses from a translation"""

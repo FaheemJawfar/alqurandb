@@ -30,8 +30,8 @@ def create_translation_xml(translation_id, csv_file_path, output_file):
         reader = csv.DictReader(f)
         for row in reader:
             verse = ET.SubElement(verses, 'verse')
-            verse.set('surah', row['surah'])
-            verse.set('ayah', row['ayah'])
+            verse.set('sura', row['sura'])
+            verse.set('aya', row['aya'])
             verse.text = row['text']
             verse_count += 1
 

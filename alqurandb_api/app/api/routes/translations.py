@@ -92,44 +92,44 @@ async def download_translation(
 
 
 @router.get(
-    "/{translation_id}/{surah}/{ayah}",
+    "/{translation_id}/{sura}/{aya}",
     response_model=VerseResponse,
     summary="Get a specific verse",
-    description="Get a specific verse by translation ID, surah number, and ayah number"
+    description="Get a specific verse by translation ID, sura number, and aya number"
 )
 async def get_verse(
     translation_id: str = PathParam(..., description="Translation identifier (e.g., english_sahih)"),
-    surah: int = PathParam(..., ge=1, le=114, description="Surah number (1-114)"),
-    ayah: int = PathParam(..., ge=1, description="Ayah number"),
+    sura: int = PathParam(..., ge=1, le=114, description="Sura number (1-114)"),
+    aya: int = PathParam(..., ge=1, description="Aya number"),
     service: VerseService = Depends(get_verse_service)
 ):
     """Get a specific verse"""
-    verse = service.get_verse(translation_id, surah, ayah)
+    verse = service.get_verse(translation_id, sura, aya)
     return VerseResponse(**verse.to_dict())
 
 
 @router.get(
-    "/{translation_id}/{surah}",
+    "/{translation_id}/{sura}",
     response_model=VersesResponse,
-    summary="Get all verses from a surah",
-    description="Get all verses from a specific surah in a translation"
+    summary="Get all verses from a sura",
+    description="Get all verses from a specific sura in a translation"
 )
-async def get_surah(
+async def get_sura(
     translation_id: str = PathParam(..., description="Translation identifier (e.g., english_sahih)"),
-    surah: int = PathParam(..., ge=1, le=114, description="Surah number (1-114)"),
-    from_ayah: int | None = Query(None, ge=1, description="Starting ayah number (optional)"),
-    to_ayah: int | None = Query(None, ge=1, description="Ending ayah number (optional)"),
+    sura: int = PathParam(..., ge=1, le=114, description="Sura number (1-114)"),
+    from_aya: int | None = Query(None, ge=1, description="Starting aya number (optional)"),
+    to_aya: int | None = Query(None, ge=1, description="Ending aya number (optional)"),
     service: VerseService = Depends(get_verse_service)
 ):
-    """Get verses from a surah, optionally filtered by ayah range"""
-    if from_ayah is not None and to_ayah is not None:
-        verses = service.get_verses_by_range(translation_id, surah, from_ayah, to_ayah)
+    """Get verses from a sura, optionally filtered by aya range"""
+    if from_aya is not None and to_aya is not None:
+        verses = service.get_verses_by_range(translation_id, sura, from_aya, to_aya)
     else:
-        verses = service.get_verses_by_surah(translation_id, surah)
+        verses = service.get_verses_by_sura(translation_id, sura)
 
     return VersesResponse(
         translation_id=translation_id,
-        surah=surah,
+        sura=sura,
         total=len(verses),
         verses=[VerseResponse(**v.to_dict()) for v in verses]
     )
@@ -150,7 +150,7 @@ async def get_translation_verses(
 
     return VersesResponse(
         translation_id=translation_id,
-        surah=None,
+        sura=None,
         total=len(verses),
         verses=[VerseResponse(**v.to_dict()) for v in verses]
     )

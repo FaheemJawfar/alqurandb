@@ -92,17 +92,17 @@ def download_csv_from_quranenc(translation_id: str, csv_file: Path) -> bool:
             # Parse CSV data
             csv_reader = csv.DictReader(lines[csv_start_idx:])
             for row in csv_reader:
-                # Normalize column names: sura -> surah, aya -> ayah, translation -> text
+                # Normalize column names: translation -> text (keep sura and aya as-is)
                 normalized_row = {
-                    'surah': row['sura'],
-                    'ayah': row['aya'],
+                    'sura': row['sura'],
+                    'aya': row['aya'],
                     'text': row['translation']
                 }
                 normalized_rows.append(normalized_row)
 
         # Write normalized CSV
         with open(csv_file, 'w', encoding='utf-8', newline='') as f:
-            writer = csv.DictWriter(f, fieldnames=['surah', 'ayah', 'text'])
+            writer = csv.DictWriter(f, fieldnames=['sura', 'aya', 'text'])
             writer.writeheader()
             writer.writerows(normalized_rows)
 
