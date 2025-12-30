@@ -1,16 +1,16 @@
 [
   {
     "id": "afar_hamza",
-    "language": "Afri",
+    "language": "Afar",
     "translator": "Mahmoud Abdulqader Hamza",
-    "name_in_language": "Afri translation - Mahmoud Abdulqader Hamza",
+    "name_in_language": "Afar translation - Mahmoud Abdulqader Hamza",
     "source": "quranenc.com"
   },
   {
     "id": "asante_harun",
-    "language": "Akan Translation (Asante)- Harun Ismail",
-    "translator": "Unknown",
-    "name_in_language": "Akan Translation (Asante)- Harun Ismail",
+    "language": "Akan (Asante)",
+    "translator": "Harun Ismail",
+    "name_in_language": "Akan (Asante) translation - Harun Ismail",
     "source": "quranenc.com"
   },
   {
@@ -48,7 +48,7 @@
   {
     "id": "amharic_sadiq",
     "language": "Amharic",
-    "name_in_language": "ሳዲቅ &amp; ሳኒ ሐቢብ",
+    "name_in_language": "ሳዲቅ & ሳኒ ሐቢብ",
     "translator": "Muhammed Sadiq and Muhammed Sani Habib",
     "source": "tanzil.net",
     "source_id": "am.sadiq"
@@ -79,14 +79,14 @@
   {
     "id": "assamese_rafeeq",
     "language": "Assamese",
-    "translator": "Rafiqul Islam Habibur Rahman.",
-    "name_in_language": "Assamese translation - Rafiqul Islam Habibur Rahman.",
+    "translator": "Rafiqul Islam Habibur Rahman",
+    "name_in_language": "Assamese translation - Rafiqul Islam Habibur Rahman",
     "source": "quranenc.com"
   },
   {
     "id": "azerbaijani_mammadaliyev",
     "language": "Azerbaijani",
-    "name_in_language": "Məmmədəliyev &amp; Bünyadov",
+    "name_in_language": "Məmmədəliyev & Bünyadov",
     "translator": "Vasim Mammadaliyev and Ziya Bunyadov",
     "source": "tanzil.net",
     "source_id": "az.mammadaliyev"
@@ -132,16 +132,16 @@
   },
   {
     "id": "bosnian_mihanovich",
-    "language": "Bosnian Translation",
+    "language": "Bosnian",
     "translator": "Muhammad Mihanovich",
-    "name_in_language": "Bosnian Translation - Muhammad Mihanovich",
+    "name_in_language": "Bosnian translation - Muhammad Mihanovich",
     "source": "quranenc.com"
   },
   {
     "id": "bosnian_rwwad",
-    "language": "Bosnian Translation",
-    "translator": "Rowwad Translation Centre",
-    "name_in_language": "Bosnian Translation - Rowwad Translation Centre",
+    "language": "Bosnian",
+    "translator": "Rowwad Translation Center",
+    "name_in_language": "Bosnian translation - Rowwad Translation Center",
     "source": "quranenc.com"
   },
   {
@@ -154,7 +154,7 @@
   },
   {
     "id": "chinese_jian",
-    "language": "Chinese",
+    "language": "Chinese (Simplified)",
     "name_in_language": "Ma Jian",
     "translator": "Ma Jian",
     "source": "tanzil.net",
@@ -162,7 +162,7 @@
   },
   {
     "id": "chinese_majian",
-    "language": "Chinese",
+    "language": "Chinese (Traditional)",
     "name_in_language": "Ma Jian (Traditional)",
     "translator": "Ma Jian",
     "source": "tanzil.net",
@@ -177,9 +177,9 @@
   },
   {
     "id": "chinese_makin",
-    "language": "Chinese Translation",
+    "language": "Chinese",
     "translator": "Muhammad Makin",
-    "name_in_language": "Chinese Translation - Muhammad Makin",
+    "name_in_language": "Chinese translation - Muhammad Makin",
     "source": "quranenc.com"
   },
   {
@@ -217,7 +217,7 @@
     "id": "dutch_keyzer",
     "language": "Dutch",
     "name_in_language": "Keyzer",
-    "translator": "Salomo Keyzer ",
+    "translator": "Salomo Keyzer",
     "source": "tanzil.net",
     "source_id": "nl.keyzer"
   },
@@ -279,7 +279,7 @@
   {
     "id": "english_hilali",
     "language": "English",
-    "name_in_language": "Hilali &amp; Khan",
+    "name_in_language": "Hilali & Khan",
     "translator": "Muhammad Taqi-ud-Din al-Hilali and Muhammad Muhsin Khan",
     "source": "tanzil.net",
     "source_id": "en.hilali"
@@ -327,7 +327,7 @@
   {
     "id": "english_qaribullah",
     "language": "English",
-    "name_in_language": "Qaribullah &amp; Darwish",
+    "name_in_language": "Qaribullah & Darwish",
     "translator": "Hasan al-Fatih Qaribullah and Ahmad Darwish",
     "source": "tanzil.net",
     "source_id": "en.qaribullah"
@@ -389,16 +389,16 @@
   },
   {
     "id": "english_hilali_khan",
-    "language": "English Translation",
+    "language": "English",
     "translator": "Hilali and Khan",
-    "name_in_language": "English Translation - Hilali and Khan",
+    "name_in_language": "English translation - Hilali and Khan",
     "source": "quranenc.com"
   },
   {
     "id": "english_saheeh",
-    "language": "English Translation",
+    "language": "English",
     "translator": "Noor International Center",
-    "name_in_language": "English Translation - Noor International Center",
+    "name_in_language": "English translation - Noor International Center",
     "source": "quranenc.com"
   },
   {
@@ -410,9 +410,9 @@
   },
   {
     "id": "tagalog_rwwad",
-    "language": "Filipino (Tagalog)- Rowwad Translation Center",
-    "translator": "Unknown",
-    "name_in_language": "Filipino (Tagalog) translation- Rowwad Translation Center",
+    "language": "Filipino (Tagalog)",
+    "translator": "Rowwad Translation Center",
+    "name_in_language": "Filipino (Tagalog) translation - Rowwad Translation Center",
     "source": "quranenc.com"
   },
   {
@@ -448,7 +448,7 @@
   {
     "id": "german_bubenheim",
     "language": "German",
-    "name_in_language": "Bubenheim &amp; Elyas",
+    "name_in_language": "Bubenheim & Elyas",
     "translator": "A. S. F. Bubenheim and N. Elyas",
     "source": "tanzil.net",
     "source_id": "de.bubenheim"
@@ -494,15 +494,15 @@
   {
     "id": "hindi_farooq",
     "language": "Hindi",
-    "name_in_language": "फ़ारूक़ ख़ान &amp; अहमद",
-    "translator": "Muhammad Farooq Khan and Muhammad Ahmed  ",
+    "name_in_language": "फ़ारूक़ ख़ान & अहमद",
+    "translator": "Muhammad Farooq Khan and Muhammad Ahmed",
     "source": "tanzil.net",
     "source_id": "hi.farooq"
   },
   {
     "id": "hindi_khan_nadwi",
     "language": "Hindi",
-    "name_in_language": "फ़ारूक़ ख़ान &amp; नदवी",
+    "name_in_language": "फ़ारूक़ ख़ान & नदवी",
     "translator": "Suhel Farooq Khan and Saifur Rahman Nadwi",
     "source": "tanzil.net",
     "source_id": "hi.hindi"
@@ -541,8 +541,8 @@
   {
     "id": "indonesian_affairs",
     "language": "Indonesian",
-    "translator": "Ministry of Religious Affairs",
-    "name_in_language": "Indonesian translation - Ministry of Religious Affairs",
+    "translator": "Indonesian Ministry of Religious Affairs",
+    "name_in_language": "Indonesian translation - Indonesian Ministry of Religious Affairs",
     "source": "quranenc.com"
   },
   {
@@ -554,9 +554,9 @@
   },
   {
     "id": "indonesian_sabiq",
-    "language": "Indonesian Translation",
+    "language": "Indonesian",
     "translator": "Sabeq Company",
-    "name_in_language": "Indonesian Translation - Sabeq Company",
+    "name_in_language": "Indonesian translation - Sabeq Company",
     "source": "quranenc.com"
   },
   {
@@ -656,9 +656,9 @@
   },
   {
     "id": "lithuanian_rwwad",
-    "language": "Lithuanian Translation",
+    "language": "Lithuanian",
     "translator": "Rowwad Translation Center",
-    "name_in_language": "Lithuanian Translation - Rowwad Translation Center",
+    "name_in_language": "Lithuanian translation - Rowwad Translation Center",
     "source": "quranenc.com"
   },
   {
@@ -679,7 +679,7 @@
   {
     "id": "malayalam_abdulhameed",
     "language": "Malayalam",
-    "name_in_language": "അബ്ദുല്‍ ഹമീദ് &amp; പറപ്പൂര്‍",
+    "name_in_language": "അബ്ദുല്‍ ഹമീദ് & പറപ്പൂര്‍",
     "translator": "Cheriyamundam Abdul Hameed and Kunhi Mohammed Parappoor",
     "source": "tanzil.net",
     "source_id": "ml.abdulhameed"
@@ -687,7 +687,7 @@
   {
     "id": "malayalam_karakunnu",
     "language": "Malayalam",
-    "name_in_language": "കാരകുന്ന് &amp; എളയാവൂര്",
+    "name_in_language": "കാരകുന്ന് & എളയാവൂര്",
     "translator": "Muhammad Karakunnu and Vanidas Elayavoor",
     "source": "tanzil.net",
     "source_id": "ml.karakunnu"
@@ -730,9 +730,9 @@
   },
   {
     "id": "pashto_rwwad",
-    "language": "Pashto Translation",
+    "language": "Pashto",
     "translator": "Rowwad Translation Center",
-    "name_in_language": "Pashto Translation - Rowwad Translation Center",
+    "name_in_language": "Pashto translation - Rowwad Translation Center",
     "source": "quranenc.com"
   },
   {
@@ -858,7 +858,7 @@
     "id": "portuguese_elhayek",
     "language": "Portuguese",
     "name_in_language": "El-Hayek",
-    "translator": "Samir El-Hayek ",
+    "translator": "Samir El-Hayek",
     "source": "tanzil.net",
     "source_id": "pt.elhayek"
   },
@@ -988,9 +988,9 @@
   },
   {
     "id": "sinhalese_mahir",
-    "language": "Sinhalese",
+    "language": "Sinhala",
     "translator": "Rowwad Translation Center",
-    "name_in_language": "Sinhalese translation - Rowwad Translation Center",
+    "name_in_language": "Sinhala translation - Rowwad Translation Center",
     "source": "quranenc.com"
   },
   {
@@ -1003,9 +1003,9 @@
   },
   {
     "id": "somali_yacob",
-    "language": "Somali Translation",
+    "language": "Somali",
     "translator": "Abdullah Hasan Yaqoub",
-    "name_in_language": "Somali Translation - Abdullah Hasan Yaqoub",
+    "name_in_language": "Somali translation - Abdullah Hasan Yaqoub",
     "source": "quranenc.com"
   },
   {
@@ -1020,7 +1020,7 @@
     "id": "spanish_cortes",
     "language": "Spanish",
     "name_in_language": "Cortes",
-    "translator": "Julio Cortes ",
+    "translator": "Julio Cortes",
     "source": "tanzil.net",
     "source_id": "es.cortes"
   },
@@ -1057,15 +1057,15 @@
   {
     "id": "swahili_barawani",
     "language": "Swahili",
-    "translator": "Ali Muhsen Al-Berwani",
-    "name_in_language": "Swahili translation - Ali Muhsen Al-Berwani",
+    "translator": "Ali Muhsin Al-Barwani",
+    "name_in_language": "Swahili translation - Ali Muhsin Al-Barwani",
     "source": "quranenc.com"
   },
   {
     "id": "swahili_rwwad",
     "language": "Swahili",
-    "translator": "Rowad Translation Center",
-    "name_in_language": "Swahili translation - Rowad Translation Center",
+    "translator": "Rowwad Translation Center",
+    "name_in_language": "Swahili translation - Rowwad Translation Center",
     "source": "quranenc.com"
   },
   {
@@ -1248,9 +1248,9 @@
   },
   {
     "id": "turkish_shaban",
-    "language": "Turkish Translation",
+    "language": "Turkish",
     "translator": "Shaaban British",
-    "name_in_language": "Turkish Translation - Shaaban British",
+    "name_in_language": "Turkish translation - Shaaban British",
     "source": "quranenc.com"
   },
   {
@@ -1305,7 +1305,7 @@
     "id": "urdu_najafi",
     "language": "Urdu",
     "name_in_language": "محمد حسین نجفی",
-    "translator": "Muhammad Hussain Najafi ",
+    "translator": "Muhammad Hussain Najafi",
     "source": "tanzil.net",
     "source_id": "ur.najafi"
   },
