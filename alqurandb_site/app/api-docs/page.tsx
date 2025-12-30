@@ -44,44 +44,44 @@ export default function ApiDocs() {
     {
       id: 'get-verse',
       method: 'GET',
-      path: '/translations/{translation_id}/{surah}/{ayah}',
+      path: '/translations/{translation_id}/{sura}/{aya}',
       title: 'Get Specific Verse',
-      description: 'Retrieve a specific verse by translation ID, surah number, and ayah number.',
+      description: 'Retrieve a specific verse by translation ID, sura number, and aya number.',
       parameters: [
         { name: 'translation_id', type: 'string', required: true, description: 'Translation identifier' },
-        { name: 'surah', type: 'integer', required: true, description: 'Surah number (1-114)' },
-        { name: 'ayah', type: 'integer', required: true, description: 'Ayah number' }
+        { name: 'sura', type: 'integer', required: true, description: 'Sura number (1-114)' },
+        { name: 'aya', type: 'integer', required: true, description: 'Aya number' }
       ],
       example: `${apiUrl}/translations/english_sahih/1/1`,
       response: {
         translation_id: "english_sahih",
-        surah: 1,
-        ayah: 1,
+        sura: 1,
+        aya: 1,
         text: "In the name of Allah, the Entirely Merciful, the Especially Merciful."
       }
     },
     {
-      id: 'get-surah',
+      id: 'get-sura',
       method: 'GET',
-      path: '/translations/{translation_id}/{surah}',
-      title: 'Get All Verses from a Surah',
-      description: 'Retrieve all verses from a specific surah in a translation.',
+      path: '/translations/{translation_id}/{sura}',
+      title: 'Get All Verses from a Sura',
+      description: 'Retrieve all verses from a specific sura in a translation.',
       parameters: [
         { name: 'translation_id', type: 'string', required: true, description: 'Translation identifier' },
-        { name: 'surah', type: 'integer', required: true, description: 'Surah number (1-114)' },
-        { name: 'from_ayah', type: 'integer', required: false, description: 'Starting ayah number (optional)' },
-        { name: 'to_ayah', type: 'integer', required: false, description: 'Ending ayah number (optional)' }
+        { name: 'sura', type: 'integer', required: true, description: 'Sura number (1-114)' },
+        { name: 'from_aya', type: 'integer', required: false, description: 'Starting aya number (optional)' },
+        { name: 'to_aya', type: 'integer', required: false, description: 'Ending aya number (optional)' }
       ],
       example: `${apiUrl}/translations/english_sahih/1`,
       response: {
         translation_id: "english_sahih",
-        surah: 1,
+        sura: 1,
         total: 7,
         verses: [
           {
             translation_id: "english_sahih",
-            surah: 1,
-            ayah: 1,
+            sura: 1,
+            aya: 1,
             text: "In the name of Allah, the Entirely Merciful, the Especially Merciful."
           }
         ]
@@ -90,25 +90,25 @@ export default function ApiDocs() {
     {
       id: 'get-verse-range',
       method: 'GET',
-      path: '/translations/{translation_id}/{surah}?from_ayah={from}&to_ayah={to}',
+      path: '/translations/{translation_id}/{sura}?from_aya={from}&to_aya={to}',
       title: 'Get Verse Range',
-      description: 'Retrieve a range of verses from a specific surah.',
+      description: 'Retrieve a range of verses from a specific sura.',
       parameters: [
         { name: 'translation_id', type: 'string', required: true, description: 'Translation identifier' },
-        { name: 'surah', type: 'integer', required: true, description: 'Surah number (1-114)' },
-        { name: 'from_ayah', type: 'integer', required: true, description: 'Starting ayah number' },
-        { name: 'to_ayah', type: 'integer', required: true, description: 'Ending ayah number' }
+        { name: 'sura', type: 'integer', required: true, description: 'Sura number (1-114)' },
+        { name: 'from_aya', type: 'integer', required: true, description: 'Starting aya number' },
+        { name: 'to_aya', type: 'integer', required: true, description: 'Ending aya number' }
       ],
-      example: `${apiUrl}/translations/english_sahih/2?from_ayah=1&to_ayah=5`,
+      example: `${apiUrl}/translations/english_sahih/2?from_aya=1&to_aya=5`,
       response: {
         translation_id: "english_sahih",
-        surah: 2,
+        sura: 2,
         total: 5,
         verses: [
           {
             translation_id: "english_sahih",
-            surah: 2,
-            ayah: 1,
+            sura: 2,
+            aya: 1,
             text: "Alif, Lam, Meem."
           }
         ]
@@ -126,13 +126,13 @@ export default function ApiDocs() {
       example: `${apiUrl}/translations/english_sahih`,
       response: {
         translation_id: "english_sahih",
-        surah: null,
+        sura: null,
         total: 6236,
         verses: [
           {
             translation_id: "english_sahih",
-            surah: 1,
-            ayah: 1,
+            sura: 1,
+            aya: 1,
             text: "In the name of Allah, the Entirely Merciful, the Especially Merciful."
           }
         ]
@@ -349,7 +349,7 @@ export default function ApiDocs() {
                       </tr>
                       <tr>
                         <td><span className="badge bg-danger">404</span></td>
-                        <td>Not Found - Translation, surah, or verse not found</td>
+                        <td>Not Found - Translation, sura, or verse not found</td>
                         <td className="font-monospace text-muted">
                           {JSON.stringify({ detail: "Verse 1:8 not found in translation 'english_sahih'" })}
                         </td>
@@ -358,7 +358,7 @@ export default function ApiDocs() {
                         <td><span className="badge bg-danger">422</span></td>
                         <td>Validation Error - Invalid parameters</td>
                         <td className="font-monospace text-muted">
-                          {JSON.stringify({ detail: "Surah number must be between 1 and 114" })}
+                          {JSON.stringify({ detail: "Sura number must be between 1 and 114" })}
                         </td>
                       </tr>
                       <tr>
@@ -411,10 +411,10 @@ const verse = await fetch('${apiUrl}/translations/english_sahih/1/1');
 const verseData = await verse.json();
 console.log(verseData.text);
 
-// Get all verses from a surah
-const surah = await fetch('${apiUrl}/translations/english_sahih/1');
-const surahData = await surah.json();
-console.log(\`Total verses: \${surahData.total}\`);`}</code>
+// Get all verses from a sura
+const sura = await fetch('${apiUrl}/translations/english_sahih/1');
+const suraData = await sura.json();
+console.log(\`Total verses: \${suraData.total}\`);`}</code>
                         </pre>
                       </div>
                     </div>
@@ -436,10 +436,10 @@ verse = requests.get('${apiUrl}/translations/english_sahih/1/1')
 verse_data = verse.json()
 print(verse_data['text'])
 
-# Get all verses from a surah
-surah = requests.get('${apiUrl}/translations/english_sahih/1')
-surah_data = surah.json()
-print(f"Total verses: {surah_data['total']}")`}</code>
+# Get all verses from a sura
+sura = requests.get('${apiUrl}/translations/english_sahih/1')
+sura_data = sura.json()
+print(f"Total verses: {sura_data['total']}")`}</code>
                         </pre>
                       </div>
                     </div>
@@ -455,11 +455,11 @@ curl ${apiUrl}/translations/
 # Get a specific verse
 curl ${apiUrl}/translations/english_sahih/1/1
 
-# Get all verses from a surah
+# Get all verses from a sura
 curl ${apiUrl}/translations/english_sahih/1
 
 # Get verse range
-curl "${apiUrl}/translations/english_sahih/2?from_ayah=1&to_ayah=5"
+curl "${apiUrl}/translations/english_sahih/2?from_aya=1&to_aya=5"
 
 # Download translation as JSON
 curl -O ${apiUrl}/translations/download/english_sahih/json`}</code>

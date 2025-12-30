@@ -87,6 +87,8 @@ def extract_all_csv():
     conversions = {
         'ift.xml': 'tamil_ift.csv',
         'king_fahd.xml': 'tamil_kingfahd.csv',
+        'baqavi.xml': 'tamil_baqavi.csv',
+        'johntrust.xml': 'tamil_johntrust.csv',
     }
 
     print(f"\n🔄 Extracting CSV from {len(conversions)} XML files...")

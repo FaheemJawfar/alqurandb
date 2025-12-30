@@ -17,14 +17,14 @@ interface TranslationsResponse {
 
 interface Verse {
   translation_id: string;
-  surah: number;
-  ayah: number;
+  sura: number;
+  aya: number;
   text: string;
 }
 
 interface VersesResponse {
   translation_id: string;
-  surah: number | null;
+  sura: number | null;
   total: number;
   verses: Verse[];
 }
@@ -37,7 +37,7 @@ export default function Home() {
 
   const [showVerses, setShowVerses] = useState(false);
   const [selectedTranslation, setSelectedTranslation] = useState<Translation | null>(null);
-  const [selectedSurah, setSelectedSurah] = useState<number>(1);
+  const [selectedSura, setSelectedSura] = useState<number>(1);
   const [verses, setVerses] = useState<Verse[]>([]);
   const [versesLoading, setVersesLoading] = useState(false);
 
@@ -74,14 +74,14 @@ export default function Home() {
   async function handleViewVerses(translation: Translation) {
     setSelectedTranslation(translation);
     setShowVerses(true);
-    setSelectedSurah(1);
+    setSelectedSura(1);
     await fetchVerses(translation.id, 1);
   }
 
-  async function fetchVerses(translationId: string, surah: number) {
+  async function fetchVerses(translationId: string, sura: number) {
     try {
       setVersesLoading(true);
-      const response = await fetch(`${API_BASE_URL}/translations/${translationId}/${surah}`);
+      const response = await fetch(`${API_BASE_URL}/translations/${translationId}/${sura}`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch verses');
@@ -97,10 +97,10 @@ export default function Home() {
     }
   }
 
-  async function handleSurahChange(surah: number) {
-    setSelectedSurah(surah);
+  async function handleSuraChange(sura: number) {
+    setSelectedSura(sura);
     if (selectedTranslation) {
-      await fetchVerses(selectedTranslation.id, surah);
+      await fetchVerses(selectedTranslation.id, sura);
     }
   }
 
@@ -140,7 +140,7 @@ export default function Home() {
                       Developer API Available
                     </h3>
                     <p className="text-muted mb-0">
-                      Access Quran translations programmatically with our RESTful API. Get verses by surah, ayah, or download complete translations.
+                      Access Quran translations programmatically with our RESTful API. Get verses by sura, aya, or download complete translations.
                     </p>
                   </div>
                   <div className="col-auto">
@@ -314,15 +314,15 @@ export default function Home() {
                 </div>
                 <div className="modal-body">
                   <div className="mb-3">
-                    <label className="form-label">Select Surah</label>
+                    <label className="form-label">Select Sura</label>
                     <select
                       className="form-select"
-                      value={selectedSurah}
-                      onChange={(e) => handleSurahChange(Number(e.target.value))}
+                      value={selectedSura}
+                      onChange={(e) => handleSuraChange(Number(e.target.value))}
                     >
-                      {Array.from({ length: 114 }, (_, i) => i + 1).map((surah) => (
-                        <option key={surah} value={surah}>
-                          Surah {surah}
+                      {Array.from({ length: 114 }, (_, i) => i + 1).map((sura) => (
+                        <option key={sura} value={sura}>
+                          Sura {sura}
                         </option>
                       ))}
                     </select>
@@ -336,10 +336,10 @@ export default function Home() {
                   ) : (
                     <div className="list-group list-group-flush">
                       {verses.map((verse) => (
-                        <div key={`${verse.surah}:${verse.ayah}`} className="list-group-item">
+                        <div key={`${verse.sura}:${verse.aya}`} className="list-group-item">
                           <div className="row align-items-start">
                             <div className="col-auto">
-                              <span className="badge bg-primary">{verse.ayah}</span>
+                              <span className="badge bg-primary">{verse.aya}</span>
                             </div>
                             <div className="col">
                               <p className="mb-0">{verse.text}</p>
