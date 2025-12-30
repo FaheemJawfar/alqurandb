@@ -20,9 +20,9 @@ This directory contains source translation files and automated processing script
 
 ## Overview
 
-The AlQuranDB project maintains **117 translations** of the Quran in **40+ languages**. This directory contains:
+The AlQuranDB project maintains **178 translations** of the Quran in **40+ languages**. This directory contains:
 
-- **Source XML files** from various translation providers
+- **Source files** from various translation providers (XML and CSV formats)
 - **Automated processing scripts** that extract and convert translations
 - **Format converters** that generate JSON, XML, Excel, and SQLite files
 - **Database generator** that creates a comprehensive SQLite database
@@ -35,9 +35,15 @@ The AlQuranDB project maintains **117 translations** of the Quran in **40+ langu
 
 ```
 sources/
-├── tanzil.net/              # Tanzil.net translations (114 translations)
-│   ├── source/              # 114 XML source files
+├── tanzil.net/              # Tanzil.net translations (111 translations)
+│   ├── source/              # 111 XML source files
 │   └── process_tanzil.py    # Automated processing pipeline
+│
+├── quranenc.com/            # QuranEnc.com translations (64 translations)
+│   ├── source/              # 68 raw CSV downloads (includes duplicates)
+│   ├── csv_output/          # 68 normalized CSV files
+│   ├── quranenc_metadata.json  # QuranEnc-specific metadata
+│   └── process_quranenc.py  # Automated processing pipeline
 │
 ├── tamililquran.com/        # Tamil translations (2 translations)
 │   ├── source/              # 2 XML source files (IFT, King Fahd)
@@ -64,8 +70,9 @@ sources/
 
 ### The Automated Pipeline
 
-Each translation source has an automated processing script that follows this workflow:
+Each translation source has an automated processing script. There are two main workflows:
 
+**Workflow A: XML-based sources** (Tanzil, TamilIL, ACJU)
 ```
 ┌─────────────────┐
 │  Source XML     │  Translation provider's XML files
@@ -91,14 +98,48 @@ Each translation source has an automated processing script that follows this wor
 └─────────────────┘
 ```
 
+**Workflow B: CSV-based sources** (QuranEnc)
+```
+┌─────────────────┐
+│  Download CSV   │  Download ALL source CSV files
+│  (source/)      │  from quranenc.com
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Check          │  Compare with existing metadata
+│  Duplicates     │  Skip duplicates from other sources
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Normalize CSV  │  Process non-duplicates only
+│  (csv_output/)  │  Normalize column names (sura, aya, text)
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Generate       │  CSV → JSON, XML, Excel, SQLite
+│  All Formats    │  Using converter scripts
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Move to API    │  Copy all files to:
+│  Data Folder    │  alqurandb_api/data/translations/
+└─────────────────┘
+```
+
 ### Processing Script Workflow
 
 Each `process_*.py` script performs these steps automatically:
 
+**For XML-based sources (Tanzil, TamilIL, ACJU):**
+
 1. **Extract CSV** from XML source files
    - Parse XML structure (different for each source)
-   - Extract surah number, ayah number, and text
-   - Write to CSV format: `surah,ayah,text`
+   - Extract sura number, aya number, and text
+   - Write to CSV format: `sura,aya,text`
 
 2. **Generate All Formats**
    - Import converter functions directly
@@ -109,15 +150,40 @@ Each `process_*.py` script performs these steps automatically:
    - Copy all generated files to `alqurandb_api/data/translations/`
    - Organized by format: `csv/`, `json/`, `xml/`, `xlsx/`, `sqlite/`
 
+**For CSV-based sources (QuranEnc):**
+
+1. **Download ALL source CSV files**
+   - Download from quranenc.com using translation IDs
+   - Save raw CSV files to `source/` folder
+   - All valid translations downloaded regardless of duplicates
+
+2. **Check for Duplicates**
+   - Compare with existing translations by language AND translator
+   - Identify duplicates from other sources
+   - Determine which translations to process
+
+3. **Normalize CSV** (non-duplicates only)
+   - Read from `source/` folder
+   - Normalize column names: `translation` → `text`
+   - Write to `csv_output/` with standard format: `sura,aya,text`
+
+4. **Generate All Formats**
+   - Generate JSON, XML, Excel, SQLite from normalized CSV
+   - Create output folders for each format
+
+5. **Move to API Data**
+   - Copy all generated files to `alqurandb_api/data/translations/`
+   - Update metadata.json with new translations
+
 ---
 
 ## Data Flow
 
 ### 1. Source Extraction
 
-Each translation source has unique XML structure:
+Each translation source has unique structure:
 
-**Tanzil.net** (114 translations):
+**Tanzil.net** (111 translations) - XML format:
 ```xml
 <quran>
   <sura index="1">
@@ -126,7 +192,15 @@ Each translation source has unique XML structure:
 </quran>
 ```
 
-**TamililQuran.com** (2 translations):
+**QuranEnc.com** (64 translations) - CSV format:
+```csv
+id,sura,aya,translation
+1,1,1,"In the name of Allah, the Entirely Merciful..."
+2,1,2,"[All] praise is [due] to Allah, Lord of the worlds"
+```
+Note: QuranEnc CSVs have extra columns and metadata headers that are removed during normalization.
+
+**TamililQuran.com** (2 translations) - XML format:
 ```xml
 <quran>
   <sura index="1">
@@ -135,7 +209,7 @@ Each translation source has unique XML structure:
 </quran>
 ```
 
-**ACJU.lk** (1 translation):
+**ACJU.lk** (1 translation) - XML format:
 ```xml
 <quran>
   <sura index="1">
@@ -146,15 +220,17 @@ Each translation source has unique XML structure:
 
 ### 2. CSV Base Format
 
-All XML sources are converted to a standard CSV format:
+All sources are converted to a standard CSV format:
 
 ```csv
-surah,ayah,text
+sura,aya,text
 1,1,"In the name of Allah, the Entirely Merciful, the Especially Merciful."
 1,2,"[All] praise is [due] to Allah, Lord of the worlds -"
 1,3,"The Entirely Merciful, the Especially Merciful,"
 ...
 ```
+
+**Note**: Column naming follows the standard: `sura`, `aya`, `text` (not `surah`, `ayah`).
 
 **Why CSV?**
 - Simple, universal format
@@ -175,7 +251,7 @@ From CSV, we generate:
 
 ### 4. Complete Database
 
-The `create_complete_db.py` script creates a **comprehensive SQLite database** containing all 117 translations:
+The `create_complete_db.py` script creates a **comprehensive SQLite database** containing all 178 translations:
 
 ```sql
 -- Database Schema
@@ -190,31 +266,31 @@ CREATE TABLE translations (
 CREATE TABLE verses (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     translation_id TEXT NOT NULL,
-    surah INTEGER NOT NULL,
-    ayah INTEGER NOT NULL,
+    sura INTEGER NOT NULL,
+    aya INTEGER NOT NULL,
     text TEXT NOT NULL,
     FOREIGN KEY (translation_id) REFERENCES translations(id)
 );
 
 -- Indexes for fast queries
 CREATE INDEX idx_translation_id ON verses(translation_id);
-CREATE INDEX idx_surah ON verses(surah);
-CREATE INDEX idx_surah_ayah ON verses(surah, ayah);
-CREATE INDEX idx_translation_surah ON verses(translation_id, surah);
-CREATE INDEX idx_translation_surah_ayah ON verses(translation_id, surah, ayah);
+CREATE INDEX idx_sura ON verses(sura);
+CREATE INDEX idx_sura_aya ON verses(sura, aya);
+CREATE INDEX idx_translation_sura ON verses(translation_id, sura);
+CREATE INDEX idx_translation_sura_aya ON verses(translation_id, sura, aya);
 ```
 
 **Database Stats:**
-- Size: ~278 MB
-- Translations: 117
-- Total verses: 729,427
+- Size: ~419 MB
+- Translations: 178
+- Total verses: 1,109,823
 - Automatic creation on FastAPI startup
 
 ---
 
 ## Translation Sources
 
-### Tanzil.net (114 Translations)
+### Tanzil.net (111 Translations)
 
 **Source**: http://tanzil.net/trans/
 
@@ -222,7 +298,29 @@ CREATE INDEX idx_translation_surah_ayah ON verses(translation_id, surah, ayah);
 
 **Processing**: `python sources/tanzil.net/process_tanzil.py`
 
+**Format**: XML source files
+
 **Metadata Mapping**: Uses `metadata.json` to map Tanzil source IDs (e.g., `en.sahih`) to translation IDs (e.g., `english_sahih`).
+
+### QuranEnc.com (64 Translations)
+
+**Source**: https://quranenc.com/
+
+**Languages**: 50+ languages including many less common languages like Afar, Akan, Assamese, Lithuanian, Pashto, and more.
+
+**Processing**: `python sources/quranenc.com/process_quranenc.py`
+
+**Format**: CSV files downloaded directly from QuranEnc API
+
+**URL Pattern**: `https://quranenc.com/en/home/download/csv/{translation_id}`
+
+**Special Features**:
+- Downloads ALL source files first (68 total)
+- Detects duplicates from other sources
+- Only processes unique translations (64 final)
+- Maintains both raw downloads (source/) and normalized CSVs (csv_output/)
+
+**Metadata**: Uses `quranenc_metadata.json` for QuranEnc-specific metadata
 
 ### TamililQuran.com (2 Translations)
 
@@ -234,6 +332,8 @@ CREATE INDEX idx_translation_surah_ayah ON verses(translation_id, surah, ayah);
 
 **Processing**: `python sources/tamililquran.com/process_tamilil.py`
 
+**Format**: XML source files
+
 ### ACJU.lk (1 Translation)
 
 **Source**: All Ceylon Jamiyyathul Ulama
@@ -241,6 +341,8 @@ CREATE INDEX idx_translation_surah_ayah ON verses(translation_id, surah, ayah);
 **Language**: Sinhala (සිංහල)
 
 **Processing**: `python sources/acju.lk/process_acju.py`
+
+**Format**: XML source file
 
 ---
 
@@ -294,13 +396,13 @@ Creates individual SQLite database for each translation:
 ```sql
 CREATE TABLE verses (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    surah INTEGER NOT NULL,
-    ayah INTEGER NOT NULL,
+    sura INTEGER NOT NULL,
+    aya INTEGER NOT NULL,
     text TEXT NOT NULL
 );
-CREATE INDEX idx_surah ON verses(surah);
-CREATE INDEX idx_ayah ON verses(ayah);
-CREATE INDEX idx_surah_ayah ON verses(surah, ayah);
+CREATE INDEX idx_sura ON verses(sura);
+CREATE INDEX idx_aya ON verses(aya);
+CREATE INDEX idx_sura_aya ON verses(sura, aya);
 ```
 
 ---
@@ -309,7 +411,7 @@ CREATE INDEX idx_surah_ayah ON verses(surah, ayah);
 
 ### Complete Database (`create_complete_db.py`)
 
-Creates a comprehensive SQLite database with **all 117 translations**.
+Creates a comprehensive SQLite database with **all 178 translations**.
 
 **Process**:
 1. Read all CSV files from `data/translations/csv/`
@@ -330,11 +432,11 @@ SELECT * FROM translations;
 SELECT t.language, t.translator, v.text
 FROM verses v
 JOIN translations t ON v.translation_id = t.id
-WHERE v.surah = 1 AND v.ayah = 1;
+WHERE v.sura = 1 AND v.aya = 1;
 
--- Get all verses from a surah in a specific translation
+-- Get all verses from a sura in a specific translation
 SELECT * FROM verses
-WHERE translation_id = 'english_sahih' AND surah = 1;
+WHERE translation_id = 'english_sahih' AND sura = 1;
 ```
 
 ---
@@ -346,8 +448,11 @@ WHERE translation_id = 'english_sahih' AND surah = 1;
 Each translation source has its own automated processing script:
 
 ```bash
-# Process all Tanzil translations (114 translations)
+# Process all Tanzil translations (111 translations)
 python sources/tanzil.net/process_tanzil.py
+
+# Process all QuranEnc translations (64 translations)
+python sources/quranenc.com/process_quranenc.py
 
 # Process Tamil translations (2 translations)
 python sources/tamililquran.com/process_tamilil.py
@@ -357,9 +462,10 @@ python sources/acju.lk/process_acju.py
 ```
 
 Each script automatically:
-1. Extracts CSV from XML source files
+1. Extracts/downloads and normalizes CSV files
 2. Generates all formats (JSON, XML, Excel, SQLite)
 3. Moves files to the API data folder
+4. Updates metadata (QuranEnc only)
 
 ### Generate All Formats (from existing CSV)
 
@@ -527,7 +633,7 @@ Or just restart the FastAPI server - it will automatically regenerate the databa
 | **Excel** | `.xlsx` | Researchers, non-technical users | ~80 KB |
 | **SQLite** | `.db` | Mobile apps, desktop apps | ~450 KB |
 
-**Complete Database**: `quran_translations.db` (~278 MB) - All 117 translations in one database
+**Complete Database**: `quran_translations.db` (~419 MB) - All 178 translations in one database
 
 ---
 
@@ -553,7 +659,7 @@ api_data_dir = project_root / 'alqurandb_api' / 'data'
 **Standard CSV format** used across all translations:
 
 ```csv
-surah,ayah,text
+sura,aya,text
 1,1,"First verse text"
 1,2,"Second verse text"
 ...
@@ -561,10 +667,12 @@ surah,ayah,text
 ```
 
 **Rules**:
-- Header row: `surah,ayah,text`
-- Surah: 1-114
-- Ayah: 1-286 (varies by surah)
+- Header row: `sura,aya,text`
+- Sura: 1-114
+- Aya: 1-286 (varies by sura)
 - Text: UTF-8 encoded, quoted if contains commas
+
+**Note**: We use `sura` and `aya` (not `surah` and `ayah`) for consistency across the codebase.
 
 ### Verse Count
 
@@ -602,8 +710,9 @@ pip install openpyxl
 
 **Processing Times** (approximate):
 - CSV extraction: 1-2 seconds per translation
+- CSV download (QuranEnc): 1-2 seconds per translation
 - Format generation: 3-5 seconds per translation
-- Complete database creation: 30-40 seconds (all 117 translations)
+- Complete database creation: 45-60 seconds (all 178 translations)
 
 **Optimization**:
 - Batch insertions for SQLite (faster)
@@ -663,11 +772,13 @@ pip install openpyxl
 
 This directory implements a **robust, automated translation processing system** that:
 
-✅ Supports **117 translations** in **40+ languages**
+✅ Supports **178 translations** in **50+ languages**
 ✅ Uses **CSV as single source of truth**
 ✅ Generates **5 different formats** automatically
 ✅ Creates **comprehensive SQLite database**
 ✅ Provides **automated pipelines** for each source
+✅ Supports both **XML and CSV** source formats
+✅ Implements **intelligent duplicate detection**
 ✅ Enables **easy addition** of new translations
 ✅ Ensures **data consistency** across all formats
 
