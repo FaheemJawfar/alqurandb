@@ -1,0 +1,533 @@
+#!/usr/bin/env python3
+"""
+Process QuranEnc translations - Full automated pipeline
+
+This script:
+1. Loads existing translations to avoid duplicates
+2. Downloads CSV files directly from QuranEnc.com
+3. Generates all formats (JSON, XML, Excel, SQLite) from CSV
+4. Moves generated files to API data folder
+"""
+import json
+import csv
+import sys
+import urllib.request
+from pathlib import Path
+
+# Import converters
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from converters.csv_to_json import csv_to_json
+from converters.csv_to_xml import create_translation_xml
+from converters.csv_to_excel import create_translation_excel
+from converters.csv_to_sqlite import create_translation_database
+
+
+def load_existing_translations():
+    """Load existing translations with full metadata for duplicate detection"""
+    script_dir = Path(__file__).parent
+    project_root = script_dir.parent.parent
+    metadata_file = project_root / 'alqurandb_api' / 'data' / 'metadata.json'
+
+    existing_translations = []
+    if metadata_file.exists():
+        with open(metadata_file, 'r', encoding='utf-8') as f:
+            existing_translations = json.load(f)
+
+    return existing_translations
+
+
+def load_quranenc_metadata():
+    """Load QuranEnc translation metadata"""
+    script_dir = Path(__file__).parent
+    metadata_file = script_dir / 'metadata.json'
+
+    with open(metadata_file, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+        return data['translations']
+
+
+def download_csv_from_quranenc(translation_id: str, csv_file: Path) -> bool:
+    """
+    Download CSV directly from QuranEnc and normalize format
+
+    Args:
+        translation_id: Translation identifier (e.g., 'uzbek_mansour')
+        csv_file: Path to output CSV file
+
+    Returns:
+        True if download successful, False otherwise
+    """
+    url = f"https://quranenc.com/en/home/download/csv/{translation_id}"
+
+    try:
+        print(f"    Downloading CSV from {url}...", flush=True)
+
+        # Download the file to a temporary location
+        temp_file = csv_file.with_suffix('.tmp')
+        with urllib.request.urlopen(url) as response:
+            content = response.read()
+            with open(temp_file, 'wb') as f:
+                f.write(content)
+
+        # Normalize the CSV format
+        print(f"    Normalizing CSV format...", flush=True)
+
+        # Read the QuranEnc CSV (skip metadata header, normalize columns)
+        normalized_rows = []
+        with open(temp_file, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+
+            # Find the actual CSV header (should be around line 12)
+            csv_start_idx = None
+            for idx, line in enumerate(lines):
+                if line.startswith('id,sura,aya,translation'):
+                    csv_start_idx = idx
+                    break
+
+            if csv_start_idx is None:
+                print(f"    ❌ Could not find CSV header", flush=True)
+                temp_file.unlink()
+                return False
+
+            # Parse CSV data
+            csv_reader = csv.DictReader(lines[csv_start_idx:])
+            for row in csv_reader:
+                # Normalize column names: sura -> surah, aya -> ayah, translation -> text
+                normalized_row = {
+                    'surah': row['sura'],
+                    'ayah': row['aya'],
+                    'text': row['translation']
+                }
+                normalized_rows.append(normalized_row)
+
+        # Write normalized CSV
+        with open(csv_file, 'w', encoding='utf-8', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=['surah', 'ayah', 'text'])
+            writer.writeheader()
+            writer.writerows(normalized_rows)
+
+        # Remove temp file
+        temp_file.unlink()
+
+        # Verify the normalized file
+        if csv_file.exists() and len(normalized_rows) > 6000:  # Should have ~6236 verses
+            print(f"    ✅ Downloaded and normalized ({len(normalized_rows)} verses)", flush=True)
+            return True
+        else:
+            print(f"    ⚠️  File seems incomplete ({len(normalized_rows)} verses)", flush=True)
+            return False
+
+    except Exception as e:
+        print(f"    ❌ Download failed: {e}", flush=True)
+        return False
+
+
+def extract_all_csv():
+    """Download CSV files from QuranEnc"""
+    script_dir = Path(__file__).parent
+    csv_dir = script_dir / 'csv_output'
+
+    # Create directory
+    csv_dir.mkdir(exist_ok=True)
+
+    # Load existing translations
+    existing_translations = load_existing_translations()
+    print(f"\n📋 Found {len(existing_translations)} existing translations", flush=True)
+
+    # Load QuranEnc metadata
+    quranenc_translations = load_quranenc_metadata()
+    print(f"📋 Found {len(quranenc_translations)} QuranEnc translations", flush=True)
+
+    # Process translations: detect duplicates and prepare for replacement
+    translations_to_process = []
+    duplicates_to_replace = []
+
+    for trans in quranenc_translations:
+        trans_id = trans['key']
+
+        # Skip if title or description is false (invalid entry)
+        if trans.get('title') == False or trans.get('description') == False:
+            print(f"  ⚠️  Skipping {trans_id} - invalid metadata")
+            continue
+
+        # Parse QuranEnc metadata
+        quranenc_meta = parse_quranenc_metadata(trans)
+
+        # Check for duplicate by language and translator
+        duplicate = find_duplicate_translation(quranenc_meta, existing_translations)
+
+        if duplicate:
+            # Found duplicate - will replace it
+            print(f"  🔄 {trans_id} - replacing {duplicate['id']} ({duplicate['language']} - {duplicate['translator']})")
+            duplicates_to_replace.append({
+                'old_id': duplicate['id'],
+                'new_trans': trans,
+                'new_meta': quranenc_meta
+            })
+            translations_to_process.append(trans)
+        else:
+            # New translation - check if ID already exists (shouldn't happen, but just in case)
+            existing_ids = {t['id'] for t in existing_translations}
+            if trans_id in existing_ids:
+                print(f"  ⏭️  Skipping {trans_id} - ID already exists")
+                continue
+            print(f"  ➕ {trans_id} - new translation")
+            translations_to_process.append(trans)
+
+    print(f"\n🔄 Processing {len(translations_to_process)} translations ({len(duplicates_to_replace)} replacements, {len(translations_to_process) - len(duplicates_to_replace)} new)...", flush=True)
+    print("=" * 80, flush=True)
+
+    successful = 0
+    failed = 0
+
+    for i, trans in enumerate(translations_to_process, 1):
+        trans_id = trans['key']
+        csv_file = csv_dir / f"{trans_id}.csv"
+
+        print(f"\n[{i}/{len(translations_to_process)}] {trans_id}...", flush=True)
+
+        # Check if CSV already exists and has content
+        if csv_file.exists():
+            try:
+                with open(csv_file, 'r', encoding='utf-8') as f:
+                    line_count = sum(1 for _ in f)
+                    if line_count > 6000:  # Should have ~6236 verses + header
+                        print(f"    ✓ CSV already exists ({line_count} lines)", flush=True)
+                        successful += 1
+                        continue
+            except:
+                pass
+
+        # Download CSV from QuranEnc
+        if download_csv_from_quranenc(trans_id, csv_file):
+            successful += 1
+            print(f"    ✅ CSV downloaded ({successful}/{len(translations_to_process)} completed)", flush=True)
+        else:
+            failed += 1
+            print(f"    ❌ Failed ({failed} failures so far)", flush=True)
+
+    print("\n" + "=" * 80, flush=True)
+    print(f"CSV Creation: {successful} successful, {failed} failed", flush=True)
+    print(f"Output: {csv_dir}", flush=True)
+    print("=" * 80, flush=True)
+
+    # Store duplicates info for metadata update
+    return successful, duplicates_to_replace
+
+
+def parse_quranenc_metadata(trans):
+    """Parse QuranEnc translation metadata to extract language and translator"""
+    title = trans.get('title', '')
+
+    # Handle invalid title (False, None, etc.)
+    if not title or title == False:
+        title = trans.get('key', 'Unknown')
+
+    # Extract language and translator from title
+    # Format is usually: "Language translation - Translator Name"
+    if ' - ' in title:
+        parts = title.split(' - ')
+        language = parts[0].replace(' translation', '').strip()
+        translator = parts[-1].strip()
+    else:
+        language = title.replace(' translation', '').strip()
+        translator = 'Unknown'
+
+    return {
+        'id': trans['key'],
+        'language': language,
+        'translator': translator,
+        'name_in_language': title,
+        'source': 'quranenc.com'
+    }
+
+
+def find_duplicate_translation(quranenc_meta, existing_translations):
+    """Find duplicate translation by matching language AND translator"""
+    for existing in existing_translations:
+        # Match by language AND translator (case-insensitive)
+        if (existing.get('language', '').lower() == quranenc_meta['language'].lower() and
+            existing.get('translator', '').lower() == quranenc_meta['translator'].lower()):
+            return existing
+    return None
+
+
+def remove_translation_files(translation_id):
+    """Remove all files for a translation (csv, json, xml, xlsx, sqlite)"""
+    script_dir = Path(__file__).parent
+    project_root = script_dir.parent.parent
+    translations_dir = project_root / 'alqurandb_api' / 'data' / 'translations'
+
+    formats = ['csv', 'json', 'xml', 'xlsx', 'sqlite']
+    removed = []
+
+    for fmt in formats:
+        if fmt == 'sqlite':
+            file_path = translations_dir / fmt / f"{translation_id}.db"
+        else:
+            file_path = translations_dir / fmt / f"{translation_id}.{fmt}"
+
+        if file_path.exists():
+            file_path.unlink()
+            removed.append(fmt)
+
+    return removed
+
+
+def load_quranenc_metadata_mapping():
+    """Load QuranEnc metadata for translation info"""
+    script_dir = Path(__file__).parent
+    metadata_file = script_dir / 'metadata.json'
+
+    with open(metadata_file, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+        mapping = {}
+        for trans in data['translations']:
+            mapping[trans['key']] = parse_quranenc_metadata(trans)
+        return mapping
+
+
+def generate_all_formats():
+    """Generate all formats (JSON, XML, Excel, SQLite) from CSV files"""
+    script_dir = Path(__file__).parent
+    csv_source_dir = script_dir / 'csv_output'
+
+    # Define output directories
+    output_dirs = {
+        'json': script_dir / 'json_output',
+        'xml': script_dir / 'xml_output',
+        'xlsx': script_dir / 'xlsx_output',
+        'sqlite': script_dir / 'sqlite_output',
+    }
+
+    # Create output directories
+    for output_dir in output_dirs.values():
+        output_dir.mkdir(exist_ok=True)
+
+    # Get list of CSV files to convert
+    csv_files = sorted(csv_source_dir.glob('*.csv'))
+
+    if not csv_files:
+        print(f"\n❌ No CSV files found in {csv_source_dir}", flush=True)
+        return False
+
+    # Load metadata for translation info
+    metadata_mapping = load_quranenc_metadata_mapping()
+
+    print(f"\n🔄 Generating all formats for {len(csv_files)} translations...", flush=True)
+    print("=" * 80, flush=True)
+
+    results = {
+        'JSON': 0,
+        'XML': 0,
+        'Excel': 0,
+        'SQLite': 0
+    }
+
+    for idx, csv_file in enumerate(csv_files, 1):
+        translation_id = csv_file.stem
+        print(f"\n→ [{idx}/{len(csv_files)}] Processing {translation_id}...", flush=True)
+
+        # Get metadata for this translation
+        metadata_item = metadata_mapping.get(translation_id, {})
+
+        # Generate JSON
+        try:
+            json_file = output_dirs['json'] / f"{translation_id}.json"
+            csv_to_json(csv_file, json_file)
+            results['JSON'] += 1
+            print(f"  ✅ JSON", flush=True)
+        except Exception as e:
+            print(f"  ❌ JSON failed: {e}", flush=True)
+
+        # Generate XML
+        try:
+            xml_file = output_dirs['xml'] / f"{translation_id}.xml"
+            create_translation_xml(translation_id, csv_file, xml_file)
+            results['XML'] += 1
+            print(f"  ✅ XML", flush=True)
+        except Exception as e:
+            print(f"  ❌ XML failed: {e}", flush=True)
+
+        # Generate Excel
+        try:
+            xlsx_file = output_dirs['xlsx'] / f"{translation_id}.xlsx"
+            create_translation_excel(translation_id, csv_file, metadata_item, xlsx_file)
+            results['Excel'] += 1
+            print(f"  ✅ Excel", flush=True)
+        except Exception as e:
+            print(f"  ❌ Excel failed: {e}", flush=True)
+
+        # Generate SQLite
+        try:
+            sqlite_file = output_dirs['sqlite'] / f"{translation_id}.sqlite"
+            create_translation_database(translation_id, csv_file, sqlite_file)
+            results['SQLite'] += 1
+            print(f"  ✅ SQLite", flush=True)
+        except Exception as e:
+            print(f"  ❌ SQLite failed: {e}", flush=True)
+
+    print("\n" + "=" * 80, flush=True)
+    print("Format Generation Summary:", flush=True)
+    total_files = len(csv_files)
+    for format_name, success_count in results.items():
+        status = "✅" if success_count == total_files else "⚠️"
+        print(f"  {status} {format_name}: {success_count}/{total_files} files", flush=True)
+    print("=" * 80, flush=True)
+
+    return all(count == total_files for count in results.values())
+
+
+def move_to_api_data():
+    """Move all generated files to API data folder"""
+    script_dir = Path(__file__).parent
+    project_root = script_dir.parent.parent
+    api_data_dir = project_root / 'alqurandb_api' / 'data' / 'translations'
+
+    # Define source and destination mappings
+    moves = [
+        (script_dir / 'csv_output', api_data_dir / 'csv'),
+        (script_dir / 'json_output', api_data_dir / 'json'),
+        (script_dir / 'xml_output', api_data_dir / 'xml'),
+        (script_dir / 'xlsx_output', api_data_dir / 'xlsx'),
+        (script_dir / 'sqlite_output', api_data_dir / 'sqlite'),
+    ]
+
+    print(f"\n🔄 Moving files to API data folder...", flush=True)
+    print("=" * 80, flush=True)
+
+    total_moved = 0
+
+    for source_dir, dest_dir in moves:
+        if not source_dir.exists():
+            continue
+
+        # Ensure destination exists
+        dest_dir.mkdir(parents=True, exist_ok=True)
+
+        # Move all files
+        import shutil
+        files = list(source_dir.glob('*.*'))
+        for file in files:
+            dest_file = dest_dir / file.name
+            shutil.copy2(file, dest_file)
+            total_moved += 1
+
+        if files:
+            print(f"  ✅ {source_dir.name}: {len(files)} files → {dest_dir}", flush=True)
+
+    print("=" * 80, flush=True)
+    print(f"Total files moved: {total_moved}", flush=True)
+    print(f"Destination: {api_data_dir}", flush=True)
+    print("=" * 80, flush=True)
+
+    return total_moved > 0
+
+
+def update_metadata(duplicates_to_replace):
+    """Update metadata.json: remove old duplicates and add QuranEnc translations"""
+    script_dir = Path(__file__).parent
+    project_root = script_dir.parent.parent
+    metadata_file = project_root / 'alqurandb_api' / 'data' / 'metadata.json'
+    csv_dir = script_dir / 'csv_output'
+
+    # Load existing metadata
+    with open(metadata_file, 'r', encoding='utf-8') as f:
+        metadata = json.load(f)
+
+    # Get IDs to remove (old duplicates)
+    ids_to_remove = {dup['old_id'] for dup in duplicates_to_replace}
+
+    # Remove old duplicate entries and their files
+    if ids_to_remove:
+        print(f"\n🗑️  Removing {len(ids_to_remove)} old duplicate translations...")
+        for old_id in ids_to_remove:
+            # Remove from metadata
+            metadata = [m for m in metadata if m['id'] != old_id]
+
+            # Remove translation files
+            removed_formats = remove_translation_files(old_id)
+            if removed_formats:
+                print(f"  🗑️  Removed {old_id}: {', '.join(removed_formats)}")
+
+    existing_ids = {entry['id'] for entry in metadata}
+
+    # Load QuranEnc metadata
+    quranenc_metadata = load_quranenc_metadata_mapping()
+
+    # Find CSV files (newly processed translations)
+    csv_files = sorted(csv_dir.glob('*.csv'))
+
+    added = 0
+    replaced = 0
+
+    for csv_file in csv_files:
+        trans_id = csv_file.stem
+
+        if trans_id not in existing_ids:
+            meta = quranenc_metadata.get(trans_id)
+            if meta:
+                metadata.append(meta)
+
+                # Check if this is a replacement
+                is_replacement = any(dup['new_trans']['key'] == trans_id for dup in duplicates_to_replace)
+                if is_replacement:
+                    replaced += 1
+                    print(f"  🔄 Replaced with {trans_id}")
+                else:
+                    added += 1
+                    print(f"  ✅ Added {trans_id} to metadata")
+
+    if added > 0 or replaced > 0:
+        # Write updated metadata
+        with open(metadata_file, 'w', encoding='utf-8') as f:
+            json.dump(metadata, f, ensure_ascii=False, indent=2)
+
+        print(f"\n✅ Metadata updated: {added} new, {replaced} replaced")
+    else:
+        print("\n⏭️  No changes to metadata")
+
+    return added + replaced
+
+
+def main():
+    """Main processing pipeline"""
+    print("\n" + "="*80, flush=True)
+    print("  QuranEnc.com Translation Processing Pipeline", flush=True)
+    print("="*80, flush=True)
+    print("\nSteps:", flush=True)
+    print("  1. Download CSV files from QuranEnc (with duplicate detection)", flush=True)
+    print("  2. Generate JSON, XML, Excel, SQLite from CSV", flush=True)
+    print("  3. Move all files to API data folder", flush=True)
+    print("  4. Update metadata.json and remove old duplicates", flush=True)
+    print("="*80, flush=True)
+
+    # Step 1: Download CSV files
+    print("\nStarting Step 1: Downloading CSV files...", flush=True)
+    csv_count, duplicates_to_replace = extract_all_csv()
+    if csv_count == 0:
+        print("\n⏭️  No new translations to process.", flush=True)
+        return
+
+    # Step 2: Generate all formats
+    print("\nStarting Step 2: Generating formats...", flush=True)
+    if not generate_all_formats():
+        print("\n⚠️  Some formats failed to generate", flush=True)
+
+    # Step 3: Move to API data
+    print("\nStarting Step 3: Moving files to API data...", flush=True)
+    if not move_to_api_data():
+        print("\n❌ Failed to move files to API data folder", flush=True)
+        sys.exit(1)
+
+    # Step 4: Update metadata (remove old duplicates, add new)
+    print("\nStarting Step 4: Updating metadata...", flush=True)
+    update_metadata(duplicates_to_replace)
+
+    print("\n" + "="*80, flush=True)
+    print("  ✅ Pipeline completed successfully!", flush=True)
+    print("="*80 + "\n", flush=True)
+
+
+if __name__ == '__main__':
+    main()
