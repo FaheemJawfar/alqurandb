@@ -12,6 +12,7 @@ import json
 import csv
 import sys
 import urllib.request
+import re
 from pathlib import Path
 
 # Import converters
@@ -44,6 +45,28 @@ def load_quranenc_metadata():
     with open(metadata_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
         return data['translations']
+
+
+def strip_verse_number(text: str) -> str:
+    """
+    Strip verse numbers from the beginning of translation text
+
+    Handles multiple numbering patterns:
+    - Western/Arabic numerals: 1, 2, 3, etc.
+    - Gujarati numerals: ૧, ૨, ૩, etc.
+    - With or without period: "1. " or "1 "
+    - Always followed by space
+
+    Examples:
+        "1. Text here" -> "Text here"
+        "1 Text here" -> "Text here"
+        "૧. Text here" -> "Text here"
+    """
+    # Pattern matches: digit(s) + optional period + space at the start
+    # Supports Western (0-9) and Gujarati (૦-૯) numerals
+    pattern = r'^(\d+|[૦-૯]+)\.?\s+'
+    cleaned = re.sub(pattern, '', text)
+    return cleaned
 
 
 def download_csv_from_quranenc(translation_id: str, source_file: Path, csv_file: Path) -> bool:
@@ -279,13 +302,15 @@ def extract_all_csv():
                     failed += 1
                     continue
 
-                # Parse and normalize: translation -> text
+                # Parse and normalize: translation -> text, strip verse numbers
                 csv_reader = csv.DictReader(lines[csv_start_idx:])
                 for row in csv_reader:
+                    # Strip verse numbers from translation text
+                    cleaned_text = strip_verse_number(row['translation'])
                     normalized_rows.append({
                         'sura': row['sura'],
                         'aya': row['aya'],
-                        'text': row['translation']
+                        'text': cleaned_text
                     })
 
             # Write normalized CSV
