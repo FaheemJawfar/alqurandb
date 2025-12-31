@@ -2,14 +2,15 @@
 -- Translation: english_arberry
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'In the Name of God, the Merciful, the Compassionate');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Praise belongs to God, the Lord of all Being,');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'the All-merciful, the All-compassionate,');

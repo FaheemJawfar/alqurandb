@@ -2,14 +2,15 @@
 -- Translation: portuguese_nasr
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Em nome de Allah, O Misericordioso, O Misericordiador [1]');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Louvor a Allah, O Senhor dos mundos.[1]');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'O Misericordioso, O Misericordiador.[1]');

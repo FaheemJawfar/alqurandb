@@ -2,14 +2,15 @@
 -- Translation: japanese_standard
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, '慈悲あまねく慈愛深きアッラーの御名において。');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, '万有の主，アッラーにこそ凡ての称讃あれ，');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, '慈悲あまねく慈愛深き御方，');

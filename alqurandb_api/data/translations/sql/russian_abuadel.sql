@@ -2,14 +2,15 @@
 -- Translation: russian_abuadel
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'С именем Аллаха Милостивого, Милосердного!');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, '(Вся) хвала – (лишь одному) Аллаху, Господу миров [Господу всех творений],');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Милостивому (ко всем Своим творениям в этом мире), (и) Милосердному (только к верующим в День Суда),');

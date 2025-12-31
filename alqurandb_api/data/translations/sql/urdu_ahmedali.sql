@@ -2,14 +2,15 @@
 -- Translation: urdu_ahmedali
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'شروع الله کا نام لے کر جو بڑا مہربان نہایت رحم والا ہے');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'سب تعریفیں الله کے لیے ہیں جو سب جہانوں کا پالنے والا ہے');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'بڑا مہربان نہایت رحم والا');

@@ -23,16 +23,17 @@ def create_sql_dump(translation_id, csv_file_path, output_file):
         f.write(f"-- Translation: {translation_id}\n")
         f.write(f"-- Total Verses: {len(verses)}\n\n")
 
-        # Create table
-        f.write("CREATE TABLE IF NOT EXISTS verses (\n")
-        f.write("    sura INTEGER NOT NULL,\n")
-        f.write("    aya INTEGER NOT NULL,\n")
+        # Create table (Standard SQL)
+        f.write("DROP TABLE IF EXISTS verses;\n")
+        f.write("CREATE TABLE verses (\n")
+        f.write("    sura INT NOT NULL,\n")
+        f.write("    aya INT NOT NULL,\n")
         f.write("    text TEXT NOT NULL,\n")
         f.write("    PRIMARY KEY (sura, aya)\n")
         f.write(");\n\n")
 
-        # Insert statements
-        f.write("BEGIN TRANSACTION;\n")
+        # Insert statements (Standard SQL)
+        f.write("BEGIN;\n")
         for row in verses:
             text = row['text'].replace("'", "''") # Escape single quotes
             f.write(f"INSERT INTO verses (sura, aya, text) VALUES ({row['sura']}, {row['aya']}, '{text}');\n")

@@ -2,14 +2,15 @@
 -- Translation: punjabi_arif
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, '1਼ ਸ਼ੁਰੂ (ਕਰਦਾ ਹਾਂ) ਅੱਲਾਹ ਦੇ ਨਾਂ ਨਾਲ ਜਿਹੜਾ ਅਤਿਅੰਤ ਮਿਹਰਬਾਨ ਅਤੇ ਰਹਿਮ ਫ਼ਰਮਾਉਣ ਵਾਲਾ ਹੈ।');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, '2਼ ਸਾਰੀਆਂ ਤਾਰੀਫ਼ਾਂ ਤੇ ਸ਼ੁਕਰਾਨੇ ਉਸ ਅੱਲਾਹ ਲਈ ਹਨ ਜਿਹੜਾ ਕੁੱਲ ਜਹਾਨਾਂ ਦਾ ਰੱਬ ਹੈ। 2');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, '3਼ ਅਤਿਅੰਤ ਮਿਹਰਬਾਨ ਤੇ ਰਹਿਮ ਫ਼ਰਮਾਉਣ ਵਾਲਾ ਹੈ।');

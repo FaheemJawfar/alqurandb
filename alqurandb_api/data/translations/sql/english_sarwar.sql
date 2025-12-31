@@ -2,14 +2,15 @@
 -- Translation: english_sarwar
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'In the Name of Allah, the Beneficent, the Merciful');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'All praise belongs to God, Lord of the Universe,');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'the Beneficent, the Merciful');

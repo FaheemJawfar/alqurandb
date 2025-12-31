@@ -2,14 +2,15 @@
 -- Translation: arabic_jalalayn
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, '«بسم الله الرحمن الرحيم»');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, '«الحمد لله» جملة خبرية قصد بها الثناء على الله بمضمونها من أنه تعالى: مالك لجميع الحمد من الخلق أو مستحق لأن يحمدوه، والله علم على المعبود بحق «ربِّ العالمين» أي مالك جميع الخلق من الإنس والجن والملائكة والدواب وغيرهم، وكل منها يُطلق عليه عالم، يقال عالم الإنس وعالم الجن إلى غير ذلك، وغلب في جمعه بالياء والنون أولي العلم على غيرهم، وهو من العلامة لأنه علامة على موجده.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, '«الرحمن الرحيم» أي ذي الرحمة وهي إرادة الخير لأهله.');

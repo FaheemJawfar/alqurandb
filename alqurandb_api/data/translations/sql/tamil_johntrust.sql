@@ -2,14 +2,15 @@
 -- Translation: tamil_johntrust
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'அளவற்ற அருளாளனும், நிகரற்ற அன்புடையோனுமாகிய அல்லாஹ்வின் திருப்பெயரால்(துவங்குகிறேன்)');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'அனைத்து புகழும், அகிலங்கள் எல்லாவற்றையும் படைத்து வளர்த்துப் பரிபக்குவப்படுத்தும் (நாயனான) அல்லாஹ்வுக்கே ஆகும்.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, '(அவன்) அளவற்ற அருளாளன் நிகரற்ற அன்புடையோன்.');

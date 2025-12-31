@@ -2,14 +2,15 @@
 -- Translation: serbian_rwwad
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'У име Аллаха, Милостивог, Самилосног.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Сва хвала припада Аллаху, Господару свих светова.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Милостивом, Самилосном.');

@@ -2,14 +2,15 @@
 -- Translation: korean_standard
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, '자비로우시고 자애로우신 하나님의 이름으로');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, '온 우주의 주님이신 하나님께찬미를 드리나이다');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, '그분은 자애로우시고 자비로 우시며');

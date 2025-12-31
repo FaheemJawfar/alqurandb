@@ -2,14 +2,15 @@
 -- Translation: spanish_montada_eu
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, '(Empiezo)[2] con el nombre de Al-lah[3], el Clemente, el Misericordioso[4].');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, '¡Alabado sea Al-lah, Señor de toda la creación!,');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'el Clemente, el Misericordioso,');

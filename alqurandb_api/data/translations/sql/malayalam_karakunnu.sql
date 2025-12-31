@@ -2,14 +2,15 @@
 -- Translation: malayalam_karakunnu
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'പരമകാരുണികനും ദയാപരനുമായ അല്ലാഹുവിന്റെ നാമത്തില്‍.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'സ്തുതിയൊക്കെയും അല്ലാഹുവിന്നാണ്. അവന്‍ മുഴുലോകരുടെയും പരിപാലകന്‍.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'പരമകാരുണികന്‍. ദയാപരന്‍.');

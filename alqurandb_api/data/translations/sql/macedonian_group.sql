@@ -2,14 +2,15 @@
 -- Translation: macedonian_group
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, '1.Во името на Аллах, Семилосниот, Милостивиот![2]');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Сета благодарност Му припаѓа на Аллах[3], Господарот на световите[4].');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Семилосниот, Милостивиот.');

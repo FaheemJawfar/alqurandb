@@ -2,14 +2,15 @@
 -- Translation: english_daryabadi
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'In the name of Allah, the Compassionate, the Merciful.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'All praise unto Allah, the Lord of all the worlds.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'The Compassionate, the Merciful.');

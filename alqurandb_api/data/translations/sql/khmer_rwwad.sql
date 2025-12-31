@@ -2,14 +2,15 @@
 -- Translation: khmer_rwwad
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'ក្នុងព្រះនាមអល់ឡោះ មហាសប្បុរស មហាអាណិតស្រលាញ់។');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'សេចក្តីសរសើរទាំងឡាយ គឺសម្រាប់អល់ឡោះជាព្រះជាម្ចាស់នៃពិភពទាំងអស់។');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'ទ្រង់(ជាម្ចាស់)មហាសប្បុរស មហាអាណិតស្រលាញ់។');

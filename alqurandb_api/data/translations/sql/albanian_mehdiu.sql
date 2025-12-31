@@ -2,14 +2,15 @@
 -- Translation: albanian_mehdiu
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Në emër të All-llahut, të Gjithëmëshirshmit, Mëshirëplotit!');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Lavdërimi është për All-llahun, Zot i botëravet,');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Të Gjithmëshirshmin, Mëshirëplotin,');

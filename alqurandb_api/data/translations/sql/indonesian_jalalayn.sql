@@ -2,14 +2,15 @@
 -- Translation: indonesian_jalalayn
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, '(Dengan nama Allah Yang Maha Pemurah lagi Maha Penyayang)');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, '(Segala puji bagi Allah) Lafal ayat ini merupakan kalimat berita, dimaksud sebagai ungkapan pujian kepada Allah berikut pengertian yang terkandung di dalamnya, yaitu bahwa Allah Taala adalah yang memiliki semua pujian yang diungkapkan oleh semua hamba-Nya. Atau makna yang dimaksud ialah bahwa Allah Taala itu adalah Zat yang harus mereka puji. Lafal Allah merupakan nama bagi Zat yang berhak untuk disembah. (Tuhan semesta alam) artinya Allah adalah yang memiliki pujian semua makhluk-Nya, yaitu terdiri dari manusia, jin, malaikat, hewan-hewan melata dan lain-lainnya. Masing-masing mereka disebut alam. Oleh karenanya ada alam manusia, alam jin dan lain sebagainya. Lafal ''al-`aalamiin'' merupakan bentuk jamak dari lafal ''`aalam'', yaitu dengan memakai huruf ya dan huruf nun untuk menekankan makhluk berakal/berilmu atas yang lainnya. Kata ''aalam berasal dari kata `alaamah (tanda) mengingat ia adalah tanda bagi adanya yang menciptakannya.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, '(Yang Maha Pemurah lagi Maha Penyayang) yaitu yang mempunyai rahmat. Rahmat ialah menghendaki kebaikan bagi orang yang menerimanya.');

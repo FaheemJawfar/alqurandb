@@ -2,14 +2,15 @@
 -- Translation: tamil_omar
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'பேரருளாளன் பேரன்பாளன் அல்லாஹ்வின் பெயரால்.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'புகழ் (அனைத்தும்) அகிலத்தார்களின் இறைவன் அல்லாஹ்விற்கே உரியது!');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, '(அவன்,) பேரருளாளன் பேரன்பாளன்;');

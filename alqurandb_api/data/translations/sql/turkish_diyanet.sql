@@ -2,14 +2,15 @@
 -- Translation: turkish_diyanet
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Rahman ve Rahim olan Allah''ın adıyla:');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Hamd, Alemlerin Rabbi Allah''a mahsustur.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'O Rahman ve Rahim''dir,');

@@ -2,14 +2,15 @@
 -- Translation: assamese_rafeeq
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, '(আৰম্ভ কৰিছোঁ) পৰম কৰুণাময় পৰম দয়ালু আল্লাহৰ নামত।');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'সকলো ধৰণৰ হামদ (প্ৰশংসা) বিশ্বজগতৰ ৰব আল্লাহৰ বাবে।');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'যিজন পৰম কৰুণাময়, পৰম দয়ালু।');

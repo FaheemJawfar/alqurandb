@@ -2,14 +2,15 @@
 -- Translation: turkish_yazir
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Rahmân ve Rahîm olan Allah''ın ismiyle.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Hamd o âlemlerin Rabbi,');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'O Rahmân ve Rahim,');

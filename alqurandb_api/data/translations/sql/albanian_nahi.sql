@@ -2,14 +2,15 @@
 -- Translation: albanian_nahi
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Me emrin e Allahut, të Gjithëmëshirshmit, Mëshirëplotit![1]');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Çdo lavdërim i përket Allahut, Zotit të botëve,');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'të Gjithëmëshirshmit, Mëshirëplotit,');

@@ -2,14 +2,15 @@
 -- Translation: moore_rwwad
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Ne Wẽnd yʋʋrã barka, sẽn yaa yols yaleng Soabã, n yaa Yolsdã, la d sɩngd d tʋʋmdã.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Pẽgr gill la bark pʋʋsem be ne Wẽnde, bõn-naandsã gill Soabã.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'A Dũni gũbg-n-yols Nɑɑbã, a Yɑoolem raarã welg-n-yols Nɑabã.');

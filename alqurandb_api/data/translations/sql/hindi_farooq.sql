@@ -2,14 +2,15 @@
 -- Translation: hindi_farooq
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'अल्लाह के नाम से जो बड़ा कृपालु और अत्यन्त दयावान हैं।');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'प्रशंसा अल्लाह ही के लिए हैं जो सारे संसार का रब हैं');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'बड़ा कृपालु, अत्यन्त दयावान हैं');

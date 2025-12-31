@@ -2,14 +2,15 @@
 -- Translation: german_khoury
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Im Namen Gottes, des Erbarmers, des Barmherzigen.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Lob sei Gott, dem Herrn der Welten,');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Dem Erbarmer, dem Barmherzigen,');

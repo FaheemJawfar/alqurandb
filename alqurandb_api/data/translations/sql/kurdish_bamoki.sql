@@ -2,14 +2,15 @@
 -- Translation: kurdish_bamoki
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'بەناوی خوای بەخشندەی میهرەبان');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'ھەموو سوپاس وستایشێك بۆ خوای پەروەردگاری جیھانیان');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'بەخشندەی میھرەبان (الرحمن) بەو مانایەی ڕەحم وبەزەیی پەروەردگار لەم جیھانەدا ھەمووانی گرتوەتەوە بەبێ باوەڕانیشەوە، وە (الرحیم) ڕەحم وبەزەیی پەروەردگار وەك زانایان دەڵێن تایبەتە بەبڕوادارانەوە لەڕۆژی دواییدا');

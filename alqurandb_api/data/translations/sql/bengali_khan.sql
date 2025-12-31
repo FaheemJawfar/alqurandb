@@ -2,14 +2,15 @@
 -- Translation: bengali_khan
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'শুরু করছি আল্লাহর নামে যিনি পরম করুণাময়, অতি দয়ালু।');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'যাবতীয় প্রশংসা আল্লাহ তাআলার যিনি সকল সৃষ্টি জগতের পালনকর্তা।');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'যিনি নিতান্ত মেহেরবান ও দয়ালু।');

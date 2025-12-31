@@ -2,14 +2,15 @@
 -- Translation: bosnian_mihanovich
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'S imenom Allaha, Svemilosnog, Milostivog!');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Svaka hvala neka je Allahu, Gospodaru svjetova.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Svemilosnom, Milostivom.');

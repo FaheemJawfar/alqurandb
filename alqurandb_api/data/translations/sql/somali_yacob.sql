@@ -2,14 +2,15 @@
 -- Translation: somali_yacob
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Waxaan Ku billaabi Magaca Alle, Naxariistaha (Naxariis guud ahaaneed), Naxariista badan.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Ammaan idilkeed iyo mahad waxaa leh Allaah, Rabbiga uumanka.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Naxariistaha (Naxariis guud ahaaneed), Naxariista Badan [1].');

@@ -2,14 +2,15 @@
 -- Translation: spanish_garcia
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'En el nombre de Dios[1], el Compasivo con toda la creación, el Misericordioso con los creyentes[2].');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Todas las alabanzas son para Dios, Señor[1] de todo cuanto existe,');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'el Compasivo, el Misericordioso.');

@@ -2,14 +2,15 @@
 -- Translation: indonesian_affairs
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Segala puji bagi Allah, Tuhan seluruh alam,');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Yang Maha Pengasih, Maha Penyayang,');

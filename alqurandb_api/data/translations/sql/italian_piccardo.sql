@@ -2,14 +2,15 @@
 -- Translation: italian_piccardo
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'In nome di Allah, il Compassionevole, il Misericordioso');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'La lode [appartiene] ad Allah, Signore dei mondi');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'il Compassionevole, il Misericordioso,');

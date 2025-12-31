@@ -2,14 +2,15 @@
 -- Translation: sinhala_acju
 -- Total Verses: 6051
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'සැමට කරුණාභරිත පරම කරුණාභරිත අල්ලාහ්ගේ නාමයෙන් ආරම්භ කරමි.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'සියලු පැසසුම් සමස්ත විශ්වයේ රබ් (පරමාධිපති) වන අල්ලාහ් සතුය.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'සැමට කරුණාභරිත හා පරම කරුණාභරිත වූත්,');

@@ -2,14 +2,15 @@
 -- Translation: tatar_nugman
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Рәхимле шәфкатьле Аллаһ исеме белән башлыйм эшемне.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Чын мактау галәмнәрне, бөтен мәхлукларны тәрбияләүче Аллаһу тәгаләгә тиешле.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Аллаһу тәгалә бу дөньяда барча кешеләргә мәрхәмәтле, ягъни мөэминнәргә дә, көферләргә дә нигъмәтләрен бирә, әмма ахирәттә мөэмин бәндәләренә генә бирәчәк.');

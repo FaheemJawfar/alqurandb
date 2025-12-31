@@ -2,14 +2,15 @@
 -- Translation: swahili_rwwad
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Kwa jina la Mwenyezi Mungu, Mwingi wa rehema, Mwenye kurehemu.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Sifa njema zote ni za Mwenyezi Mungu, Mola Mlezi wa walimwengu.[1]');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Mwingi wa rehema, Mwenye kurehemu.[1]');

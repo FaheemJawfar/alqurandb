@@ -2,14 +2,15 @@
 -- Translation: indonesian_muntakhab
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, '[[1 ~ FATIHAH AL-KITAB (PEMBUKA KITAB SUCI) Pendahuluan: Makkiyyah, 7 ayat ~ Surat al-Fâtihah ini termasuk kelompok surat Makkiyyah yang turun di Mekah sebelum hijrah. Disebut al-Fâtihah (pembuka), karena letaknya yang berada urutan pertama surat-surat al-Qur''ân. Surat yang pertama diturunkan secara lengkap di antara surat-surat yang ada dalam al-Qur''ân ini merupakan intisari dari seluruh kandungan al-Qur''ân yang kemudian diperinci oleh surat-surat sesudahnya. Tema-tema pokok al-Qur''ân--seperti penjelasan tawhid dan keimanan, janji dan kabar gembira bagi orang-orang Mukmin, ancaman dan peringatan bagi orang-orang kafir dan pelaku kejahatan, tentang ibadah, kisah orang-orang yang beruntung karena taat kepada Allah dan sengsara karena mengingkari-Nya--semua itu tercermin secara singkat dalam surat ini. Oleh sebab itu, surat ini juga disebut dengan nama Umm al-Kitâb (induk al-Qur''ân).]] Surat ini dimulai dengan menyebut nama Allah--satu-satunya Tuhan yang berhak disembah--Yang memiliki seluruh sifat kesempurnaan dan tersucikan dari segala bentuk kekurangan. Dialah Pemilik rahmah (sifat kasih) yang tak habis-habisnya, Yang menganugerahkan segala macam kenikmatan, baik besar maupun kecil.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Segala puja dan puji kita persembahkan kepada Allah semata, karena Dialah Yang menciptakan dan memelihara seluruh makhluk.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Dia adalah Pemilik dan Sumber rahmah yang tak pernah putus memberikan segala kenikmatan, baik besar maupun kecil.');

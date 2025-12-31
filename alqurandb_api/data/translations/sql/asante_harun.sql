@@ -2,14 +2,15 @@
 -- Translation: asante_harun
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Onyankopͻn din mu, Ahummͻborͻ Hene, Ɔdεεfoͻ Hene,');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Aseda wͻ Nyankopͻn, Abͻdeε nyinaa Wura no,');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Ahummͻborɔ Hene, Ɔdεεfoͻ Hene,');

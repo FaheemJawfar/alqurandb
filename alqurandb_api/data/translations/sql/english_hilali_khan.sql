@@ -2,14 +2,15 @@
 -- Translation: english_hilali_khan
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'In the Name of Allâh, the Most Gracious, the Most Merciful');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'All the praises and thanks be to Allâh, the Lord[1] of the ‘Âlamîn (mankind, jinn and all that exists).[2]');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'The Most Gracious, the Most Merciful.');

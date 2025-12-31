@@ -2,14 +2,15 @@
 -- Translation: gujarati_omari
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'અલ્લાહના નામથી, (શરૂ કરું છું), જે અત્યંત કૃપાળુ અને દયાળુ છે.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'દરેક પ્રકારની પ્રશંસા અલ્લાહ માટે જ છે, જે સમગ્ર સૃષ્ટિનો પરવરદિગાર (પાલનહાર) છે.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, '(જે) ઘણો જ કૃપાળુ, અત્યંત દયાળુ, (છે).');

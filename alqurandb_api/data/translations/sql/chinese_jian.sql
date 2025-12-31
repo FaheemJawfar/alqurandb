@@ -2,14 +2,15 @@
 -- Translation: chinese_jian
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, '奉至仁至慈的真主之名');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, '一切赞颂全归真主，众世界 的主，');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, '至仁至慈的主，');

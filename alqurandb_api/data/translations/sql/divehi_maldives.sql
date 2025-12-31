@@ -2,14 +2,15 @@
 -- Translation: divehi_maldives
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'رحمن ވަންތަ رحيم ވަންތަ اللَّه ގެ اسم ފުޅުން ފަށައިގަންނަމެވެ.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'حمد ހުރީ، عالم ތަކުގެ ވެރި اللَّه އަށެވެ.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, '(އެކަލާނގެއީ) رحمن ވަންތަ رحيم ވަންތަ ރަސްކަލާނގެއެވެ.');

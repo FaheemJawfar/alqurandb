@@ -2,14 +2,15 @@
 -- Translation: dutch_siregar
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'In de naam van Allah, de Erbarmer, de Meest Barmhartige.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Alle lof zij Allah, de Heer der Werelden.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'De Erbarmer, de Meest Barmhartige.');

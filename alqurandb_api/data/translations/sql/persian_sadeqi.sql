@@ -2,14 +2,15 @@
 -- Translation: persian_sadeqi
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'به نام خدای رحمتگر بر آفریدگان، رحمتگر بر ویژگان‌');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'هر ستایش ویژه‌ی خدا -پروردگار جهانیان- است.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, '(خدای) رحمتگر بر آفریدگان، رحمتگر بر ویژگان.');

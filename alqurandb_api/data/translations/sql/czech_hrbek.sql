@@ -2,14 +2,15 @@
 -- Translation: czech_hrbek
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Ve jménu Boha milosrdného, slitovného.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Chvála Bohu, Pánu lidstva veškerého,');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Milosrdnému, Slitovnému,');

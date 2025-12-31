@@ -2,14 +2,15 @@
 -- Translation: hindi_omari
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'अल्लाह के नाम से, जो अत्यंत दयावान्, असीम दया वाला है।');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'हर प्रकार की प्रशंसा उस अल्लाह[1] के लिए है, जो सारे संसारों का पालनहार[2] है।');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'जो अत्यंत दयावान्, असीम दया वाला[3] है।');

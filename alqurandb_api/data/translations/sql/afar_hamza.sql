@@ -2,14 +2,15 @@
 -- Translation: afar_hamza
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Fulte Racmattaay,Guné Racmatta- le Yallih Migaaqal Qimbisa.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Faylaa kee Saare ginô Rabbi le.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Ummaan ginoh Fulte Racmatta leeh,yeemene marah Gunê Racmatta-le Rabbi kinni.');

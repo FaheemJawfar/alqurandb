@@ -2,14 +2,15 @@
 -- Translation: tamil_baqavi
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'அளவற்ற அருளாளனும், நிகரற்ற அன்புடையோனுமாகிய அல்லாஹ்வின் திருப்பெயரால் (ஓதுகிறேன்)');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'எல்லாப் புகழும் அல்லாஹ்வுக்கே! (அவன்தான்) அகிலத்தார் யாவரையும் படைத்து வளர்த்து தகுந்த பக்குவப்படுத்துபவன்.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, '(அவன்தான்) அளவற்ற அருளாளன். நிகரற்ற அன்புடையவன்.');

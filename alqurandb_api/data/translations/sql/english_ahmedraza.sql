@@ -2,14 +2,15 @@
 -- Translation: english_ahmedraza
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Allah - beginning with the name of - the Most Gracious, the Most Merciful.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'All praise is to Allah, the Lord Of The Creation.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'The Most Gracious, the Most Merciful');

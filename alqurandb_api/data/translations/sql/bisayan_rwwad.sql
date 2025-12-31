@@ -2,14 +2,15 @@
 -- Translation: bisayan_rwwad
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Sa Ngalan sa Allah Ang Labing Madagayaon, Ang Labing Maluloy''on.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Ang Tanang pagdayeg alang lamang sa Allah, ang Ginoo[1] sa tanang binuhat.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Ang Labing Madagayaon, ang Labing Maloloy''on.');

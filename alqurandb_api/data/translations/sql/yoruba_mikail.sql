@@ -2,14 +2,15 @@
 -- Translation: yoruba_mikail
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Ní orúkọ Allāhu, Àjọkẹ́-ayé, Àṣàkẹ́-ọ̀run.[1]');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Gbogbo ẹyìn[1] ń jẹ́ ti Allāhu, Olúwa[2] gbogbo ẹ̀dá (àgbáńlá ayé àti ọ̀run),');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Àjọkẹ́-ayé, Àṣàkẹ́-ọ̀run,');

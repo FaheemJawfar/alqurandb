@@ -2,14 +2,15 @@
 -- Translation: indonesian_complex
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Dengan menyebut nama Allah Yang Maha Pemurah lagi Maha Penyayang[1].');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Segala puji[2] bagi Allah, Tuhan[3] semesta alam.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Maha Pemurah lagi Maha Penyayang.');

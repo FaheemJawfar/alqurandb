@@ -2,14 +2,15 @@
 -- Translation: tagalog_rwwad
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'Sa ngalan ni Allāh,[1] ang Napakamaawain, ang Maawain.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Ang papuri ay ukol kay Allāh, ang Panginoon[2] ng mga nilalang,[3]');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'ang Napakamaawain, ang Maawain,');

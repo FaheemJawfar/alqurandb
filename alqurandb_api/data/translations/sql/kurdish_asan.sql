@@ -2,14 +2,15 @@
 -- Translation: kurdish_asan
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'به ناوی خوای به‌خشنده‌ی میهره‌بان (به ناوی ئه‌و خوایه‌ی كانگای ڕه‌حمه‌ت و سۆزو به‌زه‌ییه‌).');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, '‌سوپاس و ستایش هه‌ر شایسته‌ی خوایه و بۆ خوایه‌، که خاوه‌ن و په‌روه‌ردگاری هه‌موو جیهانیان و هه‌موو بوونه‌وه‌ره.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'به‌خشنده‌ی میهره‌بان‌، کانگای ڕه‌حمه‌ت و میهره‌بانیه (ڕه‌حمه‌تی له دنیادا هه‌موو شتێکی گرتۆته‌وه‌، به‌ڵام له قیامه‌تدا ته‌نها بۆ ئیماندارانه‌).');

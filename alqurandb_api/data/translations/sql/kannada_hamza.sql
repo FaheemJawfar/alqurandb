@@ -2,14 +2,15 @@
 -- Translation: kannada_hamza
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'ಪರಮ ದಯಾಮಯನೂ ಕರುಣಾನಿಧಿಯೂ ಆದ ಅಲ್ಲಾಹನ ನಾಮದಿಂದ.[1]');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'ಸರ್ವಲೋಕಗಳ ಪರಿಪಾಲಕನಾದ[1] ಅಲ್ಲಾಹನಿಗೆ ಸರ್ವಸ್ತುತಿ.[2]');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'ಪರಮ ದಯಾಮಯ, ಕರುಣಾನಿಧಿ,[1]');

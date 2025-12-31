@@ -2,14 +2,15 @@
 -- Translation: telugu_muhammad
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'అనంత కరుణామయుడు అపార కరుణా ప్రదాత అయిన అల్లాహ్[1] పేరుతో[2]');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'సర్వలోకాలకు ప్రభువైన[1] అల్లాహ్ మాత్రమే సమస్త స్తోత్రాలకు అర్హుడు[2].');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'అనంత కరుణామయుడు, అపార కరుణా ప్రదాత[1]');

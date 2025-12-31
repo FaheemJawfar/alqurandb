@@ -2,14 +2,15 @@
 -- Translation: english_mubarakpuri
 -- Total Verses: 6236
 
-CREATE TABLE IF NOT EXISTS verses (
-    sura INTEGER NOT NULL,
-    aya INTEGER NOT NULL,
+DROP TABLE IF EXISTS verses;
+CREATE TABLE verses (
+    sura INT NOT NULL,
+    aya INT NOT NULL,
     text TEXT NOT NULL,
     PRIMARY KEY (sura, aya)
 );
 
-BEGIN TRANSACTION;
+BEGIN;
 INSERT INTO verses (sura, aya, text) VALUES (1, 1, 'In the Name of Allah, the Most Gracious, the Most Merciful.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 2, 'Al-Hamd be to Allah, the Lord of all that exists.');
 INSERT INTO verses (sura, aya, text) VALUES (1, 3, 'Ar-Rahman (the Most Gracious), Ar-Rahim (the Most Merciful).');
