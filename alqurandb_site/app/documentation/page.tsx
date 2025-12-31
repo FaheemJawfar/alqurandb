@@ -195,8 +195,8 @@ export default function ApiDocs() {
                   <div>
                     FastAPI provides interactive API documentation at:
                     <ul className="mb-0 mt-2">
-                      <li><a href="http://localhost:8000/docs" target="_blank" rel="noreferrer" className="text-decoration-underline">Swagger UI: /docs</a></li>
-                      <li><a href="http://localhost:8000/redoc" target="_blank" rel="noreferrer" className="text-decoration-underline">ReDoc: /redoc</a></li>
+                      <li><a href="/docs" target="_blank" rel="noreferrer" className="text-decoration-underline">Swagger UI: /docs</a></li>
+                      <li><a href="/redoc" target="_blank" rel="noreferrer" className="text-decoration-underline">ReDoc: /redoc</a></li>
                     </ul>
                   </div>
                 </div>
