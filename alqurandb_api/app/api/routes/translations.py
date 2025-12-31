@@ -74,7 +74,7 @@ async def download_translation(
     elif filetype == FileType.CSV:
         media_type = "text/csv"
         filename = f"{translation_id}.csv"
-    elif filetype == FileType.SQLITE:
+    elif filetype in [FileType.SQLITE, FileType.DB]:
         media_type = "application/x-sqlite3"
         filename = f"{translation_id}.db"
     elif filetype == FileType.XML:

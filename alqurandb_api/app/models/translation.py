@@ -7,6 +7,7 @@ class FileType(str, Enum):
     JSON = "json"
     CSV = "csv"
     SQLITE = "sqlite"
+    DB = "db"
     XML = "xml"
     XLSX = "xlsx"
     SQL = "sql"

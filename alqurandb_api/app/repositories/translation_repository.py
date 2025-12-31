@@ -90,7 +90,7 @@ class TranslationRepository:
     def get_translation_file_path(self, translation_id: str, file_type: str) -> Path:
         """Get path to translation file"""
         # Map file types to their extensions and directory names
-        if file_type == "sqlite":
+        if file_type in ["sqlite", "db"]:
             file_extension = "db"
             directory = "sqlite"
         else:
@@ -99,7 +99,7 @@ class TranslationRepository:
 
         file_path = self.translations_dir / directory / f"{translation_id}.{file_extension}"
         if not file_path.exists():
-            raise TranslationFileNotFoundException(translation_id, file_type)
+            raise TranslationFileNotFoundException(translation_id, file_type, f"{translation_id}.{file_extension}")
         return file_path
 
     def load_translation_data(self, translation_id: str) -> dict:

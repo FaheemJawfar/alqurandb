@@ -13,10 +13,11 @@ class TranslationNotFoundException(HTTPException):
 
 class TranslationFileNotFoundException(HTTPException):
     """Raised when a translation file is not found"""
-    def __init__(self, translation_id: str, file_type: str):
+    def __init__(self, translation_id: str, file_type: str, actual_filename: str = None):
+        detail = f"Translation file '{actual_filename}' not found" if actual_filename else f"Translation file '{translation_id}.{file_type}' not found"
         super().__init__(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Translation file '{translation_id}.{file_type}' not found"
+            detail=detail
         )
 
 
