@@ -2,17 +2,23 @@
 """
 Create a comprehensive SQLite database with all Quran translations
 
-This script creates a single SQLite database containing all 114 translations
+This script creates a single SQLite database containing all translations
 with proper indexing for fast queries.
 
 Database Schema:
 - translations: metadata for each translation
 - verses: all verses from all translations with translation_id reference
+- metadata_info: stores metadata hash for change detection
+
+Note: This script is kept for manual database creation. The API now
+automatically creates/updates the database on startup using the same logic
+from app.core.database_init module.
 """
 
 import csv
 import json
 import sqlite3
+import hashlib
 from pathlib import Path
 
 
@@ -124,7 +130,29 @@ def create_database(db_path, csv_dir, metadata_file):
             print(f"  ✗ {translation_id}: Error - {e}")
             failed += 1
 
-    # Commit and close
+    # Commit changes
+    conn.commit()
+
+    # Create metadata_info table and store metadata hash
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS metadata_info (
+            key TEXT PRIMARY KEY,
+            value TEXT NOT NULL
+        )
+    """)
+
+    # Calculate and store metadata hash
+    sha256_hash = hashlib.sha256()
+    with open(metadata_file, "rb") as f:
+        for byte_block in iter(lambda: f.read(4096), b""):
+            sha256_hash.update(byte_block)
+    metadata_hash = sha256_hash.hexdigest()
+
+    cursor.execute("""
+        INSERT OR REPLACE INTO metadata_info (key, value)
+        VALUES ('metadata_hash', ?)
+    """, (metadata_hash,))
+
     conn.commit()
 
     # Get database statistics
@@ -149,6 +177,7 @@ def create_database(db_path, csv_dir, metadata_file):
     print(f"  Successful: {successful}")
     if failed > 0:
         print(f"  Failed: {failed}")
+    print(f"  Metadata hash: {metadata_hash[:16]}...")
     print(f"{'='*80}\n")
 
 

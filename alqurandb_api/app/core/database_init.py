@@ -2,6 +2,7 @@
 import csv
 import json
 import sqlite3
+import hashlib
 from pathlib import Path
 import logging
 
@@ -152,13 +153,129 @@ def create_complete_database(db_path: Path, csv_dir: Path, metadata_file: Path) 
         return False
 
 
-def ensure_database_exists() -> bool:
+def _calculate_metadata_hash(metadata_file: Path) -> str:
     """
-    Ensure the complete translations database exists.
-    Creates it if it doesn't exist.
+    Calculate SHA256 hash of metadata.json file
+
+    Args:
+        metadata_file: Path to metadata.json
 
     Returns:
-        True if database exists or was created successfully
+        Hexadecimal hash string
+    """
+    sha256_hash = hashlib.sha256()
+    with open(metadata_file, "rb") as f:
+        for byte_block in iter(lambda: f.read(4096), b""):
+            sha256_hash.update(byte_block)
+    return sha256_hash.hexdigest()
+
+
+def _get_stored_metadata_hash(db_path: Path) -> str | None:
+    """
+    Get the stored metadata hash from database
+
+    Args:
+        db_path: Path to the database file
+
+    Returns:
+        Stored hash string or None if not found
+    """
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+
+        # Check if metadata_info table exists
+        cursor.execute("""
+            SELECT name FROM sqlite_master
+            WHERE type='table' AND name='metadata_info'
+        """)
+
+        if not cursor.fetchone():
+            conn.close()
+            return None
+
+        # Get stored hash
+        cursor.execute("SELECT value FROM metadata_info WHERE key = 'metadata_hash'")
+        result = cursor.fetchone()
+        conn.close()
+
+        return result[0] if result else None
+    except Exception as e:
+        logger.error(f"Error reading metadata hash from database: {e}")
+        return None
+
+
+def _store_metadata_hash(db_path: Path, metadata_hash: str) -> None:
+    """
+    Store metadata hash in database
+
+    Args:
+        db_path: Path to the database file
+        metadata_hash: Hash string to store
+    """
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+
+        # Create metadata_info table if it doesn't exist
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS metadata_info (
+                key TEXT PRIMARY KEY,
+                value TEXT NOT NULL
+            )
+        """)
+
+        # Store or update the hash
+        cursor.execute("""
+            INSERT OR REPLACE INTO metadata_info (key, value)
+            VALUES ('metadata_hash', ?)
+        """, (metadata_hash,))
+
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        logger.error(f"Error storing metadata hash: {e}")
+
+
+def _needs_database_update(db_path: Path, metadata_file: Path) -> bool:
+    """
+    Check if database needs to be updated based on metadata changes
+
+    Args:
+        db_path: Path to the database file
+        metadata_file: Path to metadata.json
+
+    Returns:
+        True if database needs update, False otherwise
+    """
+    if not db_path.exists():
+        logger.info("Database does not exist - needs creation")
+        return True
+
+    current_hash = _calculate_metadata_hash(metadata_file)
+    stored_hash = _get_stored_metadata_hash(db_path)
+
+    if stored_hash is None:
+        logger.info("No metadata hash found in database - needs update")
+        return True
+
+    if current_hash != stored_hash:
+        logger.info("Metadata has changed - database needs update")
+        logger.info(f"  Stored hash: {stored_hash[:16]}...")
+        logger.info(f"  Current hash: {current_hash[:16]}...")
+        return True
+
+    logger.info("Database is up to date")
+    return False
+
+
+def ensure_database_exists() -> bool:
+    """
+    Ensure the complete translations database exists and is up to date.
+    Creates it if it doesn't exist, or updates it if metadata has changed.
+
+    Returns:
+        True if database exists or was created/updated successfully
     """
     # Define paths
     app_dir = Path(__file__).parent.parent
@@ -167,14 +284,7 @@ def ensure_database_exists() -> bool:
     metadata_file = data_dir / 'metadata.json'
     db_path = data_dir / 'quran_translations.db'
 
-    # Check if database already exists
-    if db_path.exists():
-        logger.info(f"Database already exists at {db_path}")
-        return True
-
-    # Create database
-    logger.info("Database not found. Creating complete translations database...")
-
+    # Validate required files exist
     if not csv_dir.exists():
         logger.error(f"CSV directory not found: {csv_dir}")
         return False
@@ -183,4 +293,19 @@ def ensure_database_exists() -> bool:
         logger.error(f"Metadata file not found: {metadata_file}")
         return False
 
-    return create_complete_database(db_path, csv_dir, metadata_file)
+    # Check if database needs update
+    if not _needs_database_update(db_path, metadata_file):
+        logger.info(f"Database is current at {db_path}")
+        return True
+
+    # Create or update database
+    logger.info("Creating/updating complete translations database...")
+
+    if create_complete_database(db_path, csv_dir, metadata_file):
+        # Store the new metadata hash
+        current_hash = _calculate_metadata_hash(metadata_file)
+        _store_metadata_hash(db_path, current_hash)
+        logger.info(f"Stored metadata hash: {current_hash[:16]}...")
+        return True
+
+    return False
