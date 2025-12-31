@@ -87,7 +87,7 @@ export default function Home() {
     }
   }
 
-  function handleDownload(translationId: string, fileType: 'json' | 'csv' | 'sqlite' | 'xml' | 'xlsx') {
+  function handleDownload(translationId: string, fileType: 'json' | 'csv' | 'sqlite' | 'xml' | 'xlsx' | 'sql') {
     const downloadUrl = `${API_BASE_URL}/translations/download/${translationId}/${fileType}`;
     window.open(downloadUrl, '_blank');
   }
