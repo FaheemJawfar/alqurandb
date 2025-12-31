@@ -6,7 +6,7 @@ const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "AlQuranDB - Premium Quran Data",
-  description: "Open source Quran translations in JSON, CSV, SQLite, and XML formats. Built for developers.",
+  description: "Comprehensive collection of Quran translations in JSON, CSV, SQLite, XML, XLSX, and SQL formats. Built for developers.",
 };
 
 export default function RootLayout({

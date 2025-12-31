@@ -27,7 +27,7 @@ export default function ApiDocs() {
       parameters: [],
       example: `${apiUrl}/translations/`,
       response: {
-        total: 114,
+        total: 178,
         translations: [
           {
             id: "english_sahih",
@@ -47,7 +47,7 @@ export default function ApiDocs() {
       description: 'Download a complete translation in various file formats.',
       parameters: [
         { name: 'translation_id', type: 'string', required: true, description: 'Translation identifier (e.g., english_sahih)' },
-        { name: 'filetype', type: 'string', required: true, description: 'File format: json, csv, sqlite, xml, or xlsx' }
+        { name: 'filetype', type: 'string', required: true, description: 'File format: json, csv, sqlite, xml, xlsx, or sql' }
       ],
       example: `${apiUrl}/translations/download/english_sahih/json`,
       response: 'File download'

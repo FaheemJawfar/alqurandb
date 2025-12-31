@@ -27,7 +27,7 @@ export default function SearchHero({ searchTerm, setSearchTerm, count }: SearchH
                 </h1>
 
                 <p className="text-xl text-slate-600 mb-10 max-w-xl mx-auto leading-relaxed animate-[slide-up_1s_ease-out]">
-                    High-quality Quran translations in JSON, CSV, SQLite, and XML.
+                    Comprehensive collection of Quran translations in JSON, CSV, SQLite, XML, XLSX, and SQL.
                     Freely available for research, reading, and development.
                 </p>
 
