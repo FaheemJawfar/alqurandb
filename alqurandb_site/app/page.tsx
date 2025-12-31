@@ -144,7 +144,7 @@ export default function Home() {
                     </p>
                   </div>
                   <div className="col-auto">
-                    <a href="/api-docs" className="btn btn-primary">
+                    <a href="/documentation" className="btn btn-primary">
                       <i className="ti ti-book me-1"></i>
                       View API Docs
                     </a>

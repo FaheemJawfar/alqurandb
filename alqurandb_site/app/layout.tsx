@@ -53,7 +53,7 @@ export default function RootLayout({
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/api-docs">
+                      <a className="nav-link" href="/documentation">
                         <span className="nav-link-icon d-md-none d-lg-inline-block">
                           <i className="ti ti-code"></i>
                         </span>
