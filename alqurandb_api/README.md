@@ -12,6 +12,7 @@ FastAPI backend providing RESTful API endpoints for Quranic data and translation
 - Fast and efficient with FastAPI
 
 
+
 ## Setup
 
 1. Create and activate virtual environment:
