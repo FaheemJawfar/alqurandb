@@ -53,8 +53,8 @@ Thumbs.db
 .env.*.local
 
 # Database
-*.db
-*.sqlite
+# Note: Individual translation databases are tracked, but the main unified database is ignored as it is auto-created.
+quran_translations.db
 *.sqlite3
 
 # Temporary files

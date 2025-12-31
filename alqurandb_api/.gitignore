@@ -20,7 +20,7 @@ env/
 *.swo
 
 # Database
-*.db
+quran_translations.db
 *.sqlite3
 
 # Logs
