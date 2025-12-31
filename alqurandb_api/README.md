@@ -43,41 +43,36 @@ The API will be available at `http://localhost:8000`
 
 ## API Endpoints
 
-### Base URL: `/api/v1`
-
-#### Quran
-- `GET /quran/` - Get general Quran information
-
-#### Surahs
-- `GET /surah/` - Get list of all Surahs
-- `GET /surah/{surah_number}` - Get specific Surah details
-
-#### Ayahs
-- `GET /ayah/{surah_number}/{ayah_number}` - Get specific Ayah
-  - Query parameters:
-    - `translation` (optional): Translation ID (e.g., `sahih`, `yusufali`, `pickthall`)
+### Base URL: `/api`
 
 #### Translations
-- `GET /translations/` - Get list of all available translations
-- `GET /translations/{language_code}` - Get translations for a specific language (e.g., `en`, `ur`)
+- `GET /translations/` - Get list of all available translations (178 translations)
+- `GET /translations/{translation_id}/{sura}/{aya}` - Get specific verse
+- `GET /translations/{translation_id}/{sura}` - Get all verses from a sura
+  - Query parameters:
+    - `from_aya` (optional): Starting aya number
+    - `to_aya` (optional): Ending aya number
+- `GET /translations/{translation_id}` - Get all 6236 verses from a translation
+- `GET /translations/download/{translation_id}/{filetype}` - Download translation file
+  - File types: `json`, `csv`, `sqlite`, `xml`, `xlsx`
 
 ### Example Requests
 
 ```bash
-# Get general Quran info
-curl http://localhost:8000/api/v1/quran/
-
-# Get a specific Ayah
-curl http://localhost:8000/api/v1/ayah/1/1
-
-# Get Ayah with Sahih International translation
-curl "http://localhost:8000/api/v1/ayah/1/1?translation=sahih"
-
 # Get all available translations
-curl http://localhost:8000/api/v1/translations/
+curl http://localhost:8000/api/translations/
 
-# Get English translations only
-curl http://localhost:8000/api/v1/translations/en
+# Get specific verse (Surah 1, Ayah 1 in English)
+curl http://localhost:8000/api/translations/english_sahih/1/1
+
+# Get all verses from Surah Al-Fatiha
+curl http://localhost:8000/api/translations/english_sahih/1
+
+# Get verse range (Surah 2, Ayah 1-5)
+curl "http://localhost:8000/api/translations/english_sahih/2?from_aya=1&to_aya=5"
+
+# Download translation as JSON
+curl http://localhost:8000/api/translations/download/english_sahih/json
 ```
 
 ## Project Structure

@@ -82,27 +82,24 @@ Site will be available at `http://localhost:3000`
 
 ## API Endpoints
 
-### Base URL: `http://localhost:8000/api/v1`
+### Base URL: `http://localhost:8000/api`
 
-- `GET /quran/` - Get general Quran information
-- `GET /surah/` - Get all Surahs
-- `GET /surah/{surah_number}` - Get specific Surah
-- `GET /ayah/{surah_number}/{ayah_number}` - Get specific Ayah with optional translation
-  - Query params: `?translation=sahih` (optional)
-- `GET /translations/` - Get list of available translations
-- `GET /translations/{language_code}` - Get translations for a specific language
+- `GET /translations/` - Get list of all available translations
+- `GET /translations/{translation_id}/{sura}/{aya}` - Get specific verse
+- `GET /translations/{translation_id}/{sura}` - Get all verses from a sura
+- `GET /translations/download/{translation_id}/{filetype}` - Download translation file
 
 ### Example API Calls
 
 ```bash
-# Get Ayah with English translation
-curl "http://localhost:8000/api/v1/ayah/1/1?translation=sahih"
+# Get all translations
+curl "http://localhost:8000/api/translations/"
 
-# Get available translations
-curl "http://localhost:8000/api/v1/translations/"
+# Get specific verse (Surah 1, Ayah 1)
+curl "http://localhost:8000/api/translations/english_sahih/1/1"
 
-# Get English translations only
-curl "http://localhost:8000/api/v1/translations/en"
+# Get entire Surah Al-Fatiha
+curl "http://localhost:8000/api/translations/english_sahih/1"
 ```
 
 ## Development

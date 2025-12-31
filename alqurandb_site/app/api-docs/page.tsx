@@ -3,7 +3,9 @@
 import { useState } from 'react';
 
 export default function ApiDocs() {
-  const [apiUrl, setApiUrl] = useState('http://localhost:8000/api/v1');
+  const [apiUrl, setApiUrl] = useState(
+    process.env.NEXT_PUBLIC_API_URL || '/api'
+  );
   const [selectedEndpoint, setSelectedEndpoint] = useState<string | null>(null);
 
   const endpoints = [

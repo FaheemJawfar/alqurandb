@@ -5,7 +5,7 @@ from pathlib import Path
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "AlQuranDB API"
-    API_V1_STR: str = "/api/v1"
+    API_PREFIX: str = "/api"
     BACKEND_CORS_ORIGINS: List[str] = [
         "http://localhost:3000",
         "http://localhost:3001",

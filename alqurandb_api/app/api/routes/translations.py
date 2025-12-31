@@ -59,11 +59,11 @@ async def download_translation(
     - filetype: File type (json, csv, sqlite, xml, or xlsx)
 
     Examples:
-    - /api/v1/translations/download/tamil_johntrust/json
-    - /api/v1/translations/download/tamil_johntrust/csv
-    - /api/v1/translations/download/tamil_johntrust/sqlite
-    - /api/v1/translations/download/tamil_johntrust/xml
-    - /api/v1/translations/download/tamil_johntrust/xlsx
+    - /api/translations/download/tamil_johntrust/json
+    - /api/translations/download/tamil_johntrust/csv
+    - /api/translations/download/tamil_johntrust/sqlite
+    - /api/translations/download/tamil_johntrust/xml
+    - /api/translations/download/tamil_johntrust/xlsx
     """
     file_path = service.get_translation_file(translation_id, filetype)
 

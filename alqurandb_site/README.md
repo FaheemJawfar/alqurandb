@@ -22,7 +22,7 @@ npm install
 cp .env.example .env.local
 ```
 
-3. Update the `.env.local` file with your API URL (default: `http://localhost:8000/api/v1`)
+3. Update the `.env.local` file with your API URL (default: `http://localhost:3000`)
 
 4. Run the development server:
 ```bash
