@@ -56,8 +56,8 @@ export default function TranslationCard({ translation, onDownload, onViewVerses 
                 </div>
             </div>
 
-            <div className="mt-auto pt-4 border-t border-slate-100 overflow-x-auto no-scrollbar">
-                <div className="flex flex-nowrap gap-1.5 pb-1">
+            <div className="mt-auto pt-4 border-t border-slate-100">
+                <div className="flex flex-wrap gap-1.5">
                     <DownloadButton format="json" onClick={() => onDownload(translation.id, 'json')} />
                     <DownloadButton format="csv" onClick={() => onDownload(translation.id, 'csv')} />
                     <DownloadButton format="sqlite" onClick={() => onDownload(translation.id, 'sqlite')} />

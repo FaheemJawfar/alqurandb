@@ -6,6 +6,7 @@ Next.js frontend for AlQuranDB project.
 
 - Browse all Surahs of the Holy Quran
 - View Ayahs and their translations
+- **Resource Center**: Download translations in JSON, CSV, DB, XML, Excel, and SQL formats
 - Responsive design with dark mode support
 - TypeScript for type safety
 - Tailwind CSS for styling

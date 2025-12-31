@@ -55,7 +55,7 @@ The API will be available at `http://localhost:8000`
     - `to_aya` (optional): Ending aya number
 - `GET /translations/{translation_id}` - Get all 6236 verses from a translation
 - `GET /translations/download/{translation_id}/{filetype}` - Download translation file
-  - File types: `json`, `csv`, `sqlite`, `xml`, `xlsx`
+  - File types: `json`, `csv`, `sqlite`, `xml`, `xlsx`, `sql`
 
 ### Example Requests
 

@@ -5,10 +5,10 @@ A comprehensive resource center for Quranic data, translations, and downloadable
 ## Overview
 
 AlQuranDB serves as a central hub for:
-- **Downloadable Resources**: Quranic text and translations in multiple formats (JSON, XML, CSV, TXT)
-- **Translation Access**: Multiple translations in various languages via API
-- **Developer Tools**: RESTful API for integrating Quranic data into applications
-- **Web Interface**: Browse and study the Quran online
+- **Downloadable Resources**: Quranic text and translations in 6 formats: **JSON, CSV, SQLite (.db), XML, Excel (XLSX), and SQL Dump**.
+- **Translation Access**: 178 complete translations across various languages.
+- **Developer Tools**: RESTful API for integrating Quranic data into applications.
+- **Web Interface**: Premium, responsive interface for research and resource acquisition.
 
 ## Project Structure
 
