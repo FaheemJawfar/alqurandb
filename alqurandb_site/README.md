@@ -10,7 +10,6 @@ Next.js frontend for AlQuranDB project.
 - TypeScript for type safety
 - Tailwind CSS for styling
 
-
 ## Setup
 
 1. Install dependencies:
