@@ -1,12 +1,21 @@
 'use client';
 
 import { useState } from 'react';
+import Navbar from '../components/Navbar';
+import { Copy, ExternalLink, Info, Download, Check, AlertCircle, FileText } from 'lucide-react';
 
 export default function ApiDocs() {
   const [apiUrl, setApiUrl] = useState(
     process.env.NEXT_PUBLIC_API_URL || '/api'
   );
-  const [selectedEndpoint, setSelectedEndpoint] = useState<string | null>(null);
+
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const endpoints = [
     {
@@ -143,338 +152,211 @@ export default function ApiDocs() {
   ];
 
   return (
-    <div className="page-body">
-      <div className="container-xl">
+    <div className="bg-slate-50 min-h-screen pb-20">
+      <Navbar />
+
+      <main className="pt-24 container mx-auto px-4 max-w-5xl">
         {/* Header */}
-        <div className="page-header d-print-none mb-4">
-          <div className="row align-items-center">
-            <div className="col">
-              <h2 className="page-title">API Documentation</h2>
-              <div className="text-muted mt-1">
-                RESTful API for accessing Quran translations and verses
-              </div>
-            </div>
-          </div>
+        <div className="mb-10 text-center">
+          <h1 className="text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">API Documentation</h1>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            A simple, fast, and open RESTful API for accessing Quran translations and verses in multiple languages.
+          </p>
         </div>
 
-        {/* Introduction */}
-        <div className="row mb-3">
-          <div className="col-12">
-            <div className="card">
-              <div className="card-body">
-                <h3 className="card-title">Getting Started</h3>
-                <p className="text-muted">
-                  The AlQuranDB API provides programmatic access to Quran translations and verses.
-                  All endpoints return JSON responses and support CORS for browser-based applications.
-                </p>
+        {/* Getting Started */}
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-8">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+              <FileText size={24} strokeWidth={2} />
+            </div>
+            <h2 className="text-2xl font-bold text-slate-900">Getting Started</h2>
+          </div>
 
-                <div className="mb-3">
-                  <label className="form-label">Base URL</label>
-                  <div className="input-group">
-                    <input
-                      type="text"
-                      className="form-control font-monospace"
-                      value={apiUrl}
-                      onChange={(e) => setApiUrl(e.target.value)}
-                    />
-                    <button className="btn btn-primary" onClick={() => {
-                      navigator.clipboard.writeText(apiUrl);
-                    }}>
-                      <i className="ti ti-copy"></i> Copy
-                    </button>
-                  </div>
-                  <small className="form-hint">
-                    Change this to your API server URL
-                  </small>
-                </div>
+          <p className="text-slate-600 mb-6 leading-relaxed">
+            The AlQuranDB API provides programmatic access to Quran translations.
+            All endpoints return JSON responses and support CORS for browser-based applications.
+          </p>
 
-                <div className="alert alert-info mb-0">
-                  <h4 className="alert-title">
-                    <i className="ti ti-info-circle"></i> Interactive Documentation
-                  </h4>
-                  <div>
-                    FastAPI provides interactive API documentation at:
-                    <ul className="mb-0 mt-2">
-                      <li><a href="/docs" target="_blank" rel="noreferrer" className="text-decoration-underline">Swagger UI: /docs</a></li>
-                      <li><a href="/redoc" target="_blank" rel="noreferrer" className="text-decoration-underline">ReDoc: /redoc</a></li>
-                    </ul>
-                  </div>
-                </div>
+          <div className="mb-8">
+            <label className="block text-sm font-semibold text-slate-700 mb-2">Base URL</label>
+            <div className="flex gap-2">
+              <div className="flex-grow relative">
+                <input
+                  type="text"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 font-mono text-sm text-slate-700 focus:ring-2 focus:ring-blue-500 outline-none"
+                  value={apiUrl}
+                  onChange={(e) => setApiUrl(e.target.value)}
+                />
+              </div>
+              <button
+                onClick={() => handleCopy(apiUrl)}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2 cursor-pointer shadow-sm active:translate-y-0.5"
+              >
+                {copied ? <Check size={18} /> : <Copy size={18} />}
+                {copied ? 'Copied!' : 'Copy'}
+              </button>
+            </div>
+            <p className="text-xs text-slate-500 mt-2">
+              You can change this URL to point to your own deployment.
+            </p>
+          </div>
+
+          <div className="bg-blue-50 border border-blue-100 rounded-xl p-5 flex items-start gap-3">
+            <Info className="flex-shrink-0 text-blue-600 mt-0.5" size={20} />
+            <div>
+              <h4 className="font-bold text-blue-900 text-sm mb-1">Interactive Documentation</h4>
+              <p className="text-sm text-blue-800 mb-3">
+                FastAPI provides auto-generated interactive API documentation:
+              </p>
+              <div className="flex gap-4">
+                <a href="/docs" target="_blank" rel="noreferrer" className="text-sm font-semibold text-blue-700 hover:text-blue-900 hover:underline flex items-center gap-1">
+                  Swagger UI <ExternalLink size={12} />
+                </a>
+                <a href="/redoc" target="_blank" rel="noreferrer" className="text-sm font-semibold text-blue-700 hover:text-blue-900 hover:underline flex items-center gap-1">
+                  ReDoc <ExternalLink size={12} />
+                </a>
               </div>
             </div>
           </div>
         </div>
 
         {/* Endpoints */}
-        <div className="row">
-          <div className="col-12">
-            <h3 className="mb-3">API Endpoints</h3>
+        <div className="space-y-8">
+          <h2 className="text-2xl font-bold text-slate-900 border-b border-slate-200 pb-4">API Endpoints</h2>
 
-            {endpoints.map((endpoint) => (
-              <div key={endpoint.id} className="card mb-3">
-                <div className="card-header">
-                  <h3 className="card-title">
-                    <span className="badge bg-primary me-2">{endpoint.method}</span>
-                    {endpoint.title}
-                  </h3>
-                </div>
-                <div className="card-body">
-                  <p className="text-muted">{endpoint.description}</p>
-
-                  {/* Path */}
-                  <div className="mb-3">
-                    <label className="form-label">Endpoint Path</label>
-                    <div className="input-group">
-                      <span className="input-group-text font-monospace">{apiUrl}</span>
-                      <input
-                        type="text"
-                        className="form-control font-monospace bg-light"
-                        value={endpoint.path}
-                        readOnly
-                      />
-                    </div>
+          {endpoints.map((endpoint) => (
+            <div key={endpoint.id} className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+              <div className="border-b border-slate-100 bg-slate-50/50 p-6 flex items-start justify-between flex-wrap gap-4">
+                <div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wide">
+                      {endpoint.method}
+                    </span>
+                    <h3 className="text-lg font-bold text-slate-900">{endpoint.title}</h3>
                   </div>
+                  <p className="text-slate-600 text-sm">{endpoint.description}</p>
+                </div>
+              </div>
 
-                  {/* Parameters */}
-                  {endpoint.parameters.length > 0 && (
-                    <div className="mb-3">
-                      <label className="form-label">Parameters</label>
-                      <div className="table-responsive">
-                        <table className="table table-sm table-bordered">
-                          <thead>
-                            <tr>
-                              <th>Name</th>
-                              <th>Type</th>
-                              <th>Required</th>
-                              <th>Description</th>
+              <div className="p-6">
+                {/* Path */}
+                <div className="mb-6">
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Endpoint Path</label>
+                  <div className="bg-slate-900 text-slate-100 rounded-lg p-3 font-mono text-sm border border-slate-800 flex items-center justify-between gap-3 group">
+                    <div className="overflow-x-auto whitespace-nowrap scrollbar-hide">
+                      <span className="text-slate-500 select-none">{apiUrl}</span>
+                      <span className="text-blue-400 font-bold">{endpoint.path}</span>
+                    </div>
+                    <button
+                      onClick={() => handleCopy(`${apiUrl}${endpoint.path}`)}
+                      className="text-slate-400 hover:text-white transition-colors cursor-pointer"
+                      title="Copy endpoint URL"
+                    >
+                      <Copy size={18} />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Parameters */}
+                {endpoint.parameters.length > 0 && (
+                  <div className="mb-6">
+                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Parameters</label>
+                    <div className="overflow-x-auto rounded-lg border border-slate-200">
+                      <table className="w-full text-sm text-left">
+                        <thead className="bg-slate-50 text-slate-700 font-semibold border-b border-slate-200">
+                          <tr>
+                            <th className="px-4 py-3 w-1/4">Name</th>
+                            <th className="px-4 py-3 w-1/6">Type</th>
+                            <th className="px-4 py-3 w-1/6">Required</th>
+                            <th className="px-4 py-3">Description</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100">
+                          {endpoint.parameters.map((param, idx) => (
+                            <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
+                              <td className="px-4 py-3 font-mono text-blue-600">{param.name}</td>
+                              <td className="px-4 py-3"><span className="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-xs">{param.type}</span></td>
+                              <td className="px-4 py-3">
+                                {param.required ? (
+                                  <span className="text-red-600 font-medium text-xs bg-red-50 px-2 py-0.5 rounded border border-red-100">Required</span>
+                                ) : (
+                                  <span className="text-slate-500 text-xs bg-slate-100 px-2 py-0.5 rounded">Optional</span>
+                                )}
+                              </td>
+                              <td className="px-4 py-3 text-slate-600">{param.description}</td>
                             </tr>
-                          </thead>
-                          <tbody>
-                            {endpoint.parameters.map((param, idx) => (
-                              <tr key={idx}>
-                                <td className="font-monospace">{param.name}</td>
-                                <td><span className="badge bg-secondary">{param.type}</span></td>
-                                <td>
-                                  {param.required ? (
-                                    <span className="badge bg-danger">Required</span>
-                                  ) : (
-                                    <span className="badge bg-secondary">Optional</span>
-                                  )}
-                                </td>
-                                <td className="text-muted">{param.description}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Example */}
-                  <div className="mb-3">
-                    <label className="form-label">Example Request</label>
-                    <div className="input-group">
-                      <input
-                        type="text"
-                        className="form-control font-monospace bg-light"
-                        value={endpoint.example}
-                        readOnly
-                      />
-                      <button
-                        className="btn btn-primary"
-                        onClick={() => {
-                          navigator.clipboard.writeText(endpoint.example);
-                        }}
-                      >
-                        <i className="ti ti-copy"></i> Copy
-                      </button>
-                      <button
-                        className="btn btn-success"
-                        onClick={() => window.open(endpoint.example, '_blank')}
-                      >
-                        <i className="ti ti-external-link"></i> Try
-                      </button>
+                          ))}
+                        </tbody>
+                      </table>
                     </div>
                   </div>
+                )}
 
-                  {/* Response */}
-                  {typeof endpoint.response === 'object' && (
-                    <div>
-                      <label className="form-label">Example Response</label>
-                      <div className="card card-sm bg-dark text-white">
-                        <div className="card-body">
-                          <pre className="mb-0" style={{ fontSize: '0.875rem' }}>
-                            <code>{JSON.stringify(endpoint.response, null, 2)}</code>
-                          </pre>
-                        </div>
+                {/* Example Response */}
+                <div>
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Example Response</label>
+                  {typeof endpoint.response === 'object' ? (
+                    <div className="bg-slate-900 rounded-lg shadow-inner overflow-hidden border border-slate-800">
+                      <div className="flex items-center justify-between px-4 py-2 bg-slate-800/50 border-b border-slate-700/50">
+                        <span className="text-xs text-slate-400 font-mono">JSON</span>
                       </div>
+                      <pre className="p-4 overflow-x-auto text-sm font-mono text-emerald-400">
+                        <code>{JSON.stringify(endpoint.response, null, 2)}</code>
+                      </pre>
                     </div>
-                  )}
-                  {typeof endpoint.response === 'string' && (
-                    <div>
-                      <label className="form-label">Response</label>
-                      <div className="alert alert-info mb-0">
-                        <i className="ti ti-download"></i> {endpoint.response}
-                      </div>
+                  ) : (
+                    <div className="bg-blue-50 text-blue-800 p-4 rounded-lg flex items-center gap-3 border border-blue-100">
+                      <Download size={18} />
+                      <span className="font-medium">{endpoint.response}</span>
                     </div>
                   )}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+          ))}
 
-        {/* Error Responses */}
-        <div className="row mb-3">
-          <div className="col-12">
-            <div className="card">
-              <div className="card-header">
-                <h3 className="card-title">Error Responses</h3>
+          {/* Error Codes */}
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div className="border-b border-slate-100 bg-slate-50/50 p-6">
+              <div className="flex items-center gap-3">
+                <AlertCircle className="text-red-500" size={24} />
+                <h3 className="text-xl font-bold text-slate-900">Error Responses</h3>
               </div>
-              <div className="card-body">
-                <p className="text-muted">The API uses standard HTTP status codes for error responses:</p>
-
-                <div className="table-responsive">
-                  <table className="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>Status Code</th>
-                        <th>Description</th>
-                        <th>Example</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><span className="badge bg-success">200</span></td>
-                        <td>Success - Request completed successfully</td>
-                        <td className="font-monospace text-muted">Verse data returned</td>
-                      </tr>
-                      <tr>
-                        <td><span className="badge bg-danger">404</span></td>
-                        <td>Not Found - Translation, sura, or verse not found</td>
-                        <td className="font-monospace text-muted">
-                          {JSON.stringify({ detail: "Verse 1:8 not found in translation 'english_sahih'" })}
+            </div>
+            <div className="p-6">
+              <p className="text-slate-600 mb-4 text-sm">The API uses standard HTTP status codes for error responses.</p>
+              <div className="overflow-x-auto rounded-lg border border-slate-200">
+                <table className="w-full text-sm text-left">
+                  <thead className="bg-slate-50 text-slate-700 font-semibold border-b border-slate-200">
+                    <tr>
+                      <th className="px-4 py-3 w-24">Status</th>
+                      <th className="px-4 py-3 w-1/3">Description</th>
+                      <th className="px-4 py-3">Example</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {[
+                      { code: 200, color: 'text-green-600 bg-green-50 border-green-100', desc: 'Success - Request completed successfully', example: 'Verse data returned' },
+                      { code: 404, color: 'text-red-600 bg-red-50 border-red-100', desc: 'Not Found - Resource does not exist', example: JSON.stringify({ detail: "Verse not found" }) },
+                      { code: 422, color: 'text-orange-600 bg-orange-50 border-orange-100', desc: 'Validation Error - Invalid parameters', example: JSON.stringify({ detail: "Sura must be 1-114" }) },
+                      { code: 500, color: 'text-red-600 bg-red-50 border-red-100', desc: 'Internal Server Error', example: JSON.stringify({ detail: "Server error" }) }
+                    ].map((err, i) => (
+                      <tr key={i} className="hover:bg-slate-50/50">
+                        <td className="px-4 py-3">
+                          <span className={`font-mono font-bold text-xs px-2 py-1 rounded border ${err.color}`}>{err.code}</span>
                         </td>
+                        <td className="px-4 py-3 text-slate-700 font-medium">{err.desc}</td>
+                        <td className="px-4 py-3 font-mono text-slate-500 text-xs truncate max-w-xs">{err.example}</td>
                       </tr>
-                      <tr>
-                        <td><span className="badge bg-danger">422</span></td>
-                        <td>Validation Error - Invalid parameters</td>
-                        <td className="font-monospace text-muted">
-                          {JSON.stringify({ detail: "Sura number must be between 1 and 114" })}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td><span className="badge bg-danger">500</span></td>
-                        <td>Internal Server Error</td>
-                        <td className="font-monospace text-muted">
-                          {JSON.stringify({ detail: "Internal server error" })}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Code Examples */}
-        <div className="row mb-3">
-          <div className="col-12">
-            <div className="card">
-              <div className="card-header">
-                <h3 className="card-title">Code Examples</h3>
-              </div>
-              <div className="card-body">
-                <ul className="nav nav-tabs mb-3" role="tablist">
-                  <li className="nav-item">
-                    <a className="nav-link active" data-bs-toggle="tab" href="#javascript">JavaScript</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" data-bs-toggle="tab" href="#python">Python</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" data-bs-toggle="tab" href="#curl">cURL</a>
-                  </li>
-                </ul>
-
-                <div className="tab-content">
-                  <div className="tab-pane active" id="javascript">
-                    <div className="card card-sm bg-dark text-white">
-                      <div className="card-body">
-                        <pre className="mb-0" style={{ fontSize: '0.875rem' }}>
-                          <code>{`// Fetch all translations
-const response = await fetch('${apiUrl}/translations/');
-const data = await response.json();
-console.log(data.translations);
-
-// Get a specific verse
-const verse = await fetch('${apiUrl}/translations/english_sahih/1/1');
-const verseData = await verse.json();
-console.log(verseData.text);
-
-// Get all verses from a sura
-const sura = await fetch('${apiUrl}/translations/english_sahih/1');
-const suraData = await sura.json();
-console.log(\`Total verses: \${suraData.total}\`);`}</code>
-                        </pre>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="tab-pane" id="python">
-                    <div className="card card-sm bg-dark text-white">
-                      <div className="card-body">
-                        <pre className="mb-0" style={{ fontSize: '0.875rem' }}>
-                          <code>{`import requests
-
-# Fetch all translations
-response = requests.get('${apiUrl}/translations/')
-data = response.json()
-print(data['translations'])
-
-# Get a specific verse
-verse = requests.get('${apiUrl}/translations/english_sahih/1/1')
-verse_data = verse.json()
-print(verse_data['text'])
-
-# Get all verses from a sura
-sura = requests.get('${apiUrl}/translations/english_sahih/1')
-sura_data = sura.json()
-print(f"Total verses: {sura_data['total']}")`}</code>
-                        </pre>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="tab-pane" id="curl">
-                    <div className="card card-sm bg-dark text-white">
-                      <div className="card-body">
-                        <pre className="mb-0" style={{ fontSize: '0.875rem' }}>
-                          <code>{`# Fetch all translations
-curl ${apiUrl}/translations/
-
-# Get a specific verse
-curl ${apiUrl}/translations/english_sahih/1/1
-
-# Get all verses from a sura
-curl ${apiUrl}/translations/english_sahih/1
-
-# Get verse range
-curl "${apiUrl}/translations/english_sahih/2?from_aya=1&to_aya=5"
-
-# Download translation as JSON
-curl -O ${apiUrl}/translations/download/english_sahih/json`}</code>
-                        </pre>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </main>
     </div>
   );
 }

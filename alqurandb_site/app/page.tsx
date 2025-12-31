@@ -1,6 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import Navbar from './components/Navbar';
+import SearchHero from './components/SearchHero';
+import TranslationCard from './components/TranslationCard';
 
 interface Translation {
   id: string;
@@ -41,10 +44,28 @@ export default function Home() {
   const [verses, setVerses] = useState<Verse[]>([]);
   const [versesLoading, setVersesLoading] = useState(false);
 
+  // Ref for keyboard shortcut
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
   useEffect(() => {
     fetchTranslations();
+
+    // Keyboard shortcut for search
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === '/' && document.activeElement !== searchInputRef.current) {
+        e.preventDefault();
+        // We need to focus the input which is inside the SearchHero component
+        // Since we don't have direct ref access easily without forwarding refs, 
+        // we'll use a selector query as a simple workaround for this global shortcut
+        const input = document.querySelector('input[type="text"]') as HTMLInputElement;
+        if (input) input.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   async function fetchTranslations() {
@@ -111,256 +132,136 @@ export default function Home() {
       translation.id.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const uniqueLanguages = new Set(filteredTranslations.map(t => t.language));
-
   return (
-    <div className="page-body">
-      <div className="container-xl">
-        {/* Header */}
-        <div className="page-header d-print-none mb-3">
-          <div className="row align-items-center">
-            <div className="col">
-              <h2 className="page-title">Quran Translations</h2>
-              <div className="text-muted mt-1">
-                Download {translations.length} translations in {uniqueLanguages.size} languages
+    <div className="bg-slate-50 min-h-screen pb-20">
+      <Navbar />
+
+      <main className="pt-16">
+        <SearchHero
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          count={filteredTranslations.length}
+        />
+
+        <div className="container mx-auto px-4 mt-8">
+          {/* Error */}
+          {error && (
+            <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 text-red-500 mb-8 max-w-2xl mx-auto text-center">
+              <h4 className="font-bold mb-1">Error Loading Data</h4>
+              <div>{error}</div>
+            </div>
+          )}
+
+          {/* Loading */}
+          {loading && (
+            <div className="text-center py-20">
+              <div className="inline-block w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+              <div className="mt-4 text-slate-400">Loading translations...</div>
+            </div>
+          )}
+
+          {/* Grid */}
+          {!loading && !error && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredTranslations.map((translation) => (
+                <TranslationCard
+                  key={translation.id}
+                  translation={translation}
+                  onDownload={handleDownload}
+                  onViewVerses={handleViewVerses}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Empty */}
+          {!loading && !error && filteredTranslations.length === 0 && (
+            <div className="text-center py-20">
+              <div className="bg-white border border-slate-200 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
               </div>
+              <p className="text-xl font-bold text-slate-800">No translations found</p>
+              <p className="text-slate-500 mt-2">
+                Try searching for a different language or translator
+              </p>
             </div>
-          </div>
+          )}
         </div>
+      </main>
 
-        {/* API Info Card */}
-        <div className="row mb-3">
-          <div className="col-12">
-            <div className="card bg-primary-lt">
-              <div className="card-body">
-                <div className="row align-items-center">
-                  <div className="col">
-                    <h3 className="card-title mb-1">
-                      <i className="ti ti-code me-2"></i>
-                      Developer API Available
-                    </h3>
-                    <p className="text-muted mb-0">
-                      Access Quran translations programmatically with our RESTful API. Get verses by sura, aya, or download complete translations.
-                    </p>
-                  </div>
-                  <div className="col-auto">
-                    <a href="/documentation" className="btn btn-primary">
-                      <i className="ti ti-book me-1"></i>
-                      View API Docs
-                    </a>
-                  </div>
-                </div>
+      {/* Verses Modal / Slide-over */}
+      {showVerses && selectedTranslation && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+          <div
+            className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+            onClick={() => setShowVerses(false)}
+          ></div>
+
+          <div className="relative w-full max-w-4xl max-h-[90vh] bg-white border border-slate-200 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-[fade-in_0.2s_ease-out]">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-slate-100 bg-white sticky top-0 z-10">
+              <div>
+                <h5 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                  <span className="w-8 h-8 rounded bg-blue-50 text-blue-600 flex items-center justify-center text-sm border border-blue-100">
+                    {selectedTranslation.language.charAt(0)}
+                  </span>
+                  {selectedTranslation.language}
+                </h5>
+                <p className="text-sm text-slate-500 mt-1 pl-10">{selectedTranslation.translator}</p>
               </div>
-            </div>
-          </div>
-        </div>
 
-        {/* Search */}
-        <div className="row mb-3">
-          <div className="col-md-6">
-            <div className="input-icon">
-              <span className="input-icon-addon">
-                <i className="ti ti-search"></i>
-              </span>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search translations..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="col-md-6">
-            <div className="text-muted text-end">
-              {!loading && `Showing ${filteredTranslations.length} of ${translations.length} translations`}
-            </div>
-          </div>
-        </div>
-
-        {/* Error */}
-        {error && (
-          <div className="alert alert-danger">
-            <h4 className="alert-title">Error</h4>
-            <div>{error}</div>
-          </div>
-        )}
-
-        {/* Loading */}
-        {loading && (
-          <div className="text-center py-5">
-            <div className="spinner-border" role="status"></div>
-            <div className="mt-2">Loading translations...</div>
-          </div>
-        )}
-
-        {/* Table */}
-        {!loading && !error && (
-          <div className="card">
-            <div className="table-responsive">
-              <table className="table table-vcenter card-table table-striped">
-                <thead>
-                  <tr>
-                    <th style={{ width: '150px' }}>Language</th>
-                    <th style={{ width: '250px' }}>Translator</th>
-                    <th style={{ width: '200px' }}>Native Name</th>
-                    <th style={{ width: '400px' }}>Downloads</th>
-                    <th style={{ width: '120px' }}>Actions</th>
-                    <th style={{ width: '100px' }}>Source</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredTranslations.map((translation) => (
-                    <tr key={translation.id}>
-                      <td>
-                        <div className="d-flex align-items-center">
-                          <span className="avatar avatar-sm me-2" style={{ backgroundColor: '#206bc4', color: 'white' }}>
-                            {translation.language.charAt(0)}
-                          </span>
-                          <strong>{translation.language}</strong>
-                        </div>
-                      </td>
-                      <td>
-                        <div>{translation.translator}</div>
-                        <div className="text-muted small">{translation.id}</div>
-                      </td>
-                      <td className="text-muted">{translation.name_in_language}</td>
-                      <td>
-                        <div className="btn-list">
-                          <button
-                            onClick={() => handleDownload(translation.id, 'json')}
-                            className="btn btn-sm btn-primary"
-                            title="Download as JSON"
-                          >
-                            <i className="ti ti-download me-1"></i>
-                            JSON
-                          </button>
-                          <button
-                            onClick={() => handleDownload(translation.id, 'csv')}
-                            className="btn btn-sm btn-success"
-                            title="Download as CSV"
-                          >
-                            <i className="ti ti-download me-1"></i>
-                            CSV
-                          </button>
-                          <button
-                            onClick={() => handleDownload(translation.id, 'sqlite')}
-                            className="btn btn-sm btn-secondary"
-                            title="Download as SQLite database"
-                          >
-                            <i className="ti ti-database me-1"></i>
-                            SQLite
-                          </button>
-                          <button
-                            onClick={() => handleDownload(translation.id, 'xml')}
-                            className="btn btn-sm btn-info"
-                            title="Download as XML"
-                          >
-                            <i className="ti ti-file-code me-1"></i>
-                            XML
-                          </button>
-                          <button
-                            onClick={() => handleDownload(translation.id, 'xlsx')}
-                            className="btn btn-sm btn-warning"
-                            title="Download as Excel"
-                          >
-                            <i className="ti ti-file-spreadsheet me-1"></i>
-                            Excel
-                          </button>
-                        </div>
-                      </td>
-                      <td>
-                        <button
-                          onClick={() => handleViewVerses(translation)}
-                          className="btn btn-sm btn-ghost-primary"
-                          title="View verses"
-                        >
-                          <i className="ti ti-book-2 me-1"></i>
-                          View
-                        </button>
-                      </td>
-                      <td>
-                        <span className="text-muted small">{translation.source}</span>
-                      </td>
-                    </tr>
+              <div className="flex items-center gap-4">
+                <select
+                  className="bg-slate-50 border border-slate-200 text-slate-700 rounded-lg py-2 pl-3 pr-8 focus:ring-2 focus:ring-blue-500 cursor-pointer text-sm font-medium"
+                  value={selectedSura}
+                  onChange={(e) => handleSuraChange(Number(e.target.value))}
+                >
+                  {Array.from({ length: 114 }, (_, i) => i + 1).map((sura) => (
+                    <option key={sura} value={sura}>
+                      Sura {sura}
+                    </option>
                   ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
+                </select>
 
-        {/* Empty */}
-        {!loading && !error && filteredTranslations.length === 0 && (
-          <div className="empty">
-            <div className="empty-icon">
-              <i className="ti ti-file-search"></i>
-            </div>
-            <p className="empty-title">No translations found</p>
-            <p className="empty-subtitle text-muted">
-              Try a different search term
-            </p>
-          </div>
-        )}
-
-        {/* Verses Modal */}
-        {showVerses && selectedTranslation && (
-          <div className="modal modal-blur fade show" style={{ display: 'block' }}>
-            <div className="modal-dialog modal-lg modal-dialog-scrollable">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title">{selectedTranslation.language} - {selectedTranslation.translator}</h5>
-                  <button type="button" className="btn-close" onClick={() => setShowVerses(false)}></button>
-                </div>
-                <div className="modal-body">
-                  <div className="mb-3">
-                    <label className="form-label">Select Sura</label>
-                    <select
-                      className="form-select"
-                      value={selectedSura}
-                      onChange={(e) => handleSuraChange(Number(e.target.value))}
-                    >
-                      {Array.from({ length: 114 }, (_, i) => i + 1).map((sura) => (
-                        <option key={sura} value={sura}>
-                          Sura {sura}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {versesLoading ? (
-                    <div className="text-center py-5">
-                      <div className="spinner-border" role="status"></div>
-                      <div className="mt-2">Loading verses...</div>
-                    </div>
-                  ) : (
-                    <div className="list-group list-group-flush">
-                      {verses.map((verse) => (
-                        <div key={`${verse.sura}:${verse.aya}`} className="list-group-item">
-                          <div className="row align-items-start">
-                            <div className="col-auto">
-                              <span className="badge bg-primary">{verse.aya}</span>
-                            </div>
-                            <div className="col">
-                              <p className="mb-0">{verse.text}</p>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" onClick={() => setShowVerses(false)}>
-                    Close
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  className="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:text-red-500 hover:bg-red-50 flex items-center justify-center transition-colors"
+                  onClick={() => setShowVerses(false)}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                </button>
               </div>
             </div>
+
+            {/* Modal Body */}
+            <div className="overflow-y-auto p-6 bg-slate-50">
+              {versesLoading ? (
+                <div className="text-center py-20">
+                  <div className="inline-block w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                  <div className="mt-4 text-slate-500">Loading sacred texts...</div>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {verses.map((verse) => (
+                    <div key={`${verse.sura}:${verse.aya}`} className="group p-4 bg-white rounded-xl shadow-sm hover:shadow-md border border-slate-200/50 transition-all">
+                      <div className="flex gap-4">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-sm font-bold text-slate-500 group-hover:text-blue-600 group-hover:border-blue-200 transition-all">
+                          {verse.aya}
+                        </div>
+                        <div className="flex-grow pt-2">
+                          <p className="text-lg text-slate-700 leading-relaxed font-serif">
+                            {verse.text}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
-        )}
-        {showVerses && <div className="modal-backdrop fade show"></div>}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
