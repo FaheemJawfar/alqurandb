@@ -11,7 +11,7 @@ interface Translation {
 
 interface TranslationCardProps {
     translation: Translation;
-    onDownload: (id: string, type: 'json' | 'csv' | 'sqlite' | 'xml' | 'xlsx') => void;
+    onDownload: (id: string, type: 'json' | 'csv' | 'sqlite' | 'xml' | 'xlsx' | 'sql') => void;
     onViewVerses: (translation: Translation) => void;
 }
 
@@ -57,12 +57,13 @@ export default function TranslationCard({ translation, onDownload, onViewVerses 
             </div>
 
             <div className="mt-auto pt-4 border-t border-slate-100 overflow-x-auto no-scrollbar">
-                <div className="flex flex-nowrap gap-2 pb-1">
+                <div className="flex flex-nowrap gap-1.5 pb-1">
                     <DownloadButton format="json" onClick={() => onDownload(translation.id, 'json')} />
                     <DownloadButton format="csv" onClick={() => onDownload(translation.id, 'csv')} />
                     <DownloadButton format="sqlite" onClick={() => onDownload(translation.id, 'sqlite')} />
                     <DownloadButton format="xml" onClick={() => onDownload(translation.id, 'xml')} />
                     <DownloadButton format="xlsx" onClick={() => onDownload(translation.id, 'xlsx')} />
+                    <DownloadButton format="sql" onClick={() => onDownload(translation.id, 'sql')} />
                 </div>
             </div>
         </div>

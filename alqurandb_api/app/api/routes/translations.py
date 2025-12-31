@@ -80,6 +80,9 @@ async def download_translation(
     elif filetype == FileType.XML:
         media_type = "application/xml"
         filename = f"{translation_id}.xml"
+    elif filetype == FileType.SQL:
+        media_type = "application/sql"
+        filename = f"{translation_id}.sql"
     else:
         media_type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         filename = f"{translation_id}.xlsx"

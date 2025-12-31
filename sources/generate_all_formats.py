@@ -43,6 +43,7 @@ def main():
         (converters_dir / 'csv_to_xml.py', 'XML'),
         (converters_dir / 'csv_to_excel.py', 'Excel (XLSX)'),
         (converters_dir / 'csv_to_sqlite.py', 'SQLite'),
+        (converters_dir / 'csv_to_sql.py', 'SQL Dump'),
     ]
 
     print("\n" + "="*80)

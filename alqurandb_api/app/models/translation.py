@@ -9,3 +9,4 @@ class FileType(str, Enum):
     SQLITE = "sqlite"
     XML = "xml"
     XLSX = "xlsx"
+    SQL = "sql"
