@@ -50,6 +50,15 @@
   .glass-panel {
     @apply bg-white/70 backdrop-blur-xl border border-slate-200/60 shadow-sm;
   }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 body {
