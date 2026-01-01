@@ -23,6 +23,7 @@ interface Verse {
   sura: number;
   aya: number;
   text: string;
+  footnotes?: string;
 }
 
 interface VersesResponse {
@@ -43,6 +44,7 @@ export default function Home() {
   const [selectedSura, setSelectedSura] = useState<number>(1);
   const [verses, setVerses] = useState<Verse[]>([]);
   const [versesLoading, setVersesLoading] = useState(false);
+  const [bismillah, setBismillah] = useState('');
 
   // Ref for keyboard shortcut
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -96,7 +98,22 @@ export default function Home() {
     setSelectedTranslation(translation);
     setShowVerses(true);
     setSelectedSura(1);
+    fetchBismillah(translation.id);
     await fetchVerses(translation.id, 1);
+  }
+
+  async function fetchBismillah(translationId: string) {
+    try {
+      const response = await fetch(`${API_BASE_URL}/translations/${translationId}/1`);
+      if (response.ok) {
+        const data: VersesResponse = await response.json();
+        if (data.verses.length > 0) {
+          setBismillah(data.verses[0].text);
+        }
+      }
+    } catch (err) {
+      console.error('Error fetching Bismillah:', err);
+    }
   }
 
   async function fetchVerses(translationId: string, sura: number) {
@@ -191,74 +208,178 @@ export default function Home() {
 
       {/* Verses Modal / Slide-over */}
       {showVerses && selectedTranslation && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 sm:py-12">
           <div
-            className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+            className="absolute inset-0 bg-slate-900/60 backdrop-blur-md transition-opacity duration-300"
             onClick={() => setShowVerses(false)}
           ></div>
 
-          <div className="relative w-full max-w-4xl max-h-[90vh] bg-white border border-slate-200 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-[fade-in_0.2s_ease-out]">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between p-6 border-b border-slate-100 bg-white sticky top-0 z-10">
-              <div>
-                <h5 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-                  <span className="w-8 h-8 rounded bg-blue-50 text-blue-600 flex items-center justify-center text-sm border border-blue-100">
-                    {selectedTranslation.language.charAt(0)}
-                  </span>
-                  {selectedTranslation.language}
-                </h5>
-                <p className="text-sm text-slate-500 mt-1 pl-10">{selectedTranslation.translator}</p>
+          <div className="relative w-full max-w-5xl h-full max-h-[90vh] bg-white border border-slate-200 rounded-3xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] flex flex-col overflow-hidden animate-[modal_0.3s_cubic-bezier(0.16,1,0.3,1)]">
+            {/* Modal Header - Glassmorphism */}
+            <div className="flex items-center justify-between p-6 px-8 border-b border-slate-100 bg-white/80 backdrop-blur-md sticky top-0 z-20">
+              <div className="flex items-center gap-5 min-w-0">
+                <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 text-xl font-black">
+                  {selectedTranslation.language.charAt(0).toUpperCase()}
+                </div>
+                <div className="min-w-0">
+                  <h5 className="text-lg sm:text-xl font-black text-slate-900 truncate">
+                    {selectedTranslation.language}
+                  </h5>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <p className="text-xs font-bold text-slate-500 truncate">{selectedTranslation.translator}</p>
+                    <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+                    <p className="text-[9px] uppercase tracking-widest font-black text-blue-500">{selectedTranslation.source}</p>
+                  </div>
+                </div>
               </div>
 
               <div className="flex items-center gap-4">
-                <select
-                  className="bg-slate-50 border border-slate-200 text-slate-700 rounded-lg py-2 pl-3 pr-8 focus:ring-2 focus:ring-blue-500 cursor-pointer text-sm font-medium"
-                  value={selectedSura}
-                  onChange={(e) => handleSuraChange(Number(e.target.value))}
-                >
-                  {Array.from({ length: 114 }, (_, i) => i + 1).map((sura) => (
-                    <option key={sura} value={sura}>
-                      Sura {sura}
-                    </option>
-                  ))}
-                </select>
+                <div className="relative group/select">
+                  <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-blue-500 group-hover/select:translate-y-0.5 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+                  </div>
+                  <select
+                    className="appearance-none bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-900 rounded-xl py-2 pl-4 pr-10 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 cursor-pointer text-[13px] font-black transition-all outline-none"
+                    value={selectedSura}
+                    onChange={(e) => handleSuraChange(Number(e.target.value))}
+                  >
+                    {Array.from({ length: 114 }, (_, i) => i + 1).map((sura) => (
+                      <option key={sura} value={sura}>
+                        Sura {sura}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
                 <button
                   type="button"
-                  className="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:text-red-500 hover:bg-red-50 flex items-center justify-center transition-colors"
+                  className="w-9 h-9 rounded-xl bg-slate-50 text-slate-400 hover:text-red-500 hover:bg-red-50 hover:border-red-100 border border-transparent flex items-center justify-center transition-all duration-200"
                   onClick={() => setShowVerses(false)}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
                 </button>
               </div>
             </div>
 
             {/* Modal Body */}
-            <div className="overflow-y-auto p-6 bg-slate-50">
+            <div className="overflow-y-auto p-0 bg-slate-50/50 flex-grow scroll-smooth">
               {versesLoading ? (
-                <div className="text-center py-20">
-                  <div className="inline-block w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-                  <div className="mt-4 text-slate-500">Loading sacred texts...</div>
+                <div className="flex flex-col items-center justify-center py-40">
+                  <div className="relative">
+                    <div className="w-12 h-12 border-4 border-blue-500/10 rounded-full"></div>
+                    <div className="absolute top-0 w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                  <div className="mt-6 text-slate-400 font-bold uppercase tracking-widest text-[10px]">Fetching Sacred Data</div>
                 </div>
               ) : (
-                <div className="space-y-4">
-                  {verses.map((verse) => (
-                    <div key={`${verse.sura}:${verse.aya}`} className="group p-4 bg-white rounded-xl shadow-sm hover:shadow-md border border-slate-200/50 transition-all">
-                      <div className="flex gap-4">
-                        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-sm font-bold text-slate-500 group-hover:text-blue-600 group-hover:border-blue-200 transition-all">
-                          {verse.aya}
-                        </div>
-                        <div className="flex-grow pt-2">
-                          <p className="text-lg text-slate-700 leading-relaxed font-serif">
-                            {verse.text}
-                          </p>
+                <div className="p-4 sm:p-5 space-y-4">
+                  {/* Bismillah Section if Sura is not 1 or 9 */}
+                  {selectedSura !== 1 && selectedSura !== 9 && (
+                    <div className="text-center py-3 mb-4 font-serif italic text-slate-600 text-base">
+                      {bismillah || "In the Name of Allah, the Most Gracious, the Most Merciful"}
+                    </div>
+                  )}
+
+                  {verses.map((verse) => {
+                    // Simple parsing for footnotes to display them nicely
+                    const parseFootnotes = (text?: string) => {
+                      if (!text) return [];
+                      const pattern = /\[(\d+)\]\s*(.*?)(?=\s*\[\d+\]|$)/gs;
+                      const matches = Array.from(text.matchAll(pattern));
+                      return matches.map(m => ({ id: m[1], text: m[2].trim() }));
+                    };
+
+                    const footnotesList = parseFootnotes(verse.footnotes);
+
+                    return (
+                      <div key={`${verse.sura}:${verse.aya}`} className="group relative bg-white rounded-2xl p-3 sm:p-4 border border-slate-200/60 shadow-sm hover:shadow-xl hover:shadow-blue-500/5 hover:border-blue-200 transition-all duration-300">
+                        <div className="flex flex-col sm:flex-row gap-3">
+                          {/* Aya Number Bubble */}
+                          <div className="flex-shrink-0 pt-1">
+                            <div className="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center group-hover:bg-blue-50 group-hover:border-blue-200 transition-all duration-300 shadow-sm">
+                              <span className="text-sm font-black text-slate-400 group-hover:text-blue-600 transition-colors leading-none">{verse.aya}</span>
+                            </div>
+                          </div>
+
+                          {/* Verse Text Area */}
+                          <div className="flex-grow">
+                            <p className="text-base sm:text-lg text-slate-800 leading-relaxed font-medium tracking-tight">
+                              {verse.text.split(/(\[\d+\])/).map((part, i) => {
+                                if (part.match(/\[\d+\]/)) {
+                                  return (
+                                    <span key={i} className="inline-flex items-center justify-center px-1 py-0.5 mx-0.5 bg-blue-50 text-blue-600 rounded text-[10px] font-black align-top mt-1 hover:bg-blue-500 hover:text-white transition-colors cursor-help border border-blue-100">
+                                      {part.replace('[', '').replace(']', '')}
+                                    </span>
+                                  );
+                                }
+                                return part;
+                              })}
+                            </p>
+
+                            {/* Footnotes Display */}
+                            {footnotesList.length > 0 && (
+                              <div className="mt-3 pt-3 border-t border-slate-100 space-y-2">
+                                <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-slate-400 mb-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M12 8h.01" /><path d="M11 12h1v4h1" /><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" /></svg>
+                                  Footnotes
+                                </div>
+                                {footnotesList.map((note) => (
+                                  <div key={note.id} className="flex gap-2.5 items-start bg-slate-50/50 p-2 rounded-lg border border-slate-100 hover:bg-blue-50/30 hover:border-blue-100 transition-colors">
+                                    <span className="flex-shrink-0 w-4 h-4 rounded-md bg-blue-100 text-blue-700 text-[9px] font-black flex items-center justify-center border border-blue-200 mt-0.5">
+                                      {note.id}
+                                    </span>
+                                    <p className="text-[13px] text-slate-600 leading-relaxed font-normal italic">
+                                      {note.text}
+                                    </p>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Actions column */}
+                          <div className="sm:flex-shrink-0 sm:w-8 flex sm:flex-col items-center justify-start gap-1 border-t sm:border-t-0 sm:border-l border-slate-100 pt-3 sm:pt-0 sm:pl-3">
+                            <button
+                              onClick={() => {
+                                navigator.clipboard.writeText(`${verse.text} (Al-Quran ${verse.sura}:${verse.aya})`);
+                                // Could add a toast here
+                              }}
+                              className="w-8 h-8 rounded-xl hover:bg-blue-50 text-slate-400 hover:text-blue-600 flex items-center justify-center transition-all cursor-pointer"
+                              title="Copy Verse"
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.653 2H10a2 2 0 0 0-2 2Z" /><path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2" /></svg>
+                            </button>
+                            <button
+                              className="w-8 h-8 rounded-xl hover:bg-slate-100 text-slate-300 flex items-center justify-center transition-all cursor-not-allowed"
+                              title="Play Audio (Coming Soon)"
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 4v16l13-8z" /></svg>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
             </div>
+
+            {/* Modal Footer - Stats */}
+            {!versesLoading && verses.length > 0 && (
+              <div className="p-4 px-8 border-t border-slate-100 bg-white flex justify-between items-center">
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                  Showing {verses.length} verses from Sura {selectedSura}
+                </p>
+                <div className="flex gap-2">
+                  <div className="px-3 py-1 bg-slate-50 rounded-full border border-slate-200 text-[10px] font-bold text-slate-500">
+                    Sura: {selectedSura}
+                  </div>
+                  <div className="px-3 py-1 bg-slate-50 rounded-full border border-slate-200 text-[10px] font-bold text-slate-500">
+                    Total: {verses.length}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
