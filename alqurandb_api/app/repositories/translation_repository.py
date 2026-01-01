@@ -107,9 +107,13 @@ class TranslationRepository:
         try:
             conn = self._get_db_connection()
             cursor = conn.cursor()
+            
+            # Sanitize translation_id for table name
+            sanitized_id = translation_id.replace('-', '_')
+            table_name = f"translation_{sanitized_id}"
+            
             cursor.execute(
-                'SELECT sura, aya, text FROM verses WHERE translation_id = ? ORDER BY sura, aya',
-                (translation_id,)
+                f'SELECT sura, aya, text FROM {table_name} ORDER BY sura, aya'
             )
             rows = cursor.fetchall()
             conn.close()

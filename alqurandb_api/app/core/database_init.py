@@ -37,28 +37,10 @@ def create_complete_database(db_path: Path, csv_dir: Path, metadata_file: Path) 
                 language TEXT NOT NULL,
                 translator TEXT NOT NULL,
                 name_in_language TEXT,
-                source TEXT NOT NULL
+                source TEXT NOT NULL,
+                has_footnotes INTEGER DEFAULT 0
             )
         ''')
-
-        # Create verses table
-        cursor.execute('''
-            CREATE TABLE verses (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                translation_id TEXT NOT NULL,
-                sura INTEGER NOT NULL,
-                aya INTEGER NOT NULL,
-                text TEXT NOT NULL,
-                FOREIGN KEY (translation_id) REFERENCES translations(id)
-            )
-        ''')
-
-        # Create indexes for fast queries
-        cursor.execute('CREATE INDEX idx_translation_id ON verses(translation_id)')
-        cursor.execute('CREATE INDEX idx_sura ON verses(sura)')
-        cursor.execute('CREATE INDEX idx_sura_aya ON verses(sura, aya)')
-        cursor.execute('CREATE INDEX idx_translation_sura ON verses(translation_id, sura)')
-        cursor.execute('CREATE INDEX idx_translation_sura_aya ON verses(translation_id, sura, aya)')
 
         # Load metadata
         with open(metadata_file, 'r', encoding='utf-8') as f:
@@ -79,7 +61,7 @@ def create_complete_database(db_path: Path, csv_dir: Path, metadata_file: Path) 
         total_verses = 0
         successful = 0
 
-        # Insert translations and verses
+        # Insert translations and create individual tables
         for csv_file in csv_files:
             translation_id = csv_file.stem
 
@@ -87,34 +69,84 @@ def create_complete_database(db_path: Path, csv_dir: Path, metadata_file: Path) 
                 # Get metadata
                 meta = metadata_dict.get(translation_id, {})
 
+                # Check if CSV has footnotes column
+                has_footnotes = False
+                with open(csv_file, 'r', encoding='utf-8') as f:
+                    reader = csv.DictReader(f)
+                    if 'footnotes' in reader.fieldnames:
+                        has_footnotes = True
+
                 # Insert translation metadata
                 cursor.execute(
-                    'INSERT INTO translations (id, language, translator, name_in_language, source) VALUES (?, ?, ?, ?, ?)',
+                    'INSERT INTO translations (id, language, translator, name_in_language, source, has_footnotes) VALUES (?, ?, ?, ?, ?, ?)',
                     (
                         translation_id,
                         meta.get('language', 'Unknown'),
                         meta.get('translator', 'Unknown'),
                         meta.get('name_in_language', ''),
-                        meta.get('source', 'tanzil.net')
+                        meta.get('source', 'tanzil.net'),
+                        1 if has_footnotes else 0
                     )
                 )
+
+                # Create table for this translation
+                # Sanitize table name: replace hyphens with underscores
+                table_name = f"translation_{translation_id.replace('-', '_')}"
+                
+                if has_footnotes:
+                    cursor.execute(f'''
+                        CREATE TABLE {table_name} (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            sura INTEGER NOT NULL,
+                            aya INTEGER NOT NULL,
+                            text TEXT NOT NULL,
+                            footnotes TEXT
+                        )
+                    ''')
+                else:
+                    cursor.execute(f'''
+                        CREATE TABLE {table_name} (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            sura INTEGER NOT NULL,
+                            aya INTEGER NOT NULL,
+                            text TEXT NOT NULL
+                        )
+                    ''')
+
+                # Create indexes for this translation table
+                sanitized_id = translation_id.replace('-', '_')
+                cursor.execute(f'CREATE INDEX idx_{sanitized_id}_sura ON {table_name}(sura)')
+                cursor.execute(f'CREATE INDEX idx_{sanitized_id}_sura_aya ON {table_name}(sura, aya)')
 
                 # Insert verses
                 verses = []
                 with open(csv_file, 'r', encoding='utf-8') as f:
                     reader = csv.DictReader(f)
                     for row in reader:
-                        verses.append((
-                            translation_id,
-                            int(row['sura']),
-                            int(row['aya']),
-                            row['text']
-                        ))
+                        if has_footnotes:
+                            verses.append((
+                                int(row['sura']),
+                                int(row['aya']),
+                                row['text'],
+                                row.get('footnotes', '')
+                            ))
+                        else:
+                            verses.append((
+                                int(row['sura']),
+                                int(row['aya']),
+                                row['text']
+                            ))
 
-                cursor.executemany(
-                    'INSERT INTO verses (translation_id, sura, aya, text) VALUES (?, ?, ?, ?)',
-                    verses
-                )
+                if has_footnotes:
+                    cursor.executemany(
+                        f'INSERT INTO {table_name} (sura, aya, text, footnotes) VALUES (?, ?, ?, ?)',
+                        verses
+                    )
+                else:
+                    cursor.executemany(
+                        f'INSERT INTO {table_name} (sura, aya, text) VALUES (?, ?, ?)',
+                        verses
+                    )
 
                 verse_count = len(verses)
                 total_verses += verse_count
@@ -132,8 +164,12 @@ def create_complete_database(db_path: Path, csv_dir: Path, metadata_file: Path) 
         cursor.execute('SELECT COUNT(*) FROM translations')
         translation_count = cursor.fetchone()[0]
 
-        cursor.execute('SELECT COUNT(*) FROM verses')
-        verse_count = cursor.fetchone()[0]
+        # Calculate total verses across all translation tables
+        verse_count = 0
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'translation_%'")
+        for (table_name,) in cursor.fetchall():
+            cursor.execute(f'SELECT COUNT(*) FROM {table_name}')
+            verse_count += cursor.fetchone()[0]
 
         conn.close()
 

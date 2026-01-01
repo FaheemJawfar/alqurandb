@@ -23,31 +23,55 @@ def create_translation_database(translation_id, csv_file_path, output_file):
     conn = sqlite3.connect(output_file)
     cursor = conn.cursor()
 
-    # Create table
-    cursor.execute('''
-        CREATE TABLE verses (
-            sura INTEGER NOT NULL,
-            aya INTEGER NOT NULL,
-            text TEXT NOT NULL,
-            footnotes TEXT,
-            PRIMARY KEY (sura, aya)
-        )
-    ''')
+    # Read CSV fieldnames to check for footnotes
+    with open(csv_file_path, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        has_footnotes = 'footnotes' in reader.fieldnames
+        verses_data = list(reader)
 
-    # Create index for better query performance
+    # Create table
+    if has_footnotes:
+        cursor.execute('''
+            CREATE TABLE verses (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                sura INTEGER NOT NULL,
+                aya INTEGER NOT NULL,
+                text TEXT NOT NULL,
+                footnotes TEXT
+            )
+        ''')
+    else:
+        cursor.execute('''
+            CREATE TABLE verses (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                sura INTEGER NOT NULL,
+                aya INTEGER NOT NULL,
+                text TEXT NOT NULL
+            )
+        ''')
+
+    # Create indexes for better query performance
     cursor.execute('CREATE INDEX idx_sura ON verses(sura)')
+    cursor.execute('CREATE INDEX idx_sura_aya ON verses(sura, aya)')
 
     # Insert verses from CSV
     verses = []
-    with open(csv_file_path, 'r', encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        for row in reader:
+    for row in verses_data:
+        if has_footnotes:
             verses.append((int(row['sura']), int(row['aya']), row['text'], row.get('footnotes', '')))
+        else:
+            verses.append((int(row['sura']), int(row['aya']), row['text']))
 
-    cursor.executemany(
-        'INSERT INTO verses (sura, aya, text, footnotes) VALUES (?, ?, ?, ?)',
-        verses
-    )
+    if has_footnotes:
+        cursor.executemany(
+            'INSERT INTO verses (sura, aya, text, footnotes) VALUES (?, ?, ?, ?)',
+            verses
+        )
+    else:
+        cursor.executemany(
+            'INSERT INTO verses (sura, aya, text) VALUES (?, ?, ?)',
+            verses
+        )
 
     # Commit and close
     conn.commit()

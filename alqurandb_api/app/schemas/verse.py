@@ -8,6 +8,7 @@ class VerseResponse(BaseModel):
     sura: int = Field(..., ge=1, le=114, description="Sura number (1-114)")
     aya: int = Field(..., ge=1, description="Aya number")
     text: str = Field(..., description="Verse text")
+    footnotes: str | None = Field(None, description="Footnotes for the verse")
 
 
 class VersesResponse(BaseModel):
