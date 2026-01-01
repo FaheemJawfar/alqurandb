@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: english_hilali_khan
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, '1. In the Name of Allâh, the Most Gracious, the Most Merciful', '');
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 2, '2. All the praises and thanks be to Allâh, the Lord[1] of the ‘Âlamîn (mankind, jinn and all that exists).[2]', '[1] (V.1:2) Lord: The actual word used in the Qur’ân is Rabb There is no proper equivalent for Rabb in English language. It means the One and the Only Lord for all the universe, its Creator, Owner, Organizer, Provider, Master, Planner, Sustainer, Cherisher, and Giver of security. Rabb is also one of the Names of Allâh. We have used the word "Lord" as the nearest to Rabb . All occurrences of "Lord" in the interpretation of the meanings of the Noble Qur’ân actually mean Rabb and should be understood as such.

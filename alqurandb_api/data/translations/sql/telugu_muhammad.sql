@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: telugu_muhammad
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'అనంత కరుణామయుడు అపార కరుణా ప్రదాత అయిన అల్లాహ్[1] పేరుతో[2]', '[1] అల్లాహ్ సుబ్''హానవతా''ఆలా (సు.తా.):అనేది సర్వసృష్టికర్త, మహాన్నతుడు, సర్వపోషకుడు అయిన విశ్వప్రభువు యొక్క పేరు. ఈ పేరుతో ఆయనను తప్ప మరెవ్వరినీ పిలువరాదు. దీనికి సరిసమానమైన పదం వేరే భాషలలో లేదు, ఫార్సీ భాషలోని ''ఖుదా అనే పదం తప్ప. ఇది ఒక ప్రత్యేకమైన విశేషపదం. ఈ పదానికి బహువచనం గానీ, స్త్రీలింగం గానీ లేవు. అల్లాహ్ (సు.తా.) యొక్క స్పష్టమైన నిర్వచనం కొరకు చూడండి, సూరహ్ అల్-ఇ''ఖ్లాస్(112). 
  [2] చాలా మంది వ్యాఖ్యాతల అభిప్రాయంలో, ఈ ఆయత్, సూరహ్ అల్ ఫాతి''హా యొక్క భాగం. సూరహ్ అన్ నమ్ల్ (27:30) లో ఇది ఒక ఆయత్ రూపంలో కూడా ఉంది. ప్రతి మంచి పనికి ముందు బిస్మిల్లా హిర్''హ్ మా నిర్ర''హీమ్, చదవాలి. ఉదా: భోజనానికి ముందు, వ''దూ చేసేటప్పుడు. ఖుర్ఆన్ పఠించటం ప్రారంభించేటప్పుడు బిస్మిల్లా హిర్ర''హ్ మా నిర్ర''హీమ్ కు ముందు అ''ఊజు'' బిల్లాహి మినష్షయ్''తా నిర్రజీమ్ - శపించ(బహిష్కరించ)బడిన షైతాన్ నుండి రక్షించబడటానికి నేను అల్లాహ్ (సు.తా.) శరణు వేడుకుంటున్నాను - తప్పక చదవాలి. (చూడండి అల్లాహుతా ''ఆలా ఆదేశం, 16:98). దివ్యఖుర్ఆన్ మానవులకు మార్గదర్శిని మరియు హృదయాలకు స్వస్థతనిచ్చేది. షై''తాన్ మార్గభ్రష్టత్వానికి మరియు దురాచారాలకు ప్రోత్సహిస్తాడు. కావున శపించ(బహిష్కరించ)బడిన షై''తాన్ మరియు అతడి అనుచర మూకలు రేకెత్తించే కలతల నుండి కాపాడుకోవటానికి అల్లాహుతా''ఆలా శరణు వేడుకోవాలి. ఈ ఇస్తి''ఆజ''హ్ దివ్యఖుర్ఆన్ యొక్క భాగం కాదనటంలో ఇస్లామీయ శాస్త్రవేత్తలు అందరూ ఏకీభవిస్తున్నారు. కాబట్టి ఇది దివ్యఖుర్ఆన్ లో వ్రాయబడలేదు.');

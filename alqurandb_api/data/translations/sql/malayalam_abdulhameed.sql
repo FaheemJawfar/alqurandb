@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: malayalam_abdulhameed
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'പരമകാരുണികനും കരുണാനിധിയുമായ അല്ലാഹുവിന്റെ നാമത്തില്‍ .', '');
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 2, 'സ്തുതി സര്‍വ്വലോക പരിപാലകനായ അല്ലാഹുവിന്നാകുന്നു.', '');

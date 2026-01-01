@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: lithuanian_rwwad
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, '1. Vardan Allaho, Maloningiausiojo, Gailestingiausiojo,', '');
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 2, '2. Visa šlovė ir dėkingumas – Allahui, Alamyn (žmonijos, džinų ir visa, kas egzistuoja) Viešpačiui [1].', '[1] Žodis „Viešpats“: Korane vartojamas žodis Rab, tačiau jam lietuvių kalboje nėra vieno deramo atitikmens. Rab reiškia Vienintelį visos visatos Viešpatį, jos Kūrėją, Šeimininką, visų reikalų Tvarkytoją, Aprūpintoją, Valdytoją, Planuotoją, Palaikytoją, Globėją ir Saugumo Teikėją. Rab taip pat yra vienas iš Allaho vardų. Čia pavartotas žodis „Viešpats“ kaip artimiausias arabiško žodžio Rab atitikmuo. Visame šiame Tauriojo Korano prasmių vertime sutinkamas žodis „Viešpats“ iš tiesų reiškia žodį Rab ir turi būti suprantamas pastarojo reikšme.');

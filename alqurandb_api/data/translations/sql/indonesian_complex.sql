@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: indonesian_complex
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'Dengan menyebut nama Allah Yang Maha Pemurah lagi Maha Penyayang[1].', '[1]. Berarti, saya memulai membaca Al-Fātihah ini dengan menyebut nama Allah Subḥānahu wa Ta‘ālā. Setiap pekerjaan yang baik itu, hendaknya dimulai dengan menyebut nama Allah Subḥānahu wa Ta‘ālā, seperti makan, minum, menyembelih binatang untuk dimakan, dan sebagainya. Allah Subḥānahu wa Ta‘ālā ialah nama Zat yang Maha Suci; Zat yang berhak disembah dengan sebenar-benarnya; Zat yang tidak membutuhkan makhluk-Nya, tetapi makhluk membutuhkan-Nya. Ar-Rahmān (Maha Pemurah), salah satu dari nama Allah Subḥānahu wa Ta‘ālā, yang memberi pengertian bahwa Allah Subḥānahu wa Ta‘ālā melimpahkan karunia-Nya kepada makhluk-Nya. Ar-Rahīm (Maha Penyayang) memberi pengertian bahwa Allah Subḥānahu wa Ta‘ālā senantiasa bersifat rahmat, selalu melimpahkan rahmat-Nya kepada makhluk-Nya.');
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 2, 'Segala puji[2] bagi Allah, Tuhan[3] semesta alam.', '[2]. Alḥamdu (segala puji). Jika memuji orang karena perbuatannya yang baik; yang dikerjakan dengan kemauannya sendiri maka memuji Allah Subḥānahu wa Ta‘ālā berarti menyanjung-Nya karena perbuatan-Nya yang baik. Lain halnya dengan syukur yang berarti mengakui keutamaan seseorang terhadap nikmat yang diberikan-Nya. Kita menghadapkan segala puji kepada Allah Subḥānahu wa Ta‘ālā karena Allah Subḥānahu wa Ta‘ālā adalah sumber dari segala kebaikan yang patut dipuji. 

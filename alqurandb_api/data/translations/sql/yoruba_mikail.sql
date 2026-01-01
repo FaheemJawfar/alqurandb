@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: yoruba_mikail
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'Ní orúkọ Allāhu, Àjọkẹ́-ayé, Àṣàkẹ́-ọ̀run.[1]', '[1] Sūratun Mọkkiyyah túmọ̀ sí sūrah tí ó sọ̀kalẹ̀ ṣíwájú Hijrah. Bákan náà, sūratun Mọdaniyyah túmọ̀ sí sūrah tí ó sọ̀kalẹ̀ lẹ́yìn Hijrah.');
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 2, 'Gbogbo ẹyìn[1] ń jẹ́ ti Allāhu, Olúwa[2] gbogbo ẹ̀dá (àgbáńlá ayé àti ọ̀run),', '[1] Nínú èdè Lárúbáwá, “hamd” yàtọ̀ sí “ṣukr” àmọ́ ìtúmọ̀ ìkíní kejì fẹ́ súnmọ́ ara wọn. Ìtúmọ̀ “hamd” ni “ẹyìn” èyí tí a sọ jáde ní ẹnu pẹ̀lú ìfẹ́ àti gbígbé-títóbi fún ẹni tí ẹyìn tọ́ sí nítorí pé ẹni náà jẹ́ ẹni tí ó pé tán pátápátá tí kò kù sí ibì kan kan níbi pàápàá rẹ̀, àwọn ìròyìn rẹ̀ àti àwọn ìṣe rẹ̀. Kò sì sí ẹni tí ó pé tán pátápátá bí kò ṣe Allāhu - Ọba tó ga jùlọ -. Nítorí náà, Allāhu nìkan ṣoṣo ni a gbọ́dọ̀ máa yìn gẹ́gẹ́ bí ó ṣe jẹ́ pé, Òun nìkan náà ni a gbọ́dọ̀ máa jọ́sìn fún ní ọ̀nà òdodo. [2] Ọ̀rọ̀ yìí “rọbb” (Olúwa), ó kó ọ̀rọ̀ mẹ́ta sínú. Dídá ẹ̀dá, ṣíṣe ìjọba lórí ẹ̀dá tàbí níni ẹ̀dá àti dídarí ọ̀rọ̀ ẹ̀dá. Nígbà tí a bá pe Allāhu ní “rọbb” (Olúwa), gbogbo ìwọ̀nyẹn ló kó sínú nítorí pé, Allāhu ni Ẹlẹ́dàá wa, tiRẹ̀ ni ìjọba lórí gbogbo ẹ̀dá, Òun sì ni Ó ń darí kádàrá ẹ̀dá. Nítorí náà, Allāhu ni Olúwa wa.');

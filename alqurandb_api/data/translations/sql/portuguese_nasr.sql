@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: portuguese_nasr
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'Em nome de Allah, O Misericordioso, O Misericordiador [1]', '[1] Por forma reduzida da frase árabe Bismillahi Ar-Rahmani Ar-Rahími (Em nome de Deus, O Misericordioso, O Misericordiador), denomina-se este versículo Al Basmalah, que a maioria dos exegetas considera, de fato, o primeiro versículo desta sura, embora haja quem a julgue mera epígrafe, não só anteposta a esta mas a todas as suras do Alcorão, com exceção da IX. Al Basmalah constitui, na tradição islâmica, fórmula invocativa fundamental, que todo moslim deve proferir antes de cada ato, não só para assegurar-se das benções de Deus, o Dador Sublime da misericórdia, senão também para invocar-Lhe ajuda em todos seus atos, que nunca se completarão sem ela. Quanto a iniciar-se, sempre, cada sura com Al Basmalah, demonstra que tudo quanto encerra, sejam preceitos, informes ou regras morais, é proveniente de Deus e por Ele ordenado, sem intervenção alguma de qualquer outra criatura que seja. Ademais, por meio desta atitude de prece, pode o homem esmerar-se espiritualmente e dilatar o conhecimento de si próprio e do universo que o rodeia. Quanto aos epítetos, integrantes de Al Basmalah: O Misericordios,Misericordiador, traduzem, respectivamente, as palavras árabes Ar-Rahmān e Ar-Rahīm, cognatos do substantivo rahmah, misericórdia, com a peculiaridade, porém, de que Ar-Rahmān é epíteto intrínseco e exclusivo de Deus. Na literatura luso-brasileira, esta sutileza epitética é, igualmente, utilizada por «vieira», como se pode verificar no sermão do Quarto Sábado da Quaresma, pregado em 1640 (Vide Sermões de Vieira, Editora Lello e irmãos, 1959, vol. III, p. 362), quando designa a Deus, por Sua misericórdia, fazendo uso de duas palavras latinas, Misericors et Miserator, estabelecendo-lhes a diferença,na tradução, por meio de dois sufixos: -oso, com o sentido de "pleno de, cheio de",e de -dor, sufixo agentivo com a idéia de "o que faz", "o que dá", acrescidos à palavra misericórdia, de onde: "Não só chamam a Deus Misericordioso, senão Misericordiador". Quanto à palavra Misericordiador, devemos dizer que, até onde nos foi possível pesquisar, parece tratar-se de um neologismo vieirense e que acabou por resolver-nos o crucial problema de tradução de Ar-Rahim: Aquele que dá misericórdia, até então não cogitado satisfatoriamente, pelos tradutores do Alcorão para o português. Ademais, é palavra consignada por Moraes e Aulete, o que nos reafirma o acerto em adotá-la em nossa tradução.');
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 2, 'Louvor a Allah, O Senhor dos mundos.[1]', '[1] O Senhor dos mundos, ou seja, O Soberano de todas as criaturas: homens, anjos, animais e tudo o mais que constitui o mundo. Esta forma apositiva estabelece o limite entre a disciplina e a anarquia na crença e demonstra que todo o Universo deve dirigir-se a um único Senhor, cuja soberania é infalível, contínua, harmônica e onipresente.');

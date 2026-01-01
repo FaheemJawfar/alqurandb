@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: swahili_barawani
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'KWA JINA LA MWENYEEZI MUNGU MWINGI WA REHEMA MWENYE KUREHEMU . [1]', '[1] Sura inaanza kwa Jina la Mwenyezi Mungu ambaye hapana anayefaa kuabudiwa ila Yeye aliye sifika kwa kila sifa za ukamilifu, na ametakasika na kila la upungufu. Yeye ndiye Mwenye rehema ambaye ananeemesha kwa neema kubwa na ndogo, na za kuwapa wote, na za kuwapa walio khusika. Na Yeye ndiye mwenye kusifika kwa sifa ya Rehema yenye kudumu. (Kauli ya mwanzo aliyo semezwa Mtume s.a.w. na kuamrishwa na Mwenyezi Mungu ni "Iqra` bismi Rabbika", yaani: "Soma kwa jina la Mola wako Mlezi!" Naye Mtume s.a.w. amesema: "Jambo lolote lisilo anziwa kwa Bismillahi ni pungufu." Kila Sura ya Qur''ani, isipo kuwa Sura Attawba, imeanziwa kwa Bismillahi Rrahmani Rrahim.)');
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 2, 'Sifa njema zote ni za Mwenyeezi Mungu, Mola Mlezi wa viumbe vyote; [2]', '[2] Sifa njema za namna yote na katika kila hali ni za Mwenyezi Mungu pekee. Na tunamsifu Yeye kwa sifa zote kwa sababu Yeye ndiye mwenye kuviumba viumbe vyote na mwenye kuviangalia na kuvilea. (Neno Rabb, kwa Kiarabu, lina maana ya Ubwana na Ulezi na Utengenezaji. Ndiyo tukatumia Mola Mlezi. Neno Baba lina upungufu.)');

@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: spanish_garcia
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, '1. En el nombre de Dios[1], el Compasivo con toda la creación, el Misericordioso con los creyentes[2].', '[1] Al-lahالله : Es un nombre propio exclusivo de Dios, el Único y Todopoderoso, Creador y Sustentador de los cielos y la Tierra y de todo lo que hay en ellos, el Eterno y Absoluto, el merecedor de toda forma de adoración. La forma de pronunciarlo es la siguiente: “Al-laj”, con la “jota andaluza” suave y aspirada, o la hache inglesa, enfatizando en la pronunciación de la “L”. Es sabido que cada idioma tiene uno o varios términos para referirse a Dios y, en ocasiones, para otras deidades. Éste no es el caso de “Al-lah”. “Al-lah” (del árabe al-ilah: el Dios) es el único nombre de Dios, no tiene género ni plural; por tanto, es un término que señala la unidad de lo designado. Cuando los contemporáneos del Profeta le preguntaron acerca de Dios, él recibió como revelación del capítulo 112, que resume la esencia del monoteísmo y unicidad de Dios: no ha engendrado, no ha sido engendrado, nada ni nadie es semejante a Él. El Islam rechaza cualquier intento de caracterizar a Dios, y menos aun tomando rasgos humanos que hagan prevalecer a una raza sobre las demás.
 [2] Ar-Rahman الرحمن y Ar-Rahim الرحيم son dos palabras derivadas del árabe rahma رحمة que significa misericordia. En la lengua árabe ambos tienen el significado superlativo de “Misericordiosísimo”. Mediante la cita de ambos nombres se intenta dar un significado más completo. Ar-Rahman, traducido como el Compasivo, implica un significado más amplio, que es misericordioso hacia toda la creación. La justicia es parte de esta compasión. Ar-Rahim, traducido como Misericordioso, incluye el concepto de especificidad, es decir, una forma especial de misericordia concedida solamente a los creyentes. El perdón es parte de esta misericordia.');

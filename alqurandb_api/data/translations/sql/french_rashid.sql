@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: french_rashid
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, '1 Au nom d’Allah, le Tout Miséricordieux, le Très Miséricordieux[2].', '[2] Nombreux sont les exégètes qui expliquent la différence entre le nom divin « Ar-Rahmân » (traduit ici par « le Tout Miséricordieux ») et le nom « Ar-Rahîm » (traduit par « le Très Miséricordieux »), tous deux tirés de l’attribut divin « Ar-Rahmah » (la miséricorde), de cette manière : Allah est Tout Miséricordieux dans Son Essence, Très Miséricordieux envers Ses créatures.');
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 2, '2 Louange à Allah, Seigneur de la Création[3],', '[3] Littéralement : des mondes, c’est-à-dire, expliquent les exégètes, le Seigneur de tout ce qui existe en dehors du Créateur, d’où notre traduction.');

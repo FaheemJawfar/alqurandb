@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: persian_khorramdel
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'به نام خداوند بخشنده‌ی مهربان. [[«بِسْمِ»: فراهم آمده است از (بِ) و (اِسْمِ). یعنی: کارم را با نام خدا آغاز می‌کنم؛ نه به نام چیز دیگری، و نه به فرمان دل یا کس دیگری. واژه (اِسْم) از ماده (سُمُوّ) به معنی عُلُوّ، یا (وسم) به معنی علامت و نشانه است. «اللهِ»: اسم خاصّ است برای خدا. اصل آن (إِلاه) بوده و مصدری است بر وزن (فِعال) به معنی مفعول، یعنی (مَأْلُوه) به معنی معبود می‌باشد. همان گونه که مصدر (خَلْق) به معنی مخلوق است (نگا: لقمان / 11). «الرَّحْمنِ»: دارای مهر فراوان (نگا: أعراف / 156). «الرَّحِیمِ»: دارای مهر همیشگی.]]', '');
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 2, 'ستایش خداوندی را سزا است که پروردگار جهانیان است. [[«رَبِّ»: پروردگار. مصدری است به معنی تربیت، و در اینجا در معنی اسم فاعل، یعنی مربّی به کار رفته است، و صفت (الله) می‌باشد. «الْعَالَمِینَ»: جهانیان، جهانها. هر صنفی از اصناف آفریدگان. اسم آلت است و به معنی آنچه خدا بدان شناخته شود. از راه تغلیب به صورت جمع مذکّر سالم با (ین) جمع بسته شده است.]]', '');

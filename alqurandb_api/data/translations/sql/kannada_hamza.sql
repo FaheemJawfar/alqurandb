@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: kannada_hamza
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'ಪರಮ ದಯಾಮಯನೂ ಕರುಣಾನಿಧಿಯೂ ಆದ ಅಲ್ಲಾಹನ ನಾಮದಿಂದ.[1]', '[1] ಅಲ್ಲಾಹನ ಹೆಸರಿನ ಮೂಲಕ ಸಹಾಯವನ್ನು ಬೇಡುತ್ತಾ ನಾನು ಪವಿತ್ರ ಕುರ್‌ಆನ್ ಪಠಣವನ್ನು ಆರಂಭಿಸುತ್ತೇನೆ. ''ಅಲ್ಲಾಹು'' ಎಂಬುದು ಅಲ್ಲಾಹನ ವಿಶೇಷ ಹೆಸರು. ಈ ಹೆಸರು ಅಲ್ಲಾಹನಿಗೆ ಮಾತ್ರ ಸೀಮಿತವಾಗಿದ್ದು, ಇತರ ಯಾರನ್ನೂ ಈ ಹೆಸರಿನಿಂದ ಕರೆಯುವ ಹಾಗಿಲ್ಲ. ಅಲ್ಲಾಹು ಎಂದರೆ ಏಕೈಕ ಸತ್ಯದೇವ ಅಥವಾ ಏಕೈಕ ಪರಮೋಚ್ಛ ದೇವ.');
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 2, 'ಸರ್ವಲೋಕಗಳ ಪರಿಪಾಲಕನಾದ[1] ಅಲ್ಲಾಹನಿಗೆ ಸರ್ವಸ್ತುತಿ.[2]', '[1] ಇಲ್ಲಿ ''ರಬ್ಬ್'' ಅನ್ನು ಪರಿಪಾಲಕ ಎಂದು ಅನುವಾದ ಮಾಡಲಾಗಿದೆ. ರಬ್ಬ್ ಎಂದರೆ ಎಲ್ಲಾ ಸೃಷ್ಟಿಗಳನ್ನು ಸೃಷ್ಟಿಸಿ, ಅವುಗಳ ಎಲ್ಲಾ ಅಗತ್ಯಗಳನ್ನು ಪೂರೈಸಿ, ಅವುಗಳನ್ನು ಹಂತ ಹಂತವಾಗಿ ಬೆಳೆಸುತ್ತಾ ನಿಯಂತ್ರಿಸುತ್ತಾ ಪರಿಪೂರ್ಣತೆಗೆ ತಲುಪಿಸುವವನು. ''ಆಲಮೀನ್'' ಎಂದರೆ ಲೋಕಗಳು ಅಥವಾ ಪ್ರಪಂಚಗಳು. ಇಲ್ಲಿ ಲೋಕಗಳು ಎಂದರೆ, ಮನುಷ್ಯರ ಲೋಕ, ದೇವದೂತರ ಲೋಕ, ಯಕ್ಷಗಳ ಲೋಕ, ಪ್ರಾಣಿಗಳ ಲೋಕ, ಪಕ್ಷಿಗಳ ಲೋಕ ಇತ್ಯಾದಿ. ಅಲ್ಲಾಹನ ಹೊರತಾದುದೆಲ್ಲವೂ ಲೋಕಗಳಾಗಿದ್ದು ಅವನು ಈ ಎಲ್ಲಾ ಲೋಕಗಳ ಪಾಲನೆ-ಪೋಷಣೆ ಮಾಡುವವನಾಗಿದ್ದಾನೆ. 

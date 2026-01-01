@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: punjabi_arif
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, '1਼ ਸ਼ੁਰੂ (ਕਰਦਾ ਹਾਂ) ਅੱਲਾਹ ਦੇ ਨਾਂ ਨਾਲ ਜਿਹੜਾ ਅਤਿਅੰਤ ਮਿਹਰਬਾਨ ਅਤੇ ਰਹਿਮ ਫ਼ਰਮਾਉਣ ਵਾਲਾ ਹੈ।', '');
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 2, '2਼ ਸਾਰੀਆਂ ਤਾਰੀਫ਼ਾਂ ਤੇ ਸ਼ੁਕਰਾਨੇ ਉਸ ਅੱਲਾਹ ਲਈ ਹਨ ਜਿਹੜਾ ਕੁੱਲ ਜਹਾਨਾਂ ਦਾ ਰੱਬ ਹੈ। 2', '2 ‘ਰਬ’ ਅੱਲਾਹ ਦੇ ਸਿਫ਼ਾਤੀ (ਗੁਣਵਾਨ) ਨਾਵਾਂ ਵਿਚੋਂ ਹੇ। ਇਸ ਦਾ ਅਰਥ ਹੈ ਸਾਰੀ ਸਰਿਸ਼ਟੀ ਭਾਵ ਦੁਨੀਆਂ ਜਹਾਨ ਦਾ ਪਾਲਣਹਾਰ, ਸਿਰਜਣਹਾਰ, ਹਾਕਮ, ਸਰਿਸ਼ਟੀ ਦੀ ਦੇਖਭਾਲ, ਸ਼ਾਸਨ ਚਲਾਉਣ ਵਾਲਾ ਅਤੇ ਦਾਤਾ ਆਦਿ।');

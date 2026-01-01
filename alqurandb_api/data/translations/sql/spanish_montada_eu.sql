@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: spanish_montada_eu
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, '(Empiezo)[2] con el nombre de Al-lah[3], el Clemente, el Misericordioso[4].', '[2] A pesar de que, tradicionalmente, el encabezamiento de cada sura, conocido como el basmalah, ha sido traducido como «En el nombre de Al-lah […]», la mayoría de los comentaristas opinan que debe sobrentenderse: «Empiezo la recitación del Corán con el nombre de Al-lah, buscando ayuda en Él, […]»; por este motivo esta traducción ha optado por una expresión más cercana a su significado real, pero abreviada. No hay un consenso acerca de si el basmalah constituye la primera aleya (o verso coránico) de esta sura o simplemente la encabeza como en el resto de los capítulos del Sagrado Corán —con la excepción de la sura 9 (At-Taubah), donde no aparece— aunque la opinión más extendida es la de considerarla como la primera aleya de la sura Al Fatihah.
 [3] Al-lah es el nombre propio de Dios en árabe. A diferencia de la palabra Dios, el término «Al-lah» no tiene plural, por lo que no da pie a ambigüedades, y proviene del artículo árabe al más la palabra ilah (divinidad, el que es adorado); así pues, significa: el (único) que merece ser adorado. Cabe destacar que el nombre que Dios recibe en siriaco es Alaha, muy cercano a Al-lah. Y entre las palabras hebreas que más se utilizan para designar a Dios y que aparecen en la Biblia, se encuentran: Eloh, Elah y su plural mayestático Elohim. Al-lah aparece a veces escrito como Allah o transliterado al español como Alá; en cualquier caso hace referencia al Único y Verdadero Dios, que es el mismo Dios de los cristianos y judíos.

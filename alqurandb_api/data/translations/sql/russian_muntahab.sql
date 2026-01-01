@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: russian_muntahab
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'Сура начинается именем Аллаха Единого, Совершенного, Всемогущего, Безупречного. Он - Милостивый, Податель Блага (великого и малого, общего и частного) и вечно Милосердный. [[Во имя Аллаха Милостивого, Милосердного! Эта сура мекканского происхождения. Она была ниспослана пророку Мухаммаду - да благословит его Аллах и приветствует! - до хиджры. Сура состоит из 7 айатов. Она называется "Открывающая Книгу" (аль-Фатиха), потому что это первая сура по порядку расположения в Благородном Коране и первая сура, ниспосланная полностью. В этой суре говорится о совокупности идей и общем значении Корана, который подтверждает единобожие, является благой вестью для верующих, предупреждает о наказании неверующих и грешников, указывает на необходимость поклонения Господу, на путь к счастью в настоящей и будущей жизни и рассказывает о тех, которые повиновались Аллаху и обрели блаженство, и о тех, которые не повиновались Ему и оказались в убытке, и поэтому эта сура называется "Мать Книги".]]', '');
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 2, 'Все виды прекраснейшей хвалы Аллаху Единому за всё, что Он предопределил для Своих рабов! Вся слава Аллаху - Творцу и Господу обитателей миров!', '');

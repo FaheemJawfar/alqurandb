@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: urdu_junagarhi
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'شروع کرتا ہوں اللہ تعالیٰ کے نام سے جو بڑا مہربان نہایت رحم واﻻ ہے۔[1]', '[1] بسم اللہ کے آغاز میں أَقْرَأُ، أَبْدَأُ یا أَتْلُوا محذوف ہے یعنی اللہ کے نام سے پڑھتا، یا شروع کرتا یا تلاوت کرتا ہوں۔ ہر اہم کام کے شروع کرنے سے پہلے بسم اللہ پڑھنے کی تاکید کی گئی ہے۔ چنانچہ حکم دیا گیا ہے کہ کھانے، ذبح، وضو اور جماع سے پہلے بسم اللہ پڑھو۔ تاہم قرآن کریم کی تلاوت کے وقت ”بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ“ سے پہلے ”أَعُوذُ بِاللهِ مِنَ الشَّيْطَانِ الرَّجِيمِ“ پڑھنا بھی ضروری ہے «فَإِذَا قَرَأْتَ الْقُرْآنَ فَاسْتَعِذْ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ» (النحل:98) ”جب تم قرآن کریم پڑھنے لگو تو اللہ کی جناب میں شیطان رجیم سے پناہ مانگو۔“');
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 2, 'سب تعریف اللہ تعالیٰ کے لئے ہے[1] جو تمام جہانوں کا پالنے واﻻ ہے۔[2]', '[1] اَلْحَمْدُ میں ”ال“ استغراق یا اختصاص کے لئے ہے، یعنی تمام تعریفیں اللہ کے لئے ہیں، یا اس کے لئے خاص ہیں، کیوں کہ تعریف کا اصل مستحق اور سزاوار صرف اللہ تعالیٰ ہے۔ کسی کے اندر کوئی خوبی، حسن یا کمال ہے تو وہ بھی الله تعالیٰ کا پیدا کردہ ہے اس لئے حمد (تعریف) کا مستحق بھی وہی ہے۔ ”اللہ“ یہ اللہ کا ذاتی نام ہے، اس کا استعمال کسی اور کے لئے جائز نہیں۔ الْحَمْدُ للهِ یہ کلمہ شکر ہے جس کی بڑی فضیلت احادیث میں آئی ہے۔ ایک حدیث میں لا إِلَهَ إلا اللهُ أَفْضَلُ الذِّكْرِ اور الْحَمْدُ للهِ کو أَفْضَلُ الدُّعَاءِ کہا گیا ہے۔ (ترمذی، نسائی وغیرہ) صحیح مسلم اور نسائی کی روایت میں ہے «الْحَمْدُ للهِ تَمْلأُ الْمِيزَانَ» ”الْحَمْدُ للهِ میزان کو بھر دیتا ہے۔“ اسی لئے ایک اور حدیث میں آتا ہے کہ اللہ اس بات کو پسند فرماتا ہے کہ ہر کھانے اور پینے پر بندہ اللہ کی حمد کرے۔ (صحیح مسلم) ۔

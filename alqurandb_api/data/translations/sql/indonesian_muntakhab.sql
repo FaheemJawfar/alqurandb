@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: indonesian_muntakhab
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, '[[1 ~ FATIHAH AL-KITAB (PEMBUKA KITAB SUCI) Pendahuluan: Makkiyyah, 7 ayat ~ Surat al-Fâtihah ini termasuk kelompok surat Makkiyyah yang turun di Mekah sebelum hijrah. Disebut al-Fâtihah (pembuka), karena letaknya yang berada urutan pertama surat-surat al-Qur''ân. Surat yang pertama diturunkan secara lengkap di antara surat-surat yang ada dalam al-Qur''ân ini merupakan intisari dari seluruh kandungan al-Qur''ân yang kemudian diperinci oleh surat-surat sesudahnya. Tema-tema pokok al-Qur''ân--seperti penjelasan tawhid dan keimanan, janji dan kabar gembira bagi orang-orang Mukmin, ancaman dan peringatan bagi orang-orang kafir dan pelaku kejahatan, tentang ibadah, kisah orang-orang yang beruntung karena taat kepada Allah dan sengsara karena mengingkari-Nya--semua itu tercermin secara singkat dalam surat ini. Oleh sebab itu, surat ini juga disebut dengan nama Umm al-Kitâb (induk al-Qur''ân).]] Surat ini dimulai dengan menyebut nama Allah--satu-satunya Tuhan yang berhak disembah--Yang memiliki seluruh sifat kesempurnaan dan tersucikan dari segala bentuk kekurangan. Dialah Pemilik rahmah (sifat kasih) yang tak habis-habisnya, Yang menganugerahkan segala macam kenikmatan, baik besar maupun kecil.', '');
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 2, 'Segala puja dan puji kita persembahkan kepada Allah semata, karena Dialah Yang menciptakan dan memelihara seluruh makhluk.', '');

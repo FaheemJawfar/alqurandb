@@ -1,19 +1,41 @@
 -- AlQuranDB SQL Dump
 -- Translation: albanian_nahi
 -- Total Verses: 6236
+-- Compatible with: MySQL, PostgreSQL, SQLite
 
 DROP TABLE IF EXISTS verses;
+
+-- For MySQL (default):
 CREATE TABLE verses (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
     footnotes TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX idx_sura ON verses(sura);
-CREATE INDEX idx_sura_aya ON verses(sura, aya);
+-- For PostgreSQL:
+-- CREATE TABLE verses (
+--     id SERIAL PRIMARY KEY,
+--     sura INT NOT NULL,
+--     aya INT NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
 
+-- For SQLite:
+-- CREATE TABLE verses (
+--     id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     sura INTEGER NOT NULL,
+--     aya INTEGER NOT NULL,
+--     text TEXT NOT NULL,
+--     footnotes TEXT
+-- );
+
+CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
+CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+
+-- Insert statements
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'Me emrin e Allahut, të Gjithëmëshirshmit, Mëshirëplotit![1]', '[1] Kjo formulë quhet El-Besmele në terminologjinë islame dhe ndodhet në fillim të çdo sureje të Kuranit, përveç sures së nëntë. Ajo është një thirrje që i drejtohet Allahut të Madhëruar, në mënyrë që Ai ta pranojë dhe ta bekojë veprimin që nis me këtë formulë. Besmele-ja përbëhet nga dy pjesë: përmendja e emrit të Allahut (bismil-lâh) dhe përmendja e dy prej cilësive të Tij, me të cilat Ai ka dashur që robërit e Vet ta identifikojnë: Er-Rahmân dhe Er-Rahîm (i Gjithëmëshirshmi, Mëshirëploti). Kur shqipton pjesën e parë të formulës, myslimani thotë: “Me emrin e Allahut e nis leximin”. Më pas vazhdon me dy cilësitë: Er-Rahmân dhe Er-Rahîm, të cilët rrjedhin nga e njëjta rrënjë rahima që do të thotë “të mëshirosh”. Në lidhje me dallimin midis këtyre dy emrave të Allahut janë bërë trajtesa të shumta e të gjata, sepse, siç ndodh gjithmonë, para Madhështisë së Allahut dituria dhe njohuria njerëzore kanë gjithnjë diçka për të thënë. Sipas disa komenteve, emri Er-Rahmân do të thotë “i Mëshirshëm dhe Përdëllyes për të gjitha krijesat”, prandaj është përkthyer “I Gjithëmëshirshmi”, kurse emri Er-Rahîm, edhe pse tregon një mëshirë të pakufishme, sipas komentuesve të Kuranit, kjo mëshirë është e veçantë vetëm për besimtarët. Ky emër është përkthyer “Mëshirëploti”.');
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 2, 'Çdo lavdërim i përket Allahut, Zotit të botëve,', '');
