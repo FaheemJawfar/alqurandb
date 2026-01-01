@@ -16,6 +16,13 @@ from openpyxl.styles import Font, PatternFill, Alignment
 def create_translation_excel(translation_id, csv_file_path, metadata_item, output_file):
     """Create Excel file for a single translation from CSV"""
 
+    # Check for footnotes in CSV header
+    has_footnotes = False
+    with open(csv_file_path, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        if 'footnotes' in reader.fieldnames:
+            has_footnotes = True
+
     # Create workbook
     wb = Workbook()
     ws = wb.active
@@ -25,7 +32,8 @@ def create_translation_excel(translation_id, csv_file_path, metadata_item, outpu
     ws.column_dimensions['A'].width = 10
     ws.column_dimensions['B'].width = 10
     ws.column_dimensions['C'].width = 80
-    ws.column_dimensions['D'].width = 80
+    if has_footnotes:
+        ws.column_dimensions['D'].width = 80
 
     # Header row styling
     header_fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
@@ -35,7 +43,11 @@ def create_translation_excel(translation_id, csv_file_path, metadata_item, outpu
     # Add metadata at the top
     ws['A1'] = "Translation Information"
     ws['A1'].font = Font(bold=True, size=14)
-    ws.merge_cells('A1:D1')
+    
+    if has_footnotes:
+        ws.merge_cells('A1:D1')
+    else:
+        ws.merge_cells('A1:C1')
 
     ws['A2'] = "ID:"
     ws['B2'] = translation_id
@@ -50,26 +62,34 @@ def create_translation_excel(translation_id, csv_file_path, metadata_item, outpu
     else:
         header_row = 6
 
-    # Add column headers
-    headers = ['Sura', 'Aya', 'Text', 'Footnotes']
-    for col, header in enumerate(headers, start=1):
-        cell = ws.cell(row=header_row, column=col)
-        cell.value = header
-        cell.fill = header_fill
-        cell.font = header_font
-        cell.alignment = header_alignment
-
     # Add verses from CSV
     verse_count = 0
     row = header_row + 1
 
+
+    # Re-open to read data cleanly
     with open(csv_file_path, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
+        
+        # Add column headers dynamically
+        headers = ['Sura', 'Aya', 'Text']
+        if has_footnotes:
+            headers.append('Footnotes')
+            
+        for col, header in enumerate(headers, start=1):
+            cell = ws.cell(row=header_row, column=col)
+            cell.value = header
+            cell.fill = header_fill
+            cell.font = header_font
+            cell.alignment = header_alignment
+
         for data_row in reader:
             ws.cell(row=row, column=1, value=int(data_row['sura']))
             ws.cell(row=row, column=2, value=int(data_row['aya']))
             ws.cell(row=row, column=3, value=data_row['text'])
-            ws.cell(row=row, column=4, value=data_row.get('footnotes', ''))
+            
+            if has_footnotes:
+                ws.cell(row=row, column=4, value=data_row.get('footnotes', ''))
 
             # Align numbers to center
             ws.cell(row=row, column=1).alignment = Alignment(horizontal="center")
@@ -77,7 +97,8 @@ def create_translation_excel(translation_id, csv_file_path, metadata_item, outpu
 
             # Wrap text for better readability
             ws.cell(row=row, column=3).alignment = Alignment(wrap_text=True, vertical="top")
-            ws.cell(row=row, column=4).alignment = Alignment(wrap_text=True, vertical="top")
+            if has_footnotes:
+                ws.cell(row=row, column=4).alignment = Alignment(wrap_text=True, vertical="top")
 
             row += 1
             verse_count += 1
