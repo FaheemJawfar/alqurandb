@@ -29,6 +29,7 @@ def create_sql_dump(translation_id, csv_file_path, output_file):
         f.write("    sura INT NOT NULL,\n")
         f.write("    aya INT NOT NULL,\n")
         f.write("    text TEXT NOT NULL,\n")
+        f.write("    footnotes TEXT,\n")
         f.write("    PRIMARY KEY (sura, aya)\n")
         f.write(");\n\n")
 
@@ -36,7 +37,8 @@ def create_sql_dump(translation_id, csv_file_path, output_file):
         f.write("BEGIN;\n")
         for row in verses:
             text = row['text'].replace("'", "''") # Escape single quotes
-            f.write(f"INSERT INTO verses (sura, aya, text) VALUES ({row['sura']}, {row['aya']}, '{text}');\n")
+            footnotes = row.get('footnotes', '').replace("'", "''")
+            f.write(f"INSERT INTO verses (sura, aya, text, footnotes) VALUES ({row['sura']}, {row['aya']}, '{text}', '{footnotes}');\n")
         f.write("COMMIT;\n")
 
     return len(verses)

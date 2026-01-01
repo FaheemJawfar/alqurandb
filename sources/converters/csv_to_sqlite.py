@@ -29,6 +29,7 @@ def create_translation_database(translation_id, csv_file_path, output_file):
             sura INTEGER NOT NULL,
             aya INTEGER NOT NULL,
             text TEXT NOT NULL,
+            footnotes TEXT,
             PRIMARY KEY (sura, aya)
         )
     ''')
@@ -41,10 +42,10 @@ def create_translation_database(translation_id, csv_file_path, output_file):
     with open(csv_file_path, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            verses.append((int(row['sura']), int(row['aya']), row['text']))
+            verses.append((int(row['sura']), int(row['aya']), row['text'], row.get('footnotes', '')))
 
     cursor.executemany(
-        'INSERT INTO verses (sura, aya, text) VALUES (?, ?, ?)',
+        'INSERT INTO verses (sura, aya, text, footnotes) VALUES (?, ?, ?, ?)',
         verses
     )
 

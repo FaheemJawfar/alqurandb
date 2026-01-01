@@ -24,7 +24,8 @@ def create_translation_excel(translation_id, csv_file_path, metadata_item, outpu
     # Set column widths
     ws.column_dimensions['A'].width = 10
     ws.column_dimensions['B'].width = 10
-    ws.column_dimensions['C'].width = 100
+    ws.column_dimensions['C'].width = 80
+    ws.column_dimensions['D'].width = 80
 
     # Header row styling
     header_fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
@@ -34,7 +35,7 @@ def create_translation_excel(translation_id, csv_file_path, metadata_item, outpu
     # Add metadata at the top
     ws['A1'] = "Translation Information"
     ws['A1'].font = Font(bold=True, size=14)
-    ws.merge_cells('A1:C1')
+    ws.merge_cells('A1:D1')
 
     ws['A2'] = "ID:"
     ws['B2'] = translation_id
@@ -50,7 +51,7 @@ def create_translation_excel(translation_id, csv_file_path, metadata_item, outpu
         header_row = 6
 
     # Add column headers
-    headers = ['Sura', 'Aya', 'Text']
+    headers = ['Sura', 'Aya', 'Text', 'Footnotes']
     for col, header in enumerate(headers, start=1):
         cell = ws.cell(row=header_row, column=col)
         cell.value = header
@@ -68,6 +69,7 @@ def create_translation_excel(translation_id, csv_file_path, metadata_item, outpu
             ws.cell(row=row, column=1, value=int(data_row['sura']))
             ws.cell(row=row, column=2, value=int(data_row['aya']))
             ws.cell(row=row, column=3, value=data_row['text'])
+            ws.cell(row=row, column=4, value=data_row.get('footnotes', ''))
 
             # Align numbers to center
             ws.cell(row=row, column=1).alignment = Alignment(horizontal="center")
@@ -75,6 +77,7 @@ def create_translation_excel(translation_id, csv_file_path, metadata_item, outpu
 
             # Wrap text for better readability
             ws.cell(row=row, column=3).alignment = Alignment(wrap_text=True, vertical="top")
+            ws.cell(row=row, column=4).alignment = Alignment(wrap_text=True, vertical="top")
 
             row += 1
             verse_count += 1

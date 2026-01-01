@@ -117,16 +117,18 @@ def download_csv_from_quranenc(translation_id: str, source_file: Path, csv_file:
             csv_reader = csv.DictReader(lines[csv_start_idx:])
             for row in csv_reader:
                 # Normalize column names: translation -> text (keep sura and aya as-is)
+                # Keep footnotes if present
                 normalized_row = {
                     'sura': row['sura'],
                     'aya': row['aya'],
-                    'text': row['translation']
+                    'text': row['translation'],
+                    'footnotes': row.get('footnotes', '')
                 }
                 normalized_rows.append(normalized_row)
 
         # Write normalized CSV
         with open(csv_file, 'w', encoding='utf-8', newline='') as f:
-            writer = csv.DictWriter(f, fieldnames=['sura', 'aya', 'text'])
+            writer = csv.DictWriter(f, fieldnames=['sura', 'aya', 'text', 'footnotes'])
             writer.writeheader()
             writer.writerows(normalized_rows)
 
@@ -303,19 +305,22 @@ def extract_all_csv():
                     continue
 
                 # Parse and normalize: translation -> text, strip verse numbers
+                # Keep footnotes if present
                 csv_reader = csv.DictReader(lines[csv_start_idx:])
                 for row in csv_reader:
                     # Strip verse numbers from translation text
-                    cleaned_text = strip_verse_number(row['translation'])
+                    # Use raw translation text directly
+                    cleaned_text = row['translation']
                     normalized_rows.append({
                         'sura': row['sura'],
                         'aya': row['aya'],
-                        'text': cleaned_text
+                        'text': cleaned_text,
+                        'footnotes': row.get('footnotes', '')
                     })
 
             # Write normalized CSV
             with open(csv_file, 'w', encoding='utf-8', newline='') as f:
-                writer = csv.DictWriter(f, fieldnames=['sura', 'aya', 'text'])
+                writer = csv.DictWriter(f, fieldnames=['sura', 'aya', 'text', 'footnotes'])
                 writer.writeheader()
                 writer.writerows(normalized_rows)
 

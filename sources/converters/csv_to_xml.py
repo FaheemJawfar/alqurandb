@@ -13,6 +13,32 @@ from pathlib import Path
 from xml.dom import minidom
 
 
+import re
+
+def parse_footnotes(footnotes_text):
+    """Parse footnotes from string format like '[1] text [2] text' into a dictionary"""
+    if not footnotes_text:
+        return {}
+    
+    footnotes = {}
+    # Helper to clean text
+    def clean_text(t):
+        return t.strip().strip('"').strip("'")
+    
+    # Split by the pattern [number]
+    # This regex looks for [digits] followed by text until the next [digits] or end of string
+    pattern = r'\[(\d+)\]\s*(.*?)(?=\s*\[\d+\]|$)'
+    matches = re.finditer(pattern, footnotes_text, re.DOTALL)
+    
+    for match in matches:
+        note_id = match.group(1)
+        note_text = clean_text(match.group(2))
+        if note_text:
+            footnotes[note_id] = note_text
+            
+    return footnotes
+
+
 def create_translation_xml(translation_id, csv_file_path, output_file):
     """Create XML file for a single translation from CSV"""
 
@@ -20,20 +46,60 @@ def create_translation_xml(translation_id, csv_file_path, output_file):
     root = ET.Element('translation')
     root.set('id', translation_id)
 
-    # Create verses container
-    verses = ET.SubElement(root, 'verses')
+    # Create suras container
+    suras_container = ET.SubElement(root, 'suras')
 
+    current_sura_id = None
+    current_sura_elem = None
     verse_count = 0
+    
+    # Track footnotes to add at end of each sura
+    sura_footnotes = {}
 
     # Read CSV and add verses
     with open(csv_file_path, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            verse = ET.SubElement(verses, 'verse')
-            verse.set('sura', row['sura'])
-            verse.set('aya', row['aya'])
-            verse.text = row['text']
+            sura_id = row['sura']
+            aya_id = row['aya']
+            text = row['text']
+            footnotes_text = row.get('footnotes', '')
+            
+            # Start new sura if needed
+            if sura_id != current_sura_id:
+                # Process footnotes for previous sura
+                if current_sura_elem is not None and sura_footnotes:
+                    footnotes_elem = ET.SubElement(current_sura_elem, 'footnotes')
+                    for note_id, note_text in sura_footnotes.items():
+                        note_elem = ET.SubElement(footnotes_elem, 'note')
+                        note_elem.set('id', str(note_id))
+                        note_elem.text = note_text
+                
+                # Reset for new sura
+                current_sura_id = sura_id
+                current_sura_elem = ET.SubElement(suras_container, 'sura')
+                current_sura_elem.set('id', sura_id)
+                sura_footnotes = {}
+            
+            # Add verse
+            verse = ET.SubElement(current_sura_elem, 'aya')
+            verse.set('id', aya_id)
+            verse.text = text
+            
+            # Parse and collect footnotes
+            if footnotes_text:
+                parsed_notes = parse_footnotes(footnotes_text)
+                sura_footnotes.update(parsed_notes)
+                
             verse_count += 1
+            
+        # Process footnotes for the last sura
+        if current_sura_elem is not None and sura_footnotes:
+            footnotes_elem = ET.SubElement(current_sura_elem, 'footnotes')
+            for note_id, note_text in sura_footnotes.items():
+                note_elem = ET.SubElement(footnotes_elem, 'note')
+                note_elem.set('id', str(note_id))
+                note_elem.text = note_text
 
     # Pretty print the XML
     xml_str = minidom.parseString(ET.tostring(root, encoding='utf-8')).toprettyxml(indent="  ")

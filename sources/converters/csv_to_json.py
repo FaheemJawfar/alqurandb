@@ -10,7 +10,24 @@ CSV is the source of truth - this converter generates JSON from CSV.
 
 import csv
 import json
+import re
 from pathlib import Path
+
+
+def parse_footnotes(footnotes_text):
+    """
+    Parse footnotes from text like "[1] Note 1\n[2] Note 2"
+    Returns a dict mapping note number to note text
+    """
+    if not footnotes_text:
+        return {}
+    
+    # Pattern to find each footnote starting with [n]
+    # Uses positive lookahead to find the start of the next footnote or end of string
+    pattern = r'\[(\d+)\]\s*(.*?)(?=\s*\[\d+\]|$)'
+    matches = re.findall(pattern, footnotes_text, re.DOTALL)
+    
+    return {num: text.strip() for num, text in matches}
 
 
 def csv_to_json(csv_file_path, output_file_path):
@@ -23,20 +40,37 @@ def csv_to_json(csv_file_path, output_file_path):
     Returns:
         Number of verses converted
     """
-    translation = {}
+    translation = {"suras": {}}
 
     # Read CSV file
     with open(csv_file_path, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
+        verse_count = 0
         for row in reader:
-            key = f"{row['sura']}:{row['aya']}"
-            translation[key] = row['text']
+            sura_id = row['sura']
+            aya_id = row['aya']
+            text = row['text']
+            
+            if sura_id not in translation["suras"]:
+                translation["suras"][sura_id] = {"aya": {}}
+            
+            translation["suras"][sura_id]["aya"][aya_id] = text
+            
+            # Add footnotes if present in the CSV
+            if 'footnotes' in row and row['footnotes']:
+                if 'footnotes' not in translation["suras"][sura_id]:
+                    translation["suras"][sura_id]["footnotes"] = {}
+                
+                notes = parse_footnotes(row['footnotes'])
+                translation["suras"][sura_id]["footnotes"].update(notes)
+            
+            verse_count += 1
 
     # Write JSON file
     with open(output_file_path, 'w', encoding='utf-8') as f:
         json.dump(translation, f, ensure_ascii=False, indent=2)
 
-    return len(translation)
+    return verse_count
 
 
 def main():
