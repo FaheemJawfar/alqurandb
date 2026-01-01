@@ -233,7 +233,17 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
+                {/* Previous Sura Button */}
+                <button
+                  onClick={() => selectedSura > 1 && handleSuraChange(selectedSura - 1)}
+                  disabled={selectedSura <= 1}
+                  className="w-9 h-9 flex items-center justify-center rounded-xl bg-slate-50 border border-slate-200 text-slate-500 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-slate-50 disabled:hover:border-slate-200 disabled:hover:text-slate-500 transition-all"
+                  title="Previous Sura"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+                </button>
+
                 <div className="relative group/select">
                   <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-blue-500 group-hover/select:translate-y-0.5 transition-transform">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
@@ -251,14 +261,24 @@ export default function Home() {
                   </select>
                 </div>
 
+                {/* Next Sura Button */}
                 <button
-                  type="button"
-                  className="w-9 h-9 rounded-xl bg-slate-50 text-slate-400 hover:text-red-500 hover:bg-red-50 hover:border-red-100 border border-transparent flex items-center justify-center transition-all duration-200"
-                  onClick={() => setShowVerses(false)}
+                  onClick={() => selectedSura < 114 && handleSuraChange(selectedSura + 1)}
+                  disabled={selectedSura >= 114}
+                  className="w-9 h-9 flex items-center justify-center rounded-xl bg-slate-50 border border-slate-200 text-slate-500 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-slate-50 disabled:hover:border-slate-200 disabled:hover:text-slate-500 transition-all"
+                  title="Next Sura"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
                 </button>
               </div>
+
+              <button
+                type="button"
+                className="w-9 h-9 rounded-xl bg-slate-50 text-slate-400 hover:text-red-500 hover:bg-red-50 hover:border-red-100 border border-transparent flex items-center justify-center transition-all duration-200"
+                onClick={() => setShowVerses(false)}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
+              </button>
             </div>
 
             {/* Modal Body */}
@@ -328,7 +348,7 @@ export default function Home() {
                                     <span className="flex-shrink-0 w-4 h-4 rounded-md bg-blue-100 text-blue-700 text-[9px] font-black flex items-center justify-center border border-blue-200 mt-0.5">
                                       {note.id}
                                     </span>
-                                    <p className="text-[13px] text-slate-600 leading-relaxed font-normal italic">
+                                    <p className="text-sm text-slate-600 leading-relaxed font-normal italic">
                                       {note.text}
                                     </p>
                                   </div>
