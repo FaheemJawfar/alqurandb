@@ -4,12 +4,15 @@
 
 DROP TABLE IF EXISTS verses;
 CREATE TABLE verses (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
-    footnotes TEXT,
-    PRIMARY KEY (sura, aya)
+    footnotes TEXT
 );
+
+CREATE INDEX idx_sura ON verses(sura);
+CREATE INDEX idx_sura_aya ON verses(sura, aya);
 
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, '1. Au nom d’Allah, le Tout Clément, le Tout Miséricordieux.[1]', '[1] La traduction par « Le Tout Miséricordieux, le Très Miséricordieux », du reste très heureuse quant à sa fidélité à la paronymie de l’expression d’origine : raḥmân, raḥîm, polyptote formé sur la racine commune « raḥama », ne bénéficie malheureusement pas de la même réussite sur le plan du rythme et de l’euphonie. La formule « Le Tout Clément, le Tout Miséricordieux », quoique moins fidèle à la dérivation littérale, nous a semblé plus naturelle et plus fluide. L’intensification deux fois par l’adverbe « Tout » plutôt que par « Très », traduit bien celle qui, propre à l’arabe, utilise le superlatif interne : « ân » dans « raḥmân », « îm » dans « raḥîm ». L’adverbe « Tout » est différent de « Très », superlatif externe qui se traduit ordinairement par جدّا ; tel n’est pas le cas de « Tout », aux valeurs sémantiques plus absolues et qui s’inscrit harmonieusement dans la nature absolue et « toute puissante » des Attributs divins.');

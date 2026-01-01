@@ -4,12 +4,15 @@
 
 DROP TABLE IF EXISTS verses;
 CREATE TABLE verses (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
-    footnotes TEXT,
-    PRIMARY KEY (sura, aya)
+    footnotes TEXT
 );
+
+CREATE INDEX idx_sura ON verses(sura);
+CREATE INDEX idx_sura_aya ON verses(sura, aya);
 
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'Sa ngalan ni Allāh,[1] ang Napakamaawain, ang Maawain.', '[1] Ang pangalang Allāh ay pangngalang pantanging ukol lamang sa tunay na Diyos.');

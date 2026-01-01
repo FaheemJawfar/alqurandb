@@ -4,12 +4,15 @@
 
 DROP TABLE IF EXISTS verses;
 CREATE TABLE verses (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
-    footnotes TEXT,
-    PRIMARY KEY (sura, aya)
+    footnotes TEXT
 );
+
+CREATE INDEX idx_sura ON verses(sura);
+CREATE INDEX idx_sura_aya ON verses(sura, aya);
 
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'Me emrin e All-llahut, Mëshiruesit, Mëshirëbërësit!', '');

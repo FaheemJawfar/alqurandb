@@ -4,12 +4,15 @@
 
 DROP TABLE IF EXISTS verses;
 CREATE TABLE verses (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
-    footnotes TEXT,
-    PRIMARY KEY (sura, aya)
+    footnotes TEXT
 );
+
+CREATE INDEX idx_sura ON verses(sura);
+CREATE INDEX idx_sura_aya ON verses(sura, aya);
 
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'Меҳрибон ва раҳмли Аллоҳнинг номи билан бошлайман. (Аллоҳ таоло ўз китобини "бисмиллаҳ" билан бошлагани мусулмонларга ҳам ўрнак, улар ҳам доим ўз сўзларини ва ишларини "бисмиллаҳ" билан бошламоқлари лозим. Пайғамбар алайҳиссалом ҳадисларидан бирида: "Эътиборли ҳар бир иш "бисмиллаҳ" билан бошланмас экан, унинг охири кесикдир", деганлар. Яъни, баракаси бўлмайди, охирига етмайди.)', '');

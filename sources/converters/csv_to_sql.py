@@ -23,15 +23,19 @@ def create_sql_dump(translation_id, csv_file_path, output_file):
         f.write(f"-- Translation: {translation_id}\n")
         f.write(f"-- Total Verses: {len(verses)}\n\n")
 
-        # Create table (Standard SQL)
+        # Create table (Standard SQL with auto-increment)
         f.write("DROP TABLE IF EXISTS verses;\n")
         f.write("CREATE TABLE verses (\n")
+        f.write("    id INTEGER PRIMARY KEY AUTO_INCREMENT,\n")
         f.write("    sura INT NOT NULL,\n")
         f.write("    aya INT NOT NULL,\n")
         f.write("    text TEXT NOT NULL,\n")
-        f.write("    footnotes TEXT,\n")
-        f.write("    PRIMARY KEY (sura, aya)\n")
+        f.write("    footnotes TEXT\n")
         f.write(");\n\n")
+
+        # Create indexes for fast queries
+        f.write("CREATE INDEX idx_sura ON verses(sura);\n")
+        f.write("CREATE INDEX idx_sura_aya ON verses(sura, aya);\n\n")
 
         # Insert statements (Standard SQL)
         f.write("BEGIN;\n")

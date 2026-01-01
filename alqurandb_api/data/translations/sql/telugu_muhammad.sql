@@ -4,12 +4,15 @@
 
 DROP TABLE IF EXISTS verses;
 CREATE TABLE verses (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
-    footnotes TEXT,
-    PRIMARY KEY (sura, aya)
+    footnotes TEXT
 );
+
+CREATE INDEX idx_sura ON verses(sura);
+CREATE INDEX idx_sura_aya ON verses(sura, aya);
 
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'అనంత కరుణామయుడు అపార కరుణా ప్రదాత అయిన అల్లాహ్[1] పేరుతో[2]', '[1] అల్లాహ్ సుబ్''హానవతా''ఆలా (సు.తా.):అనేది సర్వసృష్టికర్త, మహాన్నతుడు, సర్వపోషకుడు అయిన విశ్వప్రభువు యొక్క పేరు. ఈ పేరుతో ఆయనను తప్ప మరెవ్వరినీ పిలువరాదు. దీనికి సరిసమానమైన పదం వేరే భాషలలో లేదు, ఫార్సీ భాషలోని ''ఖుదా అనే పదం తప్ప. ఇది ఒక ప్రత్యేకమైన విశేషపదం. ఈ పదానికి బహువచనం గానీ, స్త్రీలింగం గానీ లేవు. అల్లాహ్ (సు.తా.) యొక్క స్పష్టమైన నిర్వచనం కొరకు చూడండి, సూరహ్ అల్-ఇ''ఖ్లాస్(112). 

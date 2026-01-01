@@ -4,12 +4,15 @@
 
 DROP TABLE IF EXISTS verses;
 CREATE TABLE verses (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
-    footnotes TEXT,
-    PRIMARY KEY (sura, aya)
+    footnotes TEXT
 );
+
+CREATE INDEX idx_sura ON verses(sura);
+CREATE INDEX idx_sura_aya ON verses(sura, aya);
 
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'ಪರಮ ದಯಾಮಯನೂ ಕರುಣಾನಿಧಿಯೂ ಆದ ಅಲ್ಲಾಹನ ನಾಮದಿಂದ.[1]', '[1] ಅಲ್ಲಾಹನ ಹೆಸರಿನ ಮೂಲಕ ಸಹಾಯವನ್ನು ಬೇಡುತ್ತಾ ನಾನು ಪವಿತ್ರ ಕುರ್‌ಆನ್ ಪಠಣವನ್ನು ಆರಂಭಿಸುತ್ತೇನೆ. ''ಅಲ್ಲಾಹು'' ಎಂಬುದು ಅಲ್ಲಾಹನ ವಿಶೇಷ ಹೆಸರು. ಈ ಹೆಸರು ಅಲ್ಲಾಹನಿಗೆ ಮಾತ್ರ ಸೀಮಿತವಾಗಿದ್ದು, ಇತರ ಯಾರನ್ನೂ ಈ ಹೆಸರಿನಿಂದ ಕರೆಯುವ ಹಾಗಿಲ್ಲ. ಅಲ್ಲಾಹು ಎಂದರೆ ಏಕೈಕ ಸತ್ಯದೇವ ಅಥವಾ ಏಕೈಕ ಪರಮೋಚ್ಛ ದೇವ.');

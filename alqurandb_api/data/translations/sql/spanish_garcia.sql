@@ -4,12 +4,15 @@
 
 DROP TABLE IF EXISTS verses;
 CREATE TABLE verses (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
-    footnotes TEXT,
-    PRIMARY KEY (sura, aya)
+    footnotes TEXT
 );
+
+CREATE INDEX idx_sura ON verses(sura);
+CREATE INDEX idx_sura_aya ON verses(sura, aya);
 
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, '1. En el nombre de Dios[1], el Compasivo con toda la creación, el Misericordioso con los creyentes[2].', '[1] Al-lahالله : Es un nombre propio exclusivo de Dios, el Único y Todopoderoso, Creador y Sustentador de los cielos y la Tierra y de todo lo que hay en ellos, el Eterno y Absoluto, el merecedor de toda forma de adoración. La forma de pronunciarlo es la siguiente: “Al-laj”, con la “jota andaluza” suave y aspirada, o la hache inglesa, enfatizando en la pronunciación de la “L”. Es sabido que cada idioma tiene uno o varios términos para referirse a Dios y, en ocasiones, para otras deidades. Éste no es el caso de “Al-lah”. “Al-lah” (del árabe al-ilah: el Dios) es el único nombre de Dios, no tiene género ni plural; por tanto, es un término que señala la unidad de lo designado. Cuando los contemporáneos del Profeta le preguntaron acerca de Dios, él recibió como revelación del capítulo 112, que resume la esencia del monoteísmo y unicidad de Dios: no ha engendrado, no ha sido engendrado, nada ni nadie es semejante a Él. El Islam rechaza cualquier intento de caracterizar a Dios, y menos aun tomando rasgos humanos que hagan prevalecer a una raza sobre las demás.

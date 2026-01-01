@@ -4,12 +4,15 @@
 
 DROP TABLE IF EXISTS verses;
 CREATE TABLE verses (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
-    footnotes TEXT,
-    PRIMARY KEY (sura, aya)
+    footnotes TEXT
 );
+
+CREATE INDEX idx_sura ON verses(sura);
+CREATE INDEX idx_sura_aya ON verses(sura, aya);
 
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'شروع کرتا ہوں اللہ تعالیٰ کے نام سے جو بڑا مہربان نہایت رحم واﻻ ہے۔[1]', '[1] بسم اللہ کے آغاز میں أَقْرَأُ، أَبْدَأُ یا أَتْلُوا محذوف ہے یعنی اللہ کے نام سے پڑھتا، یا شروع کرتا یا تلاوت کرتا ہوں۔ ہر اہم کام کے شروع کرنے سے پہلے بسم اللہ پڑھنے کی تاکید کی گئی ہے۔ چنانچہ حکم دیا گیا ہے کہ کھانے، ذبح، وضو اور جماع سے پہلے بسم اللہ پڑھو۔ تاہم قرآن کریم کی تلاوت کے وقت ”بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ“ سے پہلے ”أَعُوذُ بِاللهِ مِنَ الشَّيْطَانِ الرَّجِيمِ“ پڑھنا بھی ضروری ہے «فَإِذَا قَرَأْتَ الْقُرْآنَ فَاسْتَعِذْ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ» (النحل:98) ”جب تم قرآن کریم پڑھنے لگو تو اللہ کی جناب میں شیطان رجیم سے پناہ مانگو۔“');

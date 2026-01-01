@@ -4,12 +4,15 @@
 
 DROP TABLE IF EXISTS verses;
 CREATE TABLE verses (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
-    footnotes TEXT,
-    PRIMARY KEY (sura, aya)
+    footnotes TEXT
 );
+
+CREATE INDEX idx_sura ON verses(sura);
+CREATE INDEX idx_sura_aya ON verses(sura, aya);
 
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'به نام خداوند بخشنده‌ی مهربان. [[«بِسْمِ»: فراهم آمده است از (بِ) و (اِسْمِ). یعنی: کارم را با نام خدا آغاز می‌کنم؛ نه به نام چیز دیگری، و نه به فرمان دل یا کس دیگری. واژه (اِسْم) از ماده (سُمُوّ) به معنی عُلُوّ، یا (وسم) به معنی علامت و نشانه است. «اللهِ»: اسم خاصّ است برای خدا. اصل آن (إِلاه) بوده و مصدری است بر وزن (فِعال) به معنی مفعول، یعنی (مَأْلُوه) به معنی معبود می‌باشد. همان گونه که مصدر (خَلْق) به معنی مخلوق است (نگا: لقمان / 11). «الرَّحْمنِ»: دارای مهر فراوان (نگا: أعراف / 156). «الرَّحِیمِ»: دارای مهر همیشگی.]]', '');

@@ -4,12 +4,15 @@
 
 DROP TABLE IF EXISTS verses;
 CREATE TABLE verses (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
-    footnotes TEXT,
-    PRIMARY KEY (sura, aya)
+    footnotes TEXT
 );
+
+CREATE INDEX idx_sura ON verses(sura);
+CREATE INDEX idx_sura_aya ON verses(sura, aya);
 
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, '(Empiezo)[2] con el nombre de Al-lah[3], el Clemente, el Misericordioso[4].', '[2] A pesar de que, tradicionalmente, el encabezamiento de cada sura, conocido como el basmalah, ha sido traducido como “En el nombre de Al-lah […]”, la mayoría de los comentaristas opinan que debe sobrentenderse: “Empiezo la recitación del Corán con el nombre de Al-lah, buscando ayuda en Él, […]”. Por este motivo esta traducción ha optado por una expresión más cercana a su significado real, pero abreviada. No hay un consenso acerca de si el basmalah constituye la primera aleya (o verso coránico) de esta sura o simplemente la encabeza como en el resto de los capítulos del Sagrado Corán —con la excepción de la sura 9 (At-Taubah), donde no aparece—, aunque la opinión más extendida es la de considerarla como la primera aleya de la sura Al Fatihah.

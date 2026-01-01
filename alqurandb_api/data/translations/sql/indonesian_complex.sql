@@ -4,12 +4,15 @@
 
 DROP TABLE IF EXISTS verses;
 CREATE TABLE verses (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     sura INT NOT NULL,
     aya INT NOT NULL,
     text TEXT NOT NULL,
-    footnotes TEXT,
-    PRIMARY KEY (sura, aya)
+    footnotes TEXT
 );
+
+CREATE INDEX idx_sura ON verses(sura);
+CREATE INDEX idx_sura_aya ON verses(sura, aya);
 
 BEGIN;
 INSERT INTO verses (sura, aya, text, footnotes) VALUES (1, 1, 'Dengan menyebut nama Allah Yang Maha Pemurah lagi Maha Penyayang[1].', '[1]. Berarti, saya memulai membaca Al-Fātihah ini dengan menyebut nama Allah Subḥānahu wa Ta‘ālā. Setiap pekerjaan yang baik itu, hendaknya dimulai dengan menyebut nama Allah Subḥānahu wa Ta‘ālā, seperti makan, minum, menyembelih binatang untuk dimakan, dan sebagainya. Allah Subḥānahu wa Ta‘ālā ialah nama Zat yang Maha Suci; Zat yang berhak disembah dengan sebenar-benarnya; Zat yang tidak membutuhkan makhluk-Nya, tetapi makhluk membutuhkan-Nya. Ar-Rahmān (Maha Pemurah), salah satu dari nama Allah Subḥānahu wa Ta‘ālā, yang memberi pengertian bahwa Allah Subḥānahu wa Ta‘ālā melimpahkan karunia-Nya kepada makhluk-Nya. Ar-Rahīm (Maha Penyayang) memberi pengertian bahwa Allah Subḥānahu wa Ta‘ālā senantiasa bersifat rahmat, selalu melimpahkan rahmat-Nya kepada makhluk-Nya.');
