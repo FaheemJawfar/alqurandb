@@ -1,11 +1,17 @@
 -- AlQuranDB SQL Dump
 -- Translation: moore_rwwad
 -- Total Verses: 6236
--- Compatible with: MySQL, PostgreSQL, SQLite
+-- Has Footnotes: Yes
+-- Compatible with: MySQL, MariaDB, PostgreSQL, SQLite
+
+-- Set session variables for MySQL/MariaDB (Ignored by other databases)
+/*!40101 SET NAMES utf8mb4 */;
+/*!40014 SET FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET SQL_MODE='NO_BACKSLASH_ESCAPES' */;
 
 DROP TABLE IF EXISTS verses;
 
--- For MySQL (default):
+-- [OPTION 1] For MySQL / MariaDB (default):
 CREATE TABLE verses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     sura INT NOT NULL,
@@ -14,7 +20,7 @@ CREATE TABLE verses (
     footnotes TEXT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- For PostgreSQL:
+-- [OPTION 2] For PostgreSQL (uncomment to use):
 -- CREATE TABLE verses (
 --     id SERIAL PRIMARY KEY,
 --     sura INT NOT NULL,
@@ -23,7 +29,7 @@ CREATE TABLE verses (
 --     footnotes TEXT
 -- );
 
--- For SQLite:
+-- [OPTION 3] For SQLite (uncomment to use):
 -- CREATE TABLE verses (
 --     id INTEGER PRIMARY KEY AUTOINCREMENT,
 --     sura INTEGER NOT NULL,
@@ -32,8 +38,9 @@ CREATE TABLE verses (
 --     footnotes TEXT
 -- );
 
-CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);
-CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);
+-- Create indexes
+CREATE INDEX idx_sura ON verses(sura);
+CREATE INDEX idx_sura_aya ON verses(sura, aya);
 
 -- Insert statements
 BEGIN;

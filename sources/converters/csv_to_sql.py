@@ -11,18 +11,12 @@ import csv
 from pathlib import Path
 
 def create_sql_dump(translation_id, csv_file_path, output_file):
-    """Create SQL dump for a single translation from CSV
-    
-    Generates SQL that is compatible with:
-    - MySQL: Uses AUTO_INCREMENT
-    - PostgreSQL: Uses SERIAL
-    - SQLite: Uses AUTOINCREMENT
-    
-    The dump includes conditional statements for each database type.
-    """
+    """Create SQL dump for a single translation from CSV"""
 
     with open(csv_file_path, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
+        # Check if 'footnotes' column exists in the CSV header
+        has_footnotes = 'footnotes' in reader.fieldnames
         verses = list(reader)
 
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -30,50 +24,64 @@ def create_sql_dump(translation_id, csv_file_path, output_file):
         f.write(f"-- AlQuranDB SQL Dump\n")
         f.write(f"-- Translation: {translation_id}\n")
         f.write(f"-- Total Verses: {len(verses)}\n")
-        f.write(f"-- Compatible with: MySQL, PostgreSQL, SQLite\n\n")
+        f.write(f"-- Has Footnotes: {'Yes' if has_footnotes else 'No'}\n")
+        f.write(f"-- Compatible with: MySQL, MariaDB, PostgreSQL, SQLite\n\n")
+
+        # Database compatibility settings
+        f.write("-- Set session variables for MySQL/MariaDB (Ignored by other databases)\n")
+        f.write("/*!40101 SET NAMES utf8mb4 */;\n")
+        f.write("/*!40014 SET FOREIGN_KEY_CHECKS=0 */;\n")
+        f.write("/*!40101 SET SQL_MODE='NO_BACKSLASH_ESCAPES' */;\n\n")
 
         # Drop table
         f.write("DROP TABLE IF EXISTS verses;\n\n")
 
         # Create table with database-specific syntax
-        f.write("-- For MySQL (default):\n")
+        f.write("-- [OPTION 1] For MySQL / MariaDB (default):\n")
         f.write("CREATE TABLE verses (\n")
         f.write("    id INT AUTO_INCREMENT PRIMARY KEY,\n")
         f.write("    sura INT NOT NULL,\n")
         f.write("    aya INT NOT NULL,\n")
-        f.write("    text TEXT NOT NULL,\n")
-        f.write("    footnotes TEXT\n")
-        f.write(") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\n\n")
+        f.write("    text TEXT NOT NULL")
+        if has_footnotes:
+            f.write(",\n    footnotes TEXT")
+        f.write("\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\n\n")
 
-        f.write("-- For PostgreSQL:\n")
+        f.write("-- [OPTION 2] For PostgreSQL (uncomment to use):\n")
         f.write("-- CREATE TABLE verses (\n")
         f.write("--     id SERIAL PRIMARY KEY,\n")
         f.write("--     sura INT NOT NULL,\n")
         f.write("--     aya INT NOT NULL,\n")
-        f.write("--     text TEXT NOT NULL,\n")
-        f.write("--     footnotes TEXT\n")
-        f.write("-- );\n\n")
+        f.write("--     text TEXT NOT NULL")
+        if has_footnotes:
+            f.write(",\n--     footnotes TEXT")
+        f.write("\n-- );\n\n")
 
-        f.write("-- For SQLite:\n")
+        f.write("-- [OPTION 3] For SQLite (uncomment to use):\n")
         f.write("-- CREATE TABLE verses (\n")
         f.write("--     id INTEGER PRIMARY KEY AUTOINCREMENT,\n")
         f.write("--     sura INTEGER NOT NULL,\n")
         f.write("--     aya INTEGER NOT NULL,\n")
-        f.write("--     text TEXT NOT NULL,\n")
-        f.write("--     footnotes TEXT\n")
-        f.write("-- );\n\n")
+        f.write("--     text TEXT NOT NULL")
+        if has_footnotes:
+            f.write(",\n--     footnotes TEXT")
+        f.write("\n-- );\n\n")
 
-        # Create indexes (compatible with all databases)
-        f.write("CREATE INDEX IF NOT EXISTS idx_sura ON verses(sura);\n")
-        f.write("CREATE INDEX IF NOT EXISTS idx_sura_aya ON verses(sura, aya);\n\n")
+        # Create indexes
+        f.write("-- Create indexes\n")
+        f.write("CREATE INDEX idx_sura ON verses(sura);\n")
+        f.write("CREATE INDEX idx_sura_aya ON verses(sura, aya);\n\n")
 
-        # Insert statements (Standard SQL - compatible with all)
+        # Insert statements
         f.write("-- Insert statements\n")
         f.write("BEGIN;\n")
         for row in verses:
-            text = row['text'].replace("'", "''") # Escape single quotes
-            footnotes = row.get('footnotes', '').replace("'", "''")
-            f.write(f"INSERT INTO verses (sura, aya, text, footnotes) VALUES ({row['sura']}, {row['aya']}, '{text}', '{footnotes}');\n")
+            text = row['text'].replace("'", "''")
+            if has_footnotes:
+                footnotes = row.get('footnotes', '').replace("'", "''")
+                f.write(f"INSERT INTO verses (sura, aya, text, footnotes) VALUES ({row['sura']}, {row['aya']}, '{text}', '{footnotes}');\n")
+            else:
+                f.write(f"INSERT INTO verses (sura, aya, text) VALUES ({row['sura']}, {row['aya']}, '{text}');\n")
         f.write("COMMIT;\n")
 
     return len(verses)
