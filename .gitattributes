@@ -1,0 +1,8 @@
+# Mark data files as generated to hide them from GitHub language statistics and simplify diffs
+*.json linguist-generated=true
+*.csv linguist-generated=true
+*.sql linguist-generated=true
+*.xml linguist-generated=true
+*.xlsx linguist-generated=true binary
+*.db linguist-generated=true binary
+*.sqlite linguist-generated=true binary
