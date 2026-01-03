@@ -1,61 +1,67 @@
-#!/ reentry/env python3
+#!/usr/bin/env python3
 import sqlite3
 import csv
 import re
+import html
 from pathlib import Path
 from bs4 import BeautifulSoup
 
-def clean_html(html_content):
+def clean_text(text):
+    """
+    Strips any remaining HTML tags and decodes entities like &nbsp; and &zwj;.
+    """
+    if not text:
+        return ""
+    # Strip any remaining tags that BeautifulSoup might have missed or that were in footnote strings
+    text = BeautifulSoup(text, 'html.parser').get_text(separator=' ', strip=True)
+    # Decode entities
+    text = html.unescape(text)
+    # Replace non-breaking spaces and Zero Width Joiners with standard spaces/empty
+    text = text.replace('\xa0', ' ')  # &nbsp;
+    text = text.replace('\u200d', '')  # &zwj;
+    # Remove asterisks as they are typically used as redundant footnote markers in the source
+    text = text.replace('*', '')
+    # Clean up extra spaces
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text
+
+def clean_html(html_content, sura_footnote_counter):
     """
     Extracts the Sinhala translation text from the HTML structure provided.
-    Removes the Arabic text, verse numbers, and footnote markers.
+    Replaces footnote markers with [n].
     """
     if not html_content:
-        return "", []
+        return "", [], sura_footnote_counter
 
     soup = BeautifulSoup(html_content, 'html.parser')
     
-    # The translation is typically inside a div with align='left' or within a span with f1_2 class
-    # based on the sample: <div align='left'><span dir='ltr' class='f1_2'>(1) සැමට ...
-    
-    # Extract footnote references before stripping tags
-    # <a title="" href="#1_1" data-rel="popup" onclick="showFootNote(1);"><span class="f1_8">1</span></a>
-    footnote_tags = soup.find_all('a', onclick=re.compile(r'showFootNote'))
-    footnote_ids = []
-    for tag in footnote_tags:
-        href = tag.get('href', '')
-        if href.startswith('#'):
-            footnote_ids.append(href[1:]) # remove #
-            
-    # Remove the Arabic part (usually in <div align='right'>)
+    # The Arabic part (usually in <div align='right'>)
     arabic_div = soup.find('div', align='right')
     if arabic_div:
         arabic_div.decompose()
+            
+    # Find all footnote links and replace them with [n]
+    footnote_tags = soup.find_all('a', onclick=re.compile(r'showFootNote'))
+    footnote_ids = []
+    
+    for tag in footnote_tags:
+        sura_footnote_counter += 1
+        marker = f" [{sura_footnote_counter}]"
         
-    # Get text
-    text = soup.get_text(separator=' ', strip=True)
+        href = tag.get('href', '')
+        if href.startswith('#'):
+            footnote_ids.append((sura_footnote_counter, href[1:]))
+            
+        # Replace the tag with our standard marker
+        tag.replace_with(marker)
     
-    # Remove leading verse numbers like "(1) ", "(2) "
-    text = re.sub(r'^\(\d+\)\s*', '', text)
+    # Get text and clean it
+    text = clean_text(soup.get_text(separator=' ', strip=True))
     
-    # Remove footnote markers (they appear as numbers after get_text)
-    # Since we use separator=' ', they might be isolated
-    # But often they are just digits. Let's try to be more specific.
-    # The markers are usually inside the text.
-    # A better way might be to find the spans with f1_8 class and remove them
-    for marker in soup.find_all('span', class_='f1_8'):
-        marker.decompose()
+    # Remove leading verse numbers like "(1) ", "(1, 2) "
+    text = re.sub(r'^\(\d+(,\s*\d+)*\)\s*', '', text)
     
-    # Re-extract text after removing Arabic and markers
-    text = soup.get_text(separator=' ', strip=True)
-    
-    # Clean up leading verse numbers again if they were inside some tag
-    text = re.sub(r'^\(\d+\)\s*', '', text)
-    
-    # Clean up extra spaces
-    text = re.sub(r'\s+', ' ', text).strip()
-    
-    return text, footnote_ids
+    return text, footnote_ids, sura_footnote_counter
 
 def main():
     script_dir = Path(__file__).parent
@@ -69,12 +75,13 @@ def main():
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     
-    # Get all footnotes into a dictionary for easy access
+    # Get all footnotes into a dictionary
     cursor.execute("SELECT ID, FOOTNOTE FROM footnotes")
     footnotes_map = {}
     for fid, ftext in cursor.fetchall():
-        # Remove leading numbers from footnotes if present (e.g., "1)...")
+        # Clean the footnote text immediately
         ftext = re.sub(r'^\d+\)\s*', '', ftext).strip()
+        ftext = clean_text(ftext)
         footnotes_map[fid] = ftext
         
     # Fetch all ayahs including the CONCATS column
@@ -84,22 +91,30 @@ def main():
     print(f"Processing {len(ayaths)} rows (unrolling to 6236 verses)...")
     
     data = []
-    for sura, start_aya, html, concats in ayaths:
-        text, f_ids = clean_html(html)
+    current_sura = 0
+    sura_footnote_counter = 0
+    
+    for sura, start_aya, html_content, concats in ayaths:
+        if sura != current_sura:
+            current_sura = sura
+            sura_footnote_counter = 0
+            
+        text, f_info, sura_footnote_counter = clean_html(html_content, sura_footnote_counter)
         
         # Resolve footnotes
         resolved_footnotes = []
-        for fid in f_ids:
+        for index, fid in f_info:
             if fid in footnotes_map:
-                f_text = footnotes_map[fid].strip()
-                if f_text and not f_text.endswith('.'):
-                    f_text += "."
-                resolved_footnotes.append(f_text)
+                f_text = footnotes_map[fid]
+                if f_text:
+                    if not f_text.endswith('.'):
+                        f_text += "."
+                    resolved_footnotes.append(f"[{index}] {f_text}")
             else:
                 print(f"Warning: Footnote ID {fid} not found for Sura {sura} Aya {start_aya}")
         
         footnotes_str = " ".join(resolved_footnotes)
-            
+        
         # Unroll concatenated verses
         num_verses = (concats or 0) + 1
         for i in range(num_verses):
