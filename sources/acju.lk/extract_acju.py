@@ -66,7 +66,7 @@ def clean_html(html_content, sura_footnote_counter):
 def main():
     script_dir = Path(__file__).parent
     db_path = script_dir / 'source' / 'quran.db'
-    output_csv = script_dir.parent.parent / 'alqurandb_api' / 'data' / 'translations' / 'csv' / 'sinhala_acju.csv'
+    output_csv = script_dir.parent.parent / 'alqurandb_api' / 'data' / 'translations' / 'csv' / 'sinhalese_acju.csv'
     
     if not db_path.exists():
         print(f"Error: Database not found at {db_path}")
