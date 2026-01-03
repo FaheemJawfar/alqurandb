@@ -33,12 +33,20 @@ def create_sql_dump(translation_id, csv_file_path, output_file):
         f.write("/*!40014 SET FOREIGN_KEY_CHECKS=0 */;\n")
         f.write("/*!40101 SET SQL_MODE='NO_BACKSLASH_ESCAPES' */;\n\n")
 
+        # Database creation and selection
+        f.write("-- Create database if not exists\n")
+        f.write("CREATE DATABASE IF NOT EXISTS `quran`;\n")
+        f.write("USE `quran`;\n\n")
+
+        # Table name with backticks for MySQL/MariaDB compatibility
+        table_name = f"`{translation_id}`"
+
         # Drop table
-        f.write("DROP TABLE IF EXISTS verses;\n\n")
+        f.write(f"DROP TABLE IF EXISTS {table_name};\n\n")
 
         # Create table with database-specific syntax
         f.write("-- [OPTION 1] For MySQL / MariaDB (default):\n")
-        f.write("CREATE TABLE verses (\n")
+        f.write(f"CREATE TABLE {table_name} (\n")
         f.write("    id INT AUTO_INCREMENT PRIMARY KEY,\n")
         f.write("    sura INT NOT NULL,\n")
         f.write("    aya INT NOT NULL,\n")
@@ -48,7 +56,7 @@ def create_sql_dump(translation_id, csv_file_path, output_file):
         f.write("\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;\n\n")
 
         f.write("-- [OPTION 2] For PostgreSQL (uncomment to use):\n")
-        f.write("-- CREATE TABLE verses (\n")
+        f.write(f"-- CREATE TABLE {table_name} (\n")
         f.write("--     id SERIAL PRIMARY KEY,\n")
         f.write("--     sura INT NOT NULL,\n")
         f.write("--     aya INT NOT NULL,\n")
@@ -58,7 +66,7 @@ def create_sql_dump(translation_id, csv_file_path, output_file):
         f.write("\n-- );\n\n")
 
         f.write("-- [OPTION 3] For SQLite (uncomment to use):\n")
-        f.write("-- CREATE TABLE verses (\n")
+        f.write(f"-- CREATE TABLE {table_name} (\n")
         f.write("--     id INTEGER PRIMARY KEY AUTOINCREMENT,\n")
         f.write("--     sura INTEGER NOT NULL,\n")
         f.write("--     aya INTEGER NOT NULL,\n")
@@ -69,8 +77,8 @@ def create_sql_dump(translation_id, csv_file_path, output_file):
 
         # Create indexes
         f.write("-- Create indexes\n")
-        f.write("CREATE INDEX idx_sura ON verses(sura);\n")
-        f.write("CREATE INDEX idx_sura_aya ON verses(sura, aya);\n\n")
+        f.write(f"CREATE INDEX idx_sura ON {table_name}(sura);\n")
+        f.write(f"CREATE INDEX idx_sura_aya ON {table_name}(sura, aya);\n\n")
 
         # Insert statements
         f.write("-- Insert statements\n")
@@ -79,9 +87,9 @@ def create_sql_dump(translation_id, csv_file_path, output_file):
             text = row['text'].replace("'", "''")
             if has_footnotes:
                 footnotes = row.get('footnotes', '').replace("'", "''")
-                f.write(f"INSERT INTO verses (sura, aya, text, footnotes) VALUES ({row['sura']}, {row['aya']}, '{text}', '{footnotes}');\n")
+                f.write(f"INSERT INTO {table_name} (sura, aya, text, footnotes) VALUES ({row['sura']}, {row['aya']}, '{text}', '{footnotes}');\n")
             else:
-                f.write(f"INSERT INTO verses (sura, aya, text) VALUES ({row['sura']}, {row['aya']}, '{text}');\n")
+                f.write(f"INSERT INTO {table_name} (sura, aya, text) VALUES ({row['sura']}, {row['aya']}, '{text}');\n")
         f.write("COMMIT;\n")
 
     return len(verses)
