@@ -29,10 +29,13 @@ def create_translation_database(translation_id, csv_file_path, output_file):
         has_footnotes = 'footnotes' in reader.fieldnames
         verses_data = list(reader)
 
+    # Table name with backticks for SQLite compatibility
+    table_name = f"`{translation_id}`"
+
     # Create table
     if has_footnotes:
-        cursor.execute('''
-            CREATE TABLE verses (
+        cursor.execute(f'''
+            CREATE TABLE {table_name} (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 sura INTEGER NOT NULL,
                 aya INTEGER NOT NULL,
@@ -41,8 +44,8 @@ def create_translation_database(translation_id, csv_file_path, output_file):
             )
         ''')
     else:
-        cursor.execute('''
-            CREATE TABLE verses (
+        cursor.execute(f'''
+            CREATE TABLE {table_name} (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 sura INTEGER NOT NULL,
                 aya INTEGER NOT NULL,
@@ -51,8 +54,8 @@ def create_translation_database(translation_id, csv_file_path, output_file):
         ''')
 
     # Create indexes for better query performance
-    cursor.execute('CREATE INDEX idx_sura ON verses(sura)')
-    cursor.execute('CREATE INDEX idx_sura_aya ON verses(sura, aya)')
+    cursor.execute(f'CREATE INDEX idx_sura ON {table_name}(sura)')
+    cursor.execute(f'CREATE INDEX idx_sura_aya ON {table_name}(sura, aya)')
 
     # Insert verses from CSV
     verses = []
@@ -64,12 +67,12 @@ def create_translation_database(translation_id, csv_file_path, output_file):
 
     if has_footnotes:
         cursor.executemany(
-            'INSERT INTO verses (sura, aya, text, footnotes) VALUES (?, ?, ?, ?)',
+            f'INSERT INTO {table_name} (sura, aya, text, footnotes) VALUES (?, ?, ?, ?)',
             verses
         )
     else:
         cursor.executemany(
-            'INSERT INTO verses (sura, aya, text) VALUES (?, ?, ?)',
+            f'INSERT INTO {table_name} (sura, aya, text) VALUES (?, ?, ?)',
             verses
         )
 
