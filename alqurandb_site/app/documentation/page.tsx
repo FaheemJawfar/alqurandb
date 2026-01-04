@@ -6,7 +6,7 @@ import { Copy, ExternalLink, Info, Download, Check, AlertCircle, FileText } from
 
 export default function ApiDocs() {
   const [apiUrl, setApiUrl] = useState(
-    process.env.NEXT_PUBLIC_API_URL || '/api'
+    process.env.NEXT_PUBLIC_API_URL || 'https://alqurandb.com/api'
   );
 
   const [copied, setCopied] = useState(false);
@@ -147,6 +147,65 @@ export default function ApiDocs() {
             text: "In the name of Allah, the Entirely Merciful, the Especially Merciful."
           }
         ]
+      }
+    },
+    {
+      id: 'get-quran-all-verses',
+      method: 'GET',
+      path: '/quran/verses',
+      title: 'Get All Quran Verses',
+      description: 'Retrieve all verses of the Quran in Arabic.',
+      parameters: [],
+      example: `${apiUrl}/quran/verses`,
+      response: {
+        sura: null,
+        total: 6236,
+        verses: [
+          {
+            sura: 1,
+            aya: 1,
+            text: "بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ"
+          }
+        ]
+      }
+    },
+    {
+      id: 'get-quran-sura',
+      method: 'GET',
+      path: '/quran/{sura}',
+      title: 'Get Quran Sura',
+      description: 'Retrieve all verses of a specific sura in Arabic.',
+      parameters: [
+        { name: 'sura', type: 'integer', required: true, description: 'Sura number (1-114)' }
+      ],
+      example: `${apiUrl}/quran/1`,
+      response: {
+        sura: 1,
+        total: 7,
+        verses: [
+          {
+            sura: 1,
+            aya: 1,
+            text: "بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ"
+          }
+        ]
+      }
+    },
+    {
+      id: 'get-quran-verse',
+      method: 'GET',
+      path: '/quran/{sura}/{aya}',
+      title: 'Get Quran Verse',
+      description: 'Retrieve a specific verse of the Quran in Arabic.',
+      parameters: [
+        { name: 'sura', type: 'integer', required: true, description: 'Sura number (1-114)' },
+        { name: 'aya', type: 'integer', required: true, description: 'Aya number' }
+      ],
+      example: `${apiUrl}/quran/1/1`,
+      response: {
+        sura: 1,
+        aya: 1,
+        text: "بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ"
       }
     }
   ];
