@@ -20,14 +20,17 @@ def create_complete_database(db_path: Path, csv_dir: Path, metadata_file: Path) 
         True if successful, False otherwise
     """
     try:
-        # Remove existing database
-        if db_path.exists():
-            db_path.unlink()
+        # Create temporary database path
+        temp_db_path = db_path.with_suffix('.temp.db')
+        
+        # Remove existing temp database if it exists
+        if temp_db_path.exists():
+            temp_db_path.unlink()
         
         data_dir = csv_dir.parent.parent
 
         # Create database
-        conn = sqlite3.connect(db_path)
+        conn = sqlite3.connect(temp_db_path)
         cursor = conn.cursor()
 
         # Create translations metadata table
@@ -202,18 +205,29 @@ def create_complete_database(db_path: Path, csv_dir: Path, metadata_file: Path) 
         conn.close()
 
         # Get file size
-        size_mb = db_path.stat().st_size / (1024 * 1024)
+        size_mb = temp_db_path.stat().st_size / (1024 * 1024)
 
         logger.info(f"Database created successfully!")
-        logger.info(f"  Location: {db_path}")
+        logger.info(f"  Temp Location: {temp_db_path}")
         logger.info(f"  Size: {size_mb:.2f} MB")
         logger.info(f"  Translations: {translation_count}")
         logger.info(f"  Total verses: {verse_count}")
+
+        # Atomic replacement
+        logger.info(f"Replacing existing database at {db_path}")
+        temp_db_path.replace(db_path)
+        logger.info("Database swap complete")
 
         return True
 
     except Exception as e:
         logger.error(f"Failed to create database: {e}")
+        # Clean up temp file if it exists
+        if 'temp_db_path' in locals() and temp_db_path.exists():
+            try:
+                temp_db_path.unlink()
+            except:
+                pass
         return False
 
 
@@ -241,7 +255,21 @@ def ensure_database_exists() -> bool:
         logger.error(f"Metadata file not found: {metadata_file}")
         return False
 
-    # always Create or update database
-    logger.info("Forcing recreation of complete translations database...")
+    # If database exists, trigger background update
+    if db_path.exists():
+        logger.info("Database exists. Triggering background update...")
+        import threading
+        
+        def run_update():
+            # Add a small delay/lock check if needed to avoid conflicts, 
+            # though temp file swap should be safe.
+            logger.info("Starting background database update...")
+            create_complete_database(db_path, csv_dir, metadata_file)
+            
+        thread = threading.Thread(target=run_update, daemon=True)
+        thread.start()
+        return True
 
+    # If database doesn't exist, we must block
+    logger.info("Database not found. Creating first-time database (blocking)...")
     return create_complete_database(db_path, csv_dir, metadata_file)
