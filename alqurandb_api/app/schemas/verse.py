@@ -17,3 +17,17 @@ class VersesResponse(BaseModel):
     sura: int | None = Field(None, description="Sura number if filtered")
     total: int = Field(..., description="Total number of verses")
     verses: list[VerseResponse] = Field(..., description="List of verses")
+
+
+class QuranVerseResponse(BaseModel):
+    """Response schema for a single Quran verse (no footnotes)"""
+    sura: int = Field(..., ge=1, le=114, description="Sura number (1-114)")
+    aya: int = Field(..., ge=1, description="Aya number")
+    text: str = Field(..., description="Verse text")
+
+
+class QuranVersesResponse(BaseModel):
+    """Response schema for multiple Quran verses (no footnotes)"""
+    sura: int | None = Field(None, description="Sura number if filtered")
+    total: int = Field(..., description="Total number of verses")
+    verses: list[QuranVerseResponse] = Field(..., description="List of verses")

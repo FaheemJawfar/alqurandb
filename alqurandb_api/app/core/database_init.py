@@ -23,6 +23,8 @@ def create_complete_database(db_path: Path, csv_dir: Path, metadata_file: Path) 
         # Remove existing database
         if db_path.exists():
             db_path.unlink()
+        
+        data_dir = csv_dir.parent.parent
 
         # Create database
         conn = sqlite3.connect(db_path)
@@ -39,6 +41,34 @@ def create_complete_database(db_path: Path, csv_dir: Path, metadata_file: Path) 
                 has_footnotes INTEGER DEFAULT 0
             )
         ''')
+
+        # Create Quran Arabic Text Table
+        quran_csv = data_dir / 'quran' / 'quran_simple.csv'
+        if quran_csv.exists():
+            logger.info("Creating Quran Arabic text table...")
+            cursor.execute('''
+                CREATE TABLE quran_text (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    sura INTEGER NOT NULL,
+                    aya INTEGER NOT NULL,
+                    text TEXT NOT NULL
+                )
+            ''')
+            cursor.execute('CREATE INDEX idx_quran_text_sura ON quran_text(sura)')
+            cursor.execute('CREATE INDEX idx_quran_text_sura_aya ON quran_text(sura, aya)')
+
+            with open(quran_csv, 'r', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                quran_verses = [
+                    (int(row['sura']), int(row['aya']), row['text'])
+                    for row in reader
+                ]
+                cursor.executemany(
+                    'INSERT INTO quran_text (sura, aya, text) VALUES (?, ?, ?)',
+                    quran_verses
+                )
+        else:
+            logger.warning(f"Quran CSV not found at {quran_csv}")
 
         # Load metadata
         with open(metadata_file, 'r', encoding='utf-8') as f:
