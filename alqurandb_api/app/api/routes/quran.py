@@ -20,7 +20,6 @@ def get_quran_service(
 
 @router.get(
     "/verses",
-    response_model=QuranVersesResponse,
     summary="Get all Quran verses",
     description="Get all verses of the Quran in Arabic"
 )
@@ -29,11 +28,12 @@ async def get_all_verses(
 ):
     """Get all Quran verses"""
     verses = service.get_all_verses()
-    return QuranVersesResponse(
+    response = QuranVersesResponse(
         sura=None,
         total=len(verses),
         verses=[QuranVerseResponse(**v.to_dict()) for v in verses]
     )
+    return response.model_dump(exclude_none=True)
 
 @router.get(
     "/{sura}",

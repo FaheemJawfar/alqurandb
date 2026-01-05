@@ -7,7 +7,7 @@ from app.services.translation_service import TranslationService
 from app.services.verse_service import VerseService
 from app.repositories.verse_repository import VerseRepository
 from app.schemas.translation import TranslationList
-from app.schemas.verse import VerseResponse, VersesResponse
+from app.schemas.verse import VerseResponse, VersesResponse, VerseItem
 from app.models.translation import FileType
 from app.core.config import settings
 
@@ -134,13 +134,12 @@ async def get_sura(
         translation_id=translation_id,
         sura=sura,
         total=len(verses),
-        verses=[VerseResponse(**v.to_dict()) for v in verses]
+        verses=[VerseItem(**v.to_item_dict()) for v in verses]
     )
 
 
 @router.get(
     "/{translation_id}",
-    response_model=VersesResponse,
     summary="Get all verses from a translation",
     description="Get all 6236 verses from a complete translation"
 )
@@ -151,11 +150,12 @@ async def get_translation_verses(
     """Get all verses from a translation"""
     verses = service.get_all_verses(translation_id)
 
-    return VersesResponse(
+    response = VersesResponse(
         translation_id=translation_id,
         sura=None,
         total=len(verses),
-        verses=[VerseResponse(**v.to_dict()) for v in verses]
+        verses=[VerseItem(**v.to_item_dict()) for v in verses]
     )
+    return response.model_dump(exclude_none=True)
 
 

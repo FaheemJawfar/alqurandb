@@ -90,7 +90,6 @@ export default function ApiDocs() {
         total: 7,
         verses: [
           {
-            translation_id: "english_sahih",
             sura: 1,
             aya: 1,
             text: "In the name of Allah, the Entirely Merciful, the Especially Merciful."
@@ -117,7 +116,6 @@ export default function ApiDocs() {
         total: 5,
         verses: [
           {
-            translation_id: "english_sahih",
             sura: 2,
             aya: 1,
             text: "Alif, Lam, Meem."
@@ -137,11 +135,9 @@ export default function ApiDocs() {
       example: `${apiUrl}/translations/english_sahih`,
       response: {
         translation_id: "english_sahih",
-        sura: null,
         total: 6236,
         verses: [
           {
-            translation_id: "english_sahih",
             sura: 1,
             aya: 1,
             text: "In the name of Allah, the Entirely Merciful, the Especially Merciful."
@@ -261,20 +257,36 @@ export default function ApiDocs() {
             </p>
           </div>
 
-          <div className="bg-blue-50 border border-blue-100 rounded-xl p-5 flex items-start gap-3">
-            <Info className="flex-shrink-0 text-blue-600 mt-0.5" size={20} />
-            <div>
-              <h4 className="font-bold text-blue-900 text-sm mb-1">Interactive Documentation</h4>
-              <p className="text-sm text-blue-800 mb-3">
-                FastAPI provides auto-generated interactive API documentation:
-              </p>
-              <div className="flex gap-4">
-                <a href="/docs" target="_blank" rel="noreferrer" className="text-sm font-semibold text-blue-700 hover:text-blue-900 hover:underline flex items-center gap-1">
-                  Swagger UI <ExternalLink size={12} />
-                </a>
-                <a href="/redoc" target="_blank" rel="noreferrer" className="text-sm font-semibold text-blue-700 hover:text-blue-900 hover:underline flex items-center gap-1">
-                  ReDoc <ExternalLink size={12} />
-                </a>
+          <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 border-2 border-blue-200 rounded-xl p-6 shadow-md">
+            <div className="flex items-start gap-3 mb-4">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white flex-shrink-0">
+                <Info size={22} strokeWidth={2.5} />
+              </div>
+              <div className="flex-grow">
+                <h4 className="font-bold text-blue-900 text-lg mb-2">🚀 Interactive API Documentation</h4>
+                <p className="text-sm text-blue-800 mb-4 leading-relaxed">
+                  FastAPI provides auto-generated interactive API documentation where you can test endpoints directly in your browser:
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href="/docs"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all active:translate-y-0.5"
+                  >
+                    <ExternalLink size={18} />
+                    Swagger UI
+                  </a>
+                  <a
+                    href="/redoc"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all active:translate-y-0.5"
+                  >
+                    <ExternalLink size={18} />
+                    ReDoc
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -307,13 +319,23 @@ export default function ApiDocs() {
                       <span className="text-slate-500 select-none">{apiUrl}</span>
                       <span className="text-blue-400 font-bold">{endpoint.path}</span>
                     </div>
-                    <button
-                      onClick={() => handleCopy(`${apiUrl}${endpoint.path}`)}
-                      className="text-slate-400 hover:text-white transition-colors cursor-pointer"
-                      title="Copy endpoint URL"
-                    >
-                      <Copy size={18} />
-                    </button>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => window.open(endpoint.example, '_blank')}
+                        className="text-slate-400 hover:text-white transition-colors cursor-pointer flex items-center gap-1.5 px-3 py-1.5 rounded-md hover:bg-slate-800"
+                        title="Try this endpoint"
+                      >
+                        <ExternalLink size={16} />
+                        <span className="text-xs font-semibold">Try it</span>
+                      </button>
+                      <button
+                        onClick={() => handleCopy(`${apiUrl}${endpoint.path}`)}
+                        className="text-slate-400 hover:text-white transition-colors cursor-pointer p-1.5 rounded-md hover:bg-slate-800"
+                        title="Copy endpoint URL"
+                      >
+                        <Copy size={18} />
+                      </button>
+                    </div>
                   </div>
                 </div>
 

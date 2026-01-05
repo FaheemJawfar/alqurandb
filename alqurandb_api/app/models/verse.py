@@ -23,3 +23,15 @@ class Verse:
         if self.footnotes and self.footnotes.strip():
             result["footnotes"] = self.footnotes
         return result
+
+    def to_item_dict(self):
+        """Convert verse to dictionary without translation_id (for use in collections)"""
+        result = {
+            "sura": self.sura,
+            "aya": self.aya,
+            "text": self.text
+        }
+        # Include footnotes if they exist and are not empty
+        if self.footnotes and self.footnotes.strip():
+            result["footnotes"] = self.footnotes
+        return result
