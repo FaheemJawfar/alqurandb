@@ -124,48 +124,6 @@ export default function ApiDocs() {
       }
     },
     {
-      id: 'get-all-verses',
-      method: 'GET',
-      path: '/translations/{translation_id}',
-      title: 'Get All Verses from Translation',
-      description: 'Retrieve all 6236 verses from a complete translation.',
-      parameters: [
-        { name: 'translation_id', type: 'string', required: true, description: 'Translation identifier' }
-      ],
-      example: `${apiUrl}/translations/english_sahih`,
-      response: {
-        translation_id: "english_sahih",
-        total: 6236,
-        verses: [
-          {
-            sura: 1,
-            aya: 1,
-            text: "In the name of Allah, the Entirely Merciful, the Especially Merciful."
-          }
-        ]
-      }
-    },
-    {
-      id: 'get-quran-all-verses',
-      method: 'GET',
-      path: '/quran/verses',
-      title: 'Get All Quran Verses',
-      description: 'Retrieve all verses of the Quran in Arabic.',
-      parameters: [],
-      example: `${apiUrl}/quran/verses`,
-      response: {
-        sura: null,
-        total: 6236,
-        verses: [
-          {
-            sura: 1,
-            aya: 1,
-            text: "بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ"
-          }
-        ]
-      }
-    },
-    {
       id: 'get-quran-sura',
       method: 'GET',
       path: '/quran/{sura}',

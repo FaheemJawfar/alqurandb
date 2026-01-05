@@ -138,24 +138,3 @@ async def get_sura(
     )
 
 
-@router.get(
-    "/{translation_id}",
-    summary="Get all verses from a translation",
-    description="Get all 6236 verses from a complete translation"
-)
-async def get_translation_verses(
-    translation_id: str = PathParam(..., description="Translation identifier (e.g., english_sahih)"),
-    service: VerseService = Depends(get_verse_service)
-):
-    """Get all verses from a translation"""
-    verses = service.get_all_verses(translation_id)
-
-    response = VersesResponse(
-        translation_id=translation_id,
-        sura=None,
-        total=len(verses),
-        verses=[VerseItem(**v.to_item_dict()) for v in verses]
-    )
-    return response.model_dump(exclude_none=True)
-
-

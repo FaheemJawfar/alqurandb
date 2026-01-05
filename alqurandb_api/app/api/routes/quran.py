@@ -19,23 +19,6 @@ def get_quran_service(
     return QuranService(repository)
 
 @router.get(
-    "/verses",
-    summary="Get all Quran verses",
-    description="Get all verses of the Quran in Arabic"
-)
-async def get_all_verses(
-    service: QuranService = Depends(get_quran_service)
-):
-    """Get all Quran verses"""
-    verses = service.get_all_verses()
-    response = QuranVersesResponse(
-        sura=None,
-        total=len(verses),
-        verses=[QuranVerseResponse(**v.to_dict()) for v in verses]
-    )
-    return response.model_dump(exclude_none=True)
-
-@router.get(
     "/{sura}",
     response_model=QuranVersesResponse,
     summary="Get sura verses",
