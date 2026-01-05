@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="sindhi_amroti">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">الله ٻاجھاري مھربان جي نالي سان (شروع)</aya>
       <aya id="2">سڀ ساراھ (خاص) جھانن جي پالڻھار الله کي جڳائي.</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">جيڪي ماڻھن جي سينن ۾ وَسَوَسو وجھي ٿو.</aya>
       <aya id="6">جو جنن (جي جنس) مان ھجي يا ماڻھن (جي جنس) مان.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="persian_moezzi">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">بنام خداوند بخشاینده مهربان‌</aya>
       <aya id="2">سپاس خدایرا پروردگار جهانیان‌</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">آنکه وسوسه کند در سینه‌های مردم‌</aya>
       <aya id="6">از پریان و مردم‌</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="albanian_ahmeti">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">Me emrin e All-llahut, Mëshiruesit, Mëshirëbërësit!</aya>
       <aya id="2">Falënderimi i takon All-llahut, Zotit të botërave!</aya>
@@ -5867,7 +5867,7 @@
       <aya id="37">Zoti i qiejve e i tokës, dhe çka ka ndërmjet tyre, që është mëshirues, të cilit nuk kanë të drejtë t’i bëjnë vërejtje.</aya>
       <aya id="38">Atë ditë Xibrili dhe engjëjt qëndrojnë të rreshtuar, askush nuk flet pos atij që e lejon Mëshiruesi, dhe i cili e thotë të vërtetën.</aya>
       <aya id="39">Ajo është dita e vërtetë, e kush dëshiron le të kthehet rrugës te Zoti i vet.</aya>
-      <aya id="40">Ne ua tërhoqëm juve (idhujtarëve) vërejtjen për një dënim të afërt, në ditën kur njeriu (besimtar) shikon se çka i kanë sjellë duart e veta, e jobesimtari thotë: “Ah, sa mirë do të ishte për mua sikur të isha dhe"!</aya>
+      <aya id="40">Ne ua tërhoqëm juve (idhujtarëve) vërejtjen për një dënim të afërt, në ditën kur njeriu (besimtar) shikon se çka i kanë sjellë duart e veta, e jobesimtari thotë: “Ah, sa mirë do të ishte për mua sikur të isha dhe&quot;!</aya>
     </sura>
     <sura id="79">
       <aya id="1">Pasha ata (engjëj) që marrin shpirtrat me rrëmbim (përmbytshëm)!</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">I cili hedh dyshime në zemrat e njerëzve,</aya>
       <aya id="6">Qoftë ai nga xhinët ose nga njerëzit”.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

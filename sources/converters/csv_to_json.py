@@ -40,7 +40,7 @@ def csv_to_json(csv_file_path, output_file_path):
     Returns:
         Number of verses converted
     """
-    translation = {"suras": {}}
+    translation = {"sura": {}}
 
     # Read CSV file
     with open(csv_file_path, 'r', encoding='utf-8') as f:
@@ -51,18 +51,18 @@ def csv_to_json(csv_file_path, output_file_path):
             aya_id = row['aya']
             text = row['text']
             
-            if sura_id not in translation["suras"]:
-                translation["suras"][sura_id] = {"aya": {}}
+            if sura_id not in translation["sura"]:
+                translation["sura"][sura_id] = {"aya": {}}
             
-            translation["suras"][sura_id]["aya"][aya_id] = text
+            translation["sura"][sura_id]["aya"][aya_id] = text
             
             # Add footnotes if present in the CSV
             if 'footnotes' in row and row['footnotes']:
-                if 'footnotes' not in translation["suras"][sura_id]:
-                    translation["suras"][sura_id]["footnotes"] = {}
+                if 'footnotes' not in translation["sura"][sura_id]:
+                    translation["sura"][sura_id]["footnotes"] = {}
                 
                 notes = parse_footnotes(row['footnotes'])
-                translation["suras"][sura_id]["footnotes"].update(notes)
+                translation["sura"][sura_id]["footnotes"].update(notes)
             
             verse_count += 1
 

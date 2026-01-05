@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="persian_ayati">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">به نام خداى بخشاينده مهربان‌</aya>
       <aya id="2">ستايش خدا را كه پروردگار جهانيان است.</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">آن كه در دلهاى مردم وسوسه مى‌كند،</aya>
       <aya id="6">خواه از جنيان باشد يا از آدميان.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

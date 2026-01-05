@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="english_itani">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">In the name of God, the Gracious, the Merciful.</aya>
       <aya id="2">Praise be to God, Lord of the Worlds.</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">Who whispers into the hearts of people.</aya>
       <aya id="6">From among jinn and among people.”</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

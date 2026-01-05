@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="macedonian_group">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">1.Во името на Аллах, Семилосниот, Милостивиот![2]</aya>
       <aya id="2">2. Сета благодарност Му припаѓа на Аллах[3], Господарот на световите[4].</aya>
@@ -6860,5 +6860,5 @@
         <note id="275">Се однесува на шејтанот/ѓаволот.</note>
       </footnotes>
     </sura>
-  </suras>
+  </sura>
 </translation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="urdu_kanzuliman">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">اللہ کے نام سے شروع جو بہت مہربان رحمت والا</aya>
       <aya id="2">سب خوبیاں اللہ کو جو مالک سارے جہان والوں کا،</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">وہ جو لوگوں کے دلوں میں وسوسے ڈالتے ہیں،</aya>
       <aya id="6">جن اور آدمی</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

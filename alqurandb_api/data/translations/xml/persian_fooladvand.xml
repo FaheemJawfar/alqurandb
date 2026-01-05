@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="persian_fooladvand">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">به نام خداوند رحمتگر مهربان</aya>
       <aya id="2">ستایش خدایی را که پروردگار جهانیان،</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">آن کس که در سینه‌های مردم وسوسه می‌کند،</aya>
       <aya id="6">چه از جنّ و [چه از] انس.»</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

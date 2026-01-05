@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="persian_gharaati">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">به نام خداوند بخشنده‌ی مهربان.</aya>
       <aya id="2">سپاس و ستایش مخصوص خداوندی است که پروردگار جهانیان است.</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">همان‌ که همواره در سینه‌های آدمیان وسوسه می‌کند،</aya>
       <aya id="6">از جنس جنّ باشد یا از آدمیان».</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

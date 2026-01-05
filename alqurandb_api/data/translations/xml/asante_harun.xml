@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="asante_harun">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">Onyankopͻn din mu, Ahummͻborͻ Hene, Ɔdεεfoͻ Hene,</aya>
       <aya id="2">Aseda wͻ Nyankopͻn, Abͻdeε nyinaa Wura no,</aya>
@@ -5818,7 +5818,7 @@
       <aya id="40">Saa Da no, due nka wͻn a wͻfaa (Owusͻreε Da) no sε atorͻsεm no.</aya>
       <aya id="41">Nokorε sε, Nyamesurofoͻ no wͻ nwunu mu, ne nsuo aniwa ho,</aya>
       <aya id="42">Ne nnuaba ahodoͻ a wͻn kͻn dͻ.</aya>
-      <aya id="43">(Yεbεka akyerε wͻn sε): “Dwuma (pa) a modiiε no ho nti no, monfa anigyeε nnidi na monom".</aya>
+      <aya id="43">(Yεbεka akyerε wͻn sε): “Dwuma (pa) a modiiε no ho nti no, monfa anigyeε nnidi na monom&quot;.</aya>
       <aya id="44">Nokorε sε, saa ara na Yɛtua apapafoͻ no (dwumadi pa) no so ka.</aya>
       <aya id="45">Saa Da no, due nka wͻn a wͻfaa (Owusͻreε Da) no sε atorͻsεm no.</aya>
       <aya id="46">(Abͻneεfoͻ), monidi, na monye moani berε tiaa bi, nokorε sε, moyε abͻneεfoͻ.</aya>
@@ -6185,7 +6185,7 @@
       <aya id="12">Enti maa bͻne dͻͻso pii wͻ soᴐ no,</aya>
       <aya id="13">Wo Wura Nyankopͻn hwiee asotwe abaa-twa guu wͻn so.</aya>
       <aya id="14">Nokorε sε, wo Wura Nyankopͻn tε hͻ rewεn.</aya>
-      <aya id="15">Onipa deε sε ne Wura Nyankopͻn sͻ no hwε, hyε no animuonyam, na Ɔyε no adom bi a, ͻka (de tu ne ho) sε: “Me Wura Nyankopͻn ahyε me animuonyam".</aya>
+      <aya id="15">Onipa deε sε ne Wura Nyankopͻn sͻ no hwε, hyε no animuonyam, na Ɔyε no adom bi a, ͻka (de tu ne ho) sε: “Me Wura Nyankopͻn ahyε me animuonyam&quot;.</aya>
       <aya id="16">Na mmom sε Ɔsͻ no hwε na Ɔma ne ho kyere no wͻ akͻnhoma ho (anaa sε Ɔma no hia no) a, ͻka sε: “Me Wura Nyankopͻn agu m’anim ase “.</aya>
       <aya id="17">Daabi (ԑnte saa), nanso monnfa obuo mma agyanka (anaa awisiaa),</aya>
       <aya id="18">Afei monnhyε sε wͻdidi a, wͻma ahiafoͻ bi die:</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">Ɔbonsam a ͻdaadaa nnipa wͻ akoma mu no.</aya>
       <aya id="6">Ɛfiri Jinn (mmoatia) ne nnipa bonsam (nyinaa bͻne mu).</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

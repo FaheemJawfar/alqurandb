@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="czech_nykl">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">Ve jménu Boha, Milosrdného, Slitovného.</aya>
       <aya id="2">Chvála Bohu, Pánu světů,</aya>
@@ -4199,7 +4199,7 @@
       <aya id="61">Zachrání pak Bůh ty, kdož báli se jej, v místě bezpečném: nedotkne se jich zlo, aniž budou zarmouceni.</aya>
       <aya id="62">Bůh Stvořitelem jest všeho a on nade vším má poručenství;</aya>
       <aya id="63">jemu patří klíče nebes a země; a ti, kdož nevěří ve znamení jeho, dojista záhubě propadnou.</aya>
-      <aya id="64">Rci: „Zdaž co jiného, než Boha budete nakazovati mi, abych uctíval, ó nevědomci"„</aya>
+      <aya id="64">Rci: „Zdaž co jiného, než Boha budete nakazovati mi, abych uctíval, ó nevědomci&quot;„</aya>
       <aya id="65">Vždyť již vnuknuto bylo tobě i těm, kdož před tebou byli, že spolčoval-li bys co s Bohem, niveč uvedeno bylo by dílo tvé a ty dojista byl bys z těch, kdož záhubě propadli.</aya>
       <aya id="66">Naopak: Boha jen uctívej a buď jedním z vděčných!</aya>
       <aya id="67">Neoceňují Boha dle pravé ceny jeho, ač země celičká bude hrstí hlíny v ruce jeho v den zmrtvýchvstání a nebesa stočena budou v pravici jeho. Chválen budiž a vysoko povýšen nad to, co spolčujete s ním!</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">jenž našeptává do niter lidí:</aya>
       <aya id="6">před Džinny a lidmi.“</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

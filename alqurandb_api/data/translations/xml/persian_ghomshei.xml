@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="persian_ghomshei">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">به نام خداوند بخشنده مهربان</aya>
       <aya id="2">ستایش خدای را که پروردگار جهانیان است.</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">آن شیطان که وسوسه و اندیشه بد افکند در دل مردمان.</aya>
       <aya id="6">چه آن شیطان از جنس جن باشد و یا از نوع انسان.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

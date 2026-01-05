@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="albanian_mehdiu">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">Në emër të All-llahut, të Gjithëmëshirshmit, Mëshirëplotit!</aya>
       <aya id="2">Lavdërimi është për All-llahun, Zot i botëravet,</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">I cili fut huti në zemrat e njerëzve,</aya>
       <aya id="6">Nga exhinët dhe njerëzit.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

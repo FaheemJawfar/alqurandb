@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="afar_hamza">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">1. Fulte Racmattaay,Guné Racmatta- le Yallih Migaaqal Qimbisa.</aya>
       <aya id="2">2. Faylaa kee Saare ginô Rabbi le.</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">5. Kaay(sheytan kinnuk)seehadâ sorkocobbaxittet waswasaa kee umaane culsa.</aya>
       <aya id="6">6. Jinni sheytoonaa kee seehadâ sheytoonak tan waswasak.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

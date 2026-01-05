@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="korean_standard">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">자비로우시고 자애로우신 하나님의 이름으로</aya>
       <aya id="2">온 우주의 주님이신 하나님께찬미를 드리나이다</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">인간의 가슴속에서 유혹하는 사탄의 유혹을</aya>
       <aya id="6">영마와 인간의 유혹으로부터 보호를 구하나이다</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

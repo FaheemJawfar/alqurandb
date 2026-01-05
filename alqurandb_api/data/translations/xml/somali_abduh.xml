@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="somali_abduh">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">Magaca Eebe yaan kubillaabaynaa ee Naxariis guud iyo mid gaaraba Naxariista.</aya>
       <aya id="2">Mahad Eebaa iska leh ee barbaariyaha Caalamka ah (Koonka).</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">Ee waswaasiya laabta «Qalbiga» dadka.</aya>
       <aya id="6">«Kuwaas wax waswaasinayna» oo ah jinni iyo insiba.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

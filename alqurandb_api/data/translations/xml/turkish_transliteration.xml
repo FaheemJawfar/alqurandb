@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="turkish_transliteration">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">bismi-llâhi-rraḥmâni-rraḥîm.</aya>
       <aya id="2">elḥamdü lillâhi rabbi-l`âlemîn.</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">elleẕî yüvesvisü fî ṣudûri-nnâs.</aya>
       <aya id="6">mine-lcinneti vennâs.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

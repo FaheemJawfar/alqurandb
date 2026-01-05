@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="spanish_montada_latin">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">(Empiezo)[2] con el nombre de Al-lah[3], el Clemente, el Misericordioso[4].</aya>
       <aya id="2">¡Alabado sea Al-lah, Señor de toda la creación!,</aya>
@@ -457,7 +457,7 @@ La dote, no obstante, consiste en unos bienes o dinero que la esposa aporta al m
       <aya id="61">Y si (quienes rechazan la verdad) te discuten[106] sobre (Jesús) tras el conocimiento que has recibido, diles: “¡Vengan! Llamemos a nuestros hijos y a los suyos, a nuestras mujeres y a las suyas, y (estemos presentes) todos nosotros. Después recemos con sinceridad invocando a Al-lah para que expulse de Su misericordia a quienes mientan”.</aya>
       <aya id="62">Esto es, ciertamente, un relato verídico. Y no hay otra divinidad que merezca ser adorada excepto Al-lah. Y Él es el Poderoso, el Sabio.</aya>
       <aya id="63">Y si le dan la espalda (a la verdad), (que sepan que) Al-lah conoce bien a los corruptores (que abandonan la verdad por la falsedad y obran mal).</aya>
-      <aya id="64">Diles (a los judíos y a los cristianos, ¡oh, Muhammad!): ¡Ustedes que recibieron las Escrituras!, lleguemos a un acuerdo justo al que nos comprometamos ambas partes: No adoraremos sino a Al-lah ni Lo equipararemos con nadie en Su adoración, ni obedeceremos a otros por encima de Al-lah contradiciendo Sus mandatos”. Y si dan la espalda (a esta invitación), díganles: "Sean testigos de que nosotros nos sometemos (sinceramente a la voluntad de Al-lah)”.</aya>
+      <aya id="64">Diles (a los judíos y a los cristianos, ¡oh, Muhammad!): ¡Ustedes que recibieron las Escrituras!, lleguemos a un acuerdo justo al que nos comprometamos ambas partes: No adoraremos sino a Al-lah ni Lo equipararemos con nadie en Su adoración, ni obedeceremos a otros por encima de Al-lah contradiciendo Sus mandatos”. Y si dan la espalda (a esta invitación), díganles: &quot;Sean testigos de que nosotros nos sometemos (sinceramente a la voluntad de Al-lah)”.</aya>
       <aya id="65">(Diles:) “¡Ustedes que recibieron las Escrituras!, ¿por qué nos discuten sobre Abraham[107] si la Torá y el Evangelio no fueron revelados hasta después de él? ¿Es que no razonan?</aya>
       <aya id="66">“Ustedes son quienes discutieron con anterioridad (con Muhammad) sobre lo que conocían (con respecto a su propia religión), ¿por qué discuten ahora acerca de lo que no saben (sobre el tema de Abraham)? Al-lah sabe (la verdad sobre lo que disputan), mientras que ustedes no saben”.</aya>
       <aya id="67">Abraham no era ni judío ni cristiano, sino que adoraba exclusivamente a Al-lah con sinceridad, y no era un idólatra.</aya>
@@ -1727,7 +1727,7 @@ La dote, no obstante, consiste en unos bienes o dinero que la esposa aporta al m
     </sura>
     <sura id="10">
       <aya id="1">Alif. Lam. Ra[333]. Estas son las aleyas del Libro de la sabiduría.</aya>
-      <aya id="2">¿Acaso se sorprenden los hombres de que hayamos concedido la revelación a uno de ellos para que advierta a la gente (del castigo de Al-lah) y dé la buena nueva a los creyentes de que obtendrán una buena recompensa[334] (por sus acciones) junto a su Señor? Pero, quienes rechazan la verdad dicen: “Este (Muhammad) no es sino un simple brujo".</aya>
+      <aya id="2">¿Acaso se sorprenden los hombres de que hayamos concedido la revelación a uno de ellos para que advierta a la gente (del castigo de Al-lah) y dé la buena nueva a los creyentes de que obtendrán una buena recompensa[334] (por sus acciones) junto a su Señor? Pero, quienes rechazan la verdad dicen: “Este (Muhammad) no es sino un simple brujo&quot;.</aya>
       <aya id="3">Su Señor es Al-lah, Quien creó los cielos y la tierra en seis días[335] y después se asentó sobre el Trono. Él es Quien controla todos los asuntos. Nadie puede interceder ante Él sin Su consentimiento. Este es Al-lah, su Señor; ¡adórenlo, pues! ¿Acaso no reflexionan?</aya>
       <aya id="4">Todos retornarán a Él (para ser juzgados el Día de la Resurrección). La promesa de Al-lah es cierta. Él es Quien dio origen a la creación y la reproducirá para recompensar con toda justicia a quienes creen y actúan con rectitud. Y quienes rechazan la verdad tendrán agua hirviendo por bebida y recibirán un castigo doloroso por negarla.</aya>
       <aya id="5">Él es Quien hizo del sol una fuente de luz (y calor) y de la luna, una luz (reflejada)[336], y estableció sus fases para que pudieran contar los años y calcular (el paso del tiempo). Al-lah no ha creado todo esto sin un propósito. (Así) explica con detalle las pruebas de Su poder (y Su revelación) a quienes tienen conocimiento (y reflexionan).</aya>
@@ -7777,5 +7777,5 @@ Literalmente, María dice que ha realizado un voto de ayuno a Al-lah, que inclu�
       <aya id="5">y susurra (el mal) en el corazón de los hombres,</aya>
       <aya id="6">sea que pertenezca a los yinn o a los hombres”.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

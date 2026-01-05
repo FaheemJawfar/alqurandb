@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="french_hamidullah">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">Au nom d'Allah, le Tout Miséricordieux, le Très Miséricordieux.</aya>
       <aya id="2">Louange à Allah, Seigneur de l'univers.</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">qui souffle le mal dans les poitrines des hommes,</aya>
       <aya id="6">qu'il (le conseiller) soit un djinn, ou un être humain».</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="norwegian_berg">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">I Guds, den Barmhjertiges, den Nåderikes navn</aya>
       <aya id="2">Lovet være Gud, all verdens Herre,</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">som hvisker i menneskenes hjerter,</aya>
       <aya id="6">av dsjinner eller mennesker.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

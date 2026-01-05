@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="kinyarwanda_assoc">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">Ku izina rya Allah[1], Nyirimpuhwe, Nyirimbabazi.</aya>
       <aya id="2">Ishimwe n’ikuzo byose bikwiye Allah, Nyagasani w’ibiremwa byose.</aya>
@@ -144,7 +144,7 @@
       <aya id="128">Nyagasani wacu! Unatugire abakwicishaho bugufi, ndetse no mu rubyaro rwacu hazabemo umuryango (Umat) ukwicishaho bugufi, utugaragarize imigenzo yacu (tuzagenderaho mu kukugaragira), kandi wakire ukwicuza kwacu. Mu by’ukuri, ni wowe Uwakira ukwicuza, Nyirimbabazi.</aya>
       <aya id="129">Nyagasani wacu! Uzanaboherezemo Intumwa ibakomokamo, ibasomera amagambo yawe, inabigishe igitabo (Qur’an) n’ubushishozi (imigenzo y’Intumwa n’amategeko y’idini) kandi ibeze (ibakura mu ibangikanyamana n’imico mibi). Mu by’ukuri, ni wowe Nyiricyubahiro gihebuje, Nyirubugenge buhambaye.</aya>
       <aya id="130">Ni nde wakwanga idini rya Aburahamu (Isilamu) uretse uwigize injiji? Mu by’ukuri, twamuhisemo ku isi (ngo abe Intumwa n’Umuhanuzi) kandi ku mperuka azaba mu ntungane.</aya>
-      <aya id="131">Ibuka ubwo Nyagasani we yamubwiraga ati "Icishe bugufi.” Aravuga ati "Nicishije bugufi kuri Nyagasani w’ibiremwa byose.”</aya>
+      <aya id="131">Ibuka ubwo Nyagasani we yamubwiraga ati &quot;Icishe bugufi.” Aravuga ati &quot;Nicishije bugufi kuri Nyagasani w’ibiremwa byose.”</aya>
       <aya id="132">Nuko Aburahamu (iryo dini) ariraga urubyaro rwe ndetse na Yakobo biba uko, (agira ati) “Bana banjye! Mu by’ukuri, Allah yabahitiyemo idini, bityo muramenye ntimuzapfe mutari Abayisilamu.”</aya>
       <aya id="133">Ese mwari muhari igihe Yakobo yari ageze mu bihe bye bya nyuma, maze akabwira abana be ati “Ese muzasenga nde nyuma yanjye? Baravuga bati “Tuzasenga Imana yawe ari na yo Mana y’abakurambere bawe: Ibrahimu, Ismail na Is’haq. Imana imwe kandi ni na yo twicishaho bugufi.”</aya>
       <aya id="134">Uwo ni umuryango (Umat) wahise; ufite ibyo wakoze namwe mufite ibyo mwakoze (buri wese azahemberwa ibyo yakoze), kandi ntimuzabazwa ibyo bakoraga.</aya>
@@ -874,7 +874,7 @@
       <aya id="50">Vuga (yewe Muhamadi) uti “Simbabwira ko mfite ibigega bya Allah, nta n’ubwo nzi ibitagaragara, ndetse nta n’ubwo mbabwira ko ndi Malayika. Ahubwo nkurikira ibyo mpishurirwa gusa.” Vuga uti “Ese utabona ahwanye n’ubona? Ese ntimutekereza?”</aya>
       <aya id="51">Yikoreshe (Qur’an) uburira ba bandi bafite ubwoba bwo kuzakoranyirizwa kwa Nyagasani wabo, ko nta wundi murinzi utari We (Allah) cyangwa uwabavuganira. (Ibyo bikore) kugira ngo bamugandukire.</aya>
       <aya id="52">Kandi ntukirukane ba bandi basenga Nyagasani wabo mu gitondo na nimugoroba bashaka kwishimirwa na We.[1] Nta cyo ubazwa mu byo bakora, na bo nta cyo babazwa mu byo ukora. Nubirukana uzaba ubaye umwe mu bahemu.</aya>
-      <aya id="53">Uko ni na ko bamwe mu bantu twabagize ibigeragezo ku bandi (bamwe tubagira abakire abandi tubagira abakene) kugira ngo (abahakanyi b’abakire) bavuge bati "Ese aba (bakene b’abemera) ni bo Allah yagabiye (kumuyoboka) muri twe (maze twe aratwihorera)?" Ese Allah ntazi neza abashimira?</aya>
+      <aya id="53">Uko ni na ko bamwe mu bantu twabagize ibigeragezo ku bandi (bamwe tubagira abakire abandi tubagira abakene) kugira ngo (abahakanyi b’abakire) bavuge bati &quot;Ese aba (bakene b’abemera) ni bo Allah yagabiye (kumuyoboka) muri twe (maze twe aratwihorera)?&quot; Ese Allah ntazi neza abashimira?</aya>
       <aya id="54">Kandi abemera ibimenyetso byacu nibaza bakugana, ujye ubaramutsa uvuga uti “Salamu alaykum (mugire amahoro!)” Nyagasani wanyu yiyemeje kugira impuhwe kugira ngo uzakora ikibi muri mwe kubera ubujiji, maze nyuma yo kugikora akicuza akanakora ibikorwa byiza (azamubabarire). Mu by’ukuri We (Allah) ni Ubabarira ibyaha, Nyirimpuhwe.</aya>
       <aya id="55">Uko ni na ko dusobanura ibimenyetso, kugira ngo inzira y’inkozi z’ibibi isobanuke.</aya>
       <aya id="56">Vuga (yewe Muhamadi) uti “Rwose, njye nabujijwe kugaragira ibyo mwambaza bitari Allah.” Vuga uti “Sinakurikira irari ryanyu kuko ndamutse mbikoze, naba nyobye kandi sinaba ndi mu bayobotse.”</aya>
@@ -1235,7 +1235,7 @@
       <aya id="29">Yemwe abemeye! Nimutinya Allah, azabashoboza gutandukanya ikibi n’icyiza, abahanagureho ibyaha byanyu ndetse anabababarire. Kandi Allah ni Nyiringabire zihambaye.</aya>
       <aya id="30">Unibuke (yewe Muhamadi) ubwo abahakanye bagucuriraga imigambi yo kugira ngo bakugire imbohe, cyangwa ngo bakwice, cyangwa ngo bakumeneshe. Bacuraga imigambi Allah agacura indi (myiza yo kuburizamo iya bo); kandi Allah ni we Uhebuje mu kuburizamo imigambi mibisha.</aya>
       <aya id="31">N’iyo basomewe amagambo yacu (Qur’an) baravuga bati “Erega twarayumvise”; n’iyo dushaka twari kuvuga ameze nka yo. Ibi nta cyo biri cyo usibye kuba ari inkuru z’abo hambere.”</aya>
-      <aya id="32">Unibuke (yewe Muhamadi) ubwo bavugaga bati “Mana Nyagasani! Niba koko iyi (Qur’an) ari ukuri kuguturutseho, ngaho tugusheho imvura y’amabuye iturutse mu kirere, cyangwa utuzanire ibihano bibabaza."</aya>
+      <aya id="32">Unibuke (yewe Muhamadi) ubwo bavugaga bati “Mana Nyagasani! Niba koko iyi (Qur’an) ari ukuri kuguturutseho, ngaho tugusheho imvura y’amabuye iturutse mu kirere, cyangwa utuzanire ibihano bibabaza.&quot;</aya>
       <aya id="33">Kandi Allah ntiyari kubahana mu gihe (wowe Muhamadi) ukibarimo, ndetse nta n’ubwo Allah yari kubahana mu gihe basaba imbabazi.</aya>
       <aya id="34">None se ni iki cyatuma Allah atabahana kandi bakumira (abantu) kugana umusigiti mutagatifu (Al Ka’abat), ndetse ntibabe n’abarinzi bawo? Nta bandi baba abarinzi bawo usibye abagandukira Allah, nyamara abenshi muri bo ntibabizi.</aya>
       <aya id="35">Kandi iswala[1] yabo ku musigiti mutagatifu (Al Ka’abat) yari ukuvugiriza no gukoma amashyi gusa (bagamije kubuza amahoro Intumwa Muhamadi). Ngaho nimwumve ububabare bw’ibihano kubera ibyo mwahakanaga.</aya>
@@ -1710,7 +1710,7 @@
       <aya id="47">(Yusufu) aravuga ati “Muzahinga imyaka irindwi ikurikirana, maze ibyo muzasarura muzabirekere mu misogwe yabyo, usibye bike mu byo muzarya.”</aya>
       <aya id="48">“Nyuma y’icyo gihe, hazaza (imyaka) irindwi (y’amapfa) izarya ibyo muzaba mwarayihunikiye, usibye bike muzaba mwarazigamye (nk’imbuto).”</aya>
       <aya id="49">“Maze nyuma yayo haze umwaka abantu babone imvura nyinshi (beze byinshi) nuko benge (imitobe myinshi).”</aya>
-      <aya id="50">Nuko umwami aravuga ati "Nimumunzanire!" Ariko Intumwa imugezeho, (Yusufu) aravuga ati “Subira kwa Shobuja umubaze ku byerekeye abagore bitemaguye intoki (bari bagambiriye kunshinja ibinyoma)! Mu by’ukuri Nyagasani wanjye ni Umumenyi uhebuje w’amayeri yabo.”</aya>
+      <aya id="50">Nuko umwami aravuga ati &quot;Nimumunzanire!&quot; Ariko Intumwa imugezeho, (Yusufu) aravuga ati “Subira kwa Shobuja umubaze ku byerekeye abagore bitemaguye intoki (bari bagambiriye kunshinja ibinyoma)! Mu by’ukuri Nyagasani wanjye ni Umumenyi uhebuje w’amayeri yabo.”</aya>
       <aya id="51">(Umwami akoranya abo bagore) aravuga ati “Ni iyihe mpamvu yabateye kwifuza Yusufu?” Baravuga bati “Allah abimurinde! Nta kibi twamubonyeho.” Umugore w’umunyacyubahiro (na we) aravuga ati “Ubu noneho ukuri kuragaragaye; ni njye wamwifuje, kandi rwose ari mu banyakuri.”</aya>
       <aya id="52">(Nuko Yusufu aravuga ati) “Ibyo (byo gushaka ko abagore babanza kubazwa) ni ukugira ngo (wa mutware) amenye ko ntigeze muhemukira rwihishwa. Kandi mu by’ukuri Allah ntashoboza abahemu kugera ku migambi yabo mibi.”</aya>
       <aya id="53">“Kandi sinigira umwere (kuko nanjye naburaga gato ngo mwifuze). Mu by’ukuri umutima akenshi utegeka gukora ibibi, uretse uwo Nyagasani wanjye yagiriye impuhwe. Rwose Nyagasani wanjye ni Ubabarira ibyaha, Nyirimpuhwe.”</aya>
@@ -1768,7 +1768,7 @@
       <aya id="105">Ese ni ibimenyetso bingahe banyuraho mu birere no ku isi (bigaragaza ko Imana ari imwe), ariko bakabyirengagiza?</aya>
       <aya id="106">Nyamara abenshi muri bo ntibashobora kwemera Allah batamubangikanyije.</aya>
       <aya id="107">Ese bumva batekanye ku buryo batagerwaho n'ibihano bya Allah bikabagota, cyangwa bakagerwaho n'imperuka ibatunguye mu buryo batazi?</aya>
-      <aya id="108">Vuga (yewe Muhamadi) uti "Iyi ni yo nzira yanjye, mpamagarira (abantu) kugana Allah nshingiye ku bumenyi buhamye, njye n’abankurikiye. Ubutagatifu ni ubwa Allah. Kandi njye ntabwo ndi mu babangikanyamana.”</aya>
+      <aya id="108">Vuga (yewe Muhamadi) uti &quot;Iyi ni yo nzira yanjye, mpamagarira (abantu) kugana Allah nshingiye ku bumenyi buhamye, njye n’abankurikiye. Ubutagatifu ni ubwa Allah. Kandi njye ntabwo ndi mu babangikanyamana.”</aya>
       <aya id="109">Kandi mbere yawe nta bandi twigeze twohereza ngo tubahishurire ubutumwa, usibye ko babaga ari abagabo bakomoka mu midugudu (twabaga tuboherejemo). Ese ntibatambagira isi ngo barebe uko iherezo (ry’abahakanyi) bababanjirije ryagenze? Kandi ubuturo bw’imperuka ni bwo bwiza kuri ba bandi bagandukiraga Allah. Ese nta bwenge mugira?</aya>
       <aya id="110">(Yewe Muhamadi! Ntuzibwire ko kugera ku ntsinzi byoroshye, kuko n’Intumwa zakubanjirije zitayigezeho ako kanya, ahubwo) izo Ntumwa zageraga aho ziheba zigakeka ko zahakanywe burundu; icyo gihe inkunga yacu ikaba ari bwo izigeraho, maze tukarokora abo dushaka. Kandi ibihano byacu ntibikumirwa ku bantu b’inkozi z’ibibi.</aya>
       <aya id="111">Rwose muri (izo) nkuru zabo harimo inyigisho ku banyabwenge. Ntabwo (Qur’an) ari inkuru mpimbano, ahubwo ishimangira (ibitabo) byayibanjirije, ikanasobanura buri kintu, ndetse ikaba n’umuyoboro n'impuhwe ku bantu bemera (Allah).</aya>
@@ -1909,7 +1909,7 @@
       <aya id="25">Kandi mu by’ukuri Nyagasani wawe ni We uzabakoranya (ku munsi w’ibarura). Rwose ni We Nyirubugenge buhambaye, Umumenyi uhebuje.</aya>
       <aya id="26">Mu by’ukuri twaremye umuntu (Adamu) mu ibumba ryumye ukomangaho rikirangira, mu ibumba ry’umukara ryahinduye ibara n’impumuro (kubera igihe ryari rimaze).</aya>
       <aya id="27">Naho Amajini (harimo na Shitani) tuyarema mbere (ya Adamu) tuyakomoye mu bishashi by’umuriro utagira umwotsi.</aya>
-      <aya id="28">Unibuke ubwo Nyagasani wawe yabwiraga Abamalayika ati "Mu by’ukuri ngiye kurema umuntu (Adamu) mu ibumba ryumye ukomangaho rikirangira, mu ibumba ry’umukara ryahinduye ibara n’impumuro (kubera igihe ryari rimaze).”</aya>
+      <aya id="28">Unibuke ubwo Nyagasani wawe yabwiraga Abamalayika ati &quot;Mu by’ukuri ngiye kurema umuntu (Adamu) mu ibumba ryumye ukomangaho rikirangira, mu ibumba ry’umukara ryahinduye ibara n’impumuro (kubera igihe ryari rimaze).”</aya>
       <aya id="29">“Nimara kumutunganya nkamuhuhamo roho inturutseho, muhite muca bugufi mumwubamire (byo kumuha icyubahiro atari ukumusenga)”</aya>
       <aya id="30">Nuko Abamalayika bose barubama,</aya>
       <aya id="31">Uretse Ibilisi (Shitani) wanze kuba mu bubama.</aya>
@@ -2071,7 +2071,7 @@
       <aya id="83">Bazi neza ingabire za Allah ariko (bakabirengaho) bakazihakana, kandi abenshi muri bo ni abahakanyi.</aya>
       <aya id="84">(Unibuke) umunsi tuzazura umuhamya wa buri muryango (Intumwa yawo); icyo gihe abahakanye ntibazemererwa gutanga impamvu (z’ibyaha bakoze), ndetse nta n’ubwo bazasabwa kwisubiraho (gusubira ku isi ngo bicuze cyangwa ngo basabe imbabazi Allah).</aya>
       <aya id="85">N’igihe ba bandi b’inkozi z’ibibi bazabona ibihano, ntabwo bazabyoroherezwa, ndetse nta n’ubwo bazarindirizwa.</aya>
-      <aya id="86">N’igihe ba bandi babangikanyije Allah bazabona ibigirwamana byabo, bazavuga bati "Nyagasani wacu! Biriya ni ibigirwamana byacu twajyaga dusaba mu kimbo cyawe.” Maze bivuge (bibanyomoza) biti "Mu by’ukuri mwe muri abanyabinyoma.”</aya>
+      <aya id="86">N’igihe ba bandi babangikanyije Allah bazabona ibigirwamana byabo, bazavuga bati &quot;Nyagasani wacu! Biriya ni ibigirwamana byacu twajyaga dusaba mu kimbo cyawe.” Maze bivuge (bibanyomoza) biti &quot;Mu by’ukuri mwe muri abanyabinyoma.”</aya>
       <aya id="87">Kuri uwo munsi bazicisha bugufi kuri Allah, kandi ibyo bihimbiye (biringira ko bizabakorera ubuvugizi kwa Allah ku munsi w’imperuka) bizabitarura babibure!</aya>
       <aya id="88">Ba bandi bahakanye bakanakumira (abantu) kugana inzira ya Allah, tuzabongerera ibihano hejuru y’ibindi kubera ko bajyaga bakwirakwiza ubwangizi (bigomeka kuri Allah bakanabishishikariza abandi).</aya>
       <aya id="89">(Unibuke) umunsi tuzazura umuhamya wa buri muryango (Intumwa yawo) ubakomokamo, maze nawe (Muhamadi) tukakuzana uri umuhamya wabo (abahakanyi bo ku gihe cyawe). Twanaguhishuriye igitabo (Qur’an) gisobanura buri kintu, kikaba n’umuyoboro, impuhwe n’inkuru nziza ku bicishije bugufi (Abayisilamu).</aya>
@@ -6661,5 +6661,5 @@
       <aya id="5">“Yoshya imitima y’abantu gukora ibibi; ”</aya>
       <aya id="6">“Yaba (shitani) yo mu majini cyangwa mu bantu.”</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

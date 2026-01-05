@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="lingala_zakaria">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">Okombo ya Allah wa boboto atonda ngolu.</aya>
       <aya id="2">Matondi na Allah Nkolo ya mikili.</aya>
@@ -6727,5 +6727,5 @@
       <aya id="5">Oyo azali kofula makanisi mabe o’mitema mia bato.</aya>
       <aya id="6">Azala okati ya bilima to bato.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

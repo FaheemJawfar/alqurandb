@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="chinese_majian">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">奉至仁至慈的真主之名</aya>
       <aya id="2">一切贊頌，全歸真主，全世界的主，</aya>
@@ -6338,7 +6338,7 @@
     <sura id="99">
       <aya id="1">當大地猛烈地震動,</aya>
       <aya id="2">拋其重擔,</aya>
-      <aya id="3">說"大地怎麼啦?"</aya>
+      <aya id="3">說&quot;大地怎麼啦?&quot;</aya>
       <aya id="4">在那日, 大地將報告它的消息。</aya>
       <aya id="5">因為你的主已啟示了它;</aya>
       <aya id="6">在那日, 人們將紛紛地離散,</aya>
@@ -6425,12 +6425,12 @@
       <aya id="3">怨恨你者, 確是絕后的。</aya>
     </sura>
     <sura id="109">
-      <aya id="1">你說:"不信道的人們啊！</aya>
+      <aya id="1">你說:&quot;不信道的人們啊！</aya>
       <aya id="2">我不崇拜你們所崇拜的,</aya>
       <aya id="3">你們也不崇拜我所崇拜的;</aya>
       <aya id="4">我不會崇拜你們所崇拜的,</aya>
       <aya id="5">你們也不會崇拜我所崇拜的;</aya>
-      <aya id="6">你們有你們的報應, 我也有我的報應。"</aya>
+      <aya id="6">你們有你們的報應, 我也有我的報應。&quot;</aya>
     </sura>
     <sura id="110">
       <aya id="1">當真主的援助和勝利降臨,</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">他在世人的胸中教唆,</aya>
       <aya id="6">他是屬于精靈和人類的。</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

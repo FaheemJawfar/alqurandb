@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="tagalog_rwwad">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">Sa ngalan ni Allāh,[1] ang Napakamaawain, ang Maawain.</aya>
       <aya id="2">Ang papuri ay ukol kay Allāh, ang Panginoon[2] ng mga nilalang,[3]</aya>
@@ -1135,7 +1135,7 @@
       <aya id="164">Sabihin mo: “Sa iba pa ba kay Allāh maghahangad ako bilang Panginoon samantalang Siya ay Panginoon ng bawat bagay? Walang [kasalanang] nakakamit ang bawat kaluluwa malibang laban dito. Hindi magpapasan ang isang tagapasan ng pasanin ng iba. Pagkatapos tungo sa Panginoon ninyo ang babalikan ninyo saka magbabalita Siya sa inyo hinggil sa anumang kayo noon hinggil doon ay nagkakaiba-iba.”</aya>
       <aya id="165">Siya ay ang gumawa sa inyo bilang mga kahalili sa lupa. Nag-angat Siya sa iba sa inyo higit sa iba sa mga antas upang sumubok Siya sa inyo sa ibinigay Niya sa inyo. Tunay na ang Panginoon mo ay mabilis ang parusa at tunay na Siya ay talagang Mapagpatawad, Maawain.</aya>
       <footnotes>
-        <note id="1">ang sabi nila: "Sumpa man kay Allāh, kami ay hindi mga tagapagtambal.</note>
+        <note id="1">ang sabi nila: &quot;Sumpa man kay Allāh, kami ay hindi mga tagapagtambal.</note>
         <note id="2">Ibig sabihin: ang mga tao.</note>
         <note id="3">Ibig sabihin: sa pamamagitan ng Qur'an.</note>
         <note id="4">Ibig sabihin: ni Abraham.</note>
@@ -7399,5 +7399,5 @@
       <aya id="5">na nagpapasaring [ng kasamaan] sa mga dibdib ng mga tao,</aya>
       <aya id="6">kabilang sa mga jinn at mga tao.”</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

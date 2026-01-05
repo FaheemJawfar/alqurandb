@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="japanese_standard">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">慈悲あまねく慈愛深きアッラーの御名において。</aya>
       <aya id="2">万有の主，アッラーにこそ凡ての称讃あれ，</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">それが人間の胸に囁きかける，</aya>
       <aya id="6">ジン（幽精）であろうと，人間であろうと。」</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

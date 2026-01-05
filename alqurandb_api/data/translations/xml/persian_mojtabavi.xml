@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="persian_mojtabavi">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">به نام خداى بخشاينده مهربان</aya>
       <aya id="2">سپاس و ستايش خداى راست، پروردگار جهانيان</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">آن كه در سينه‌هاى- دلهاى- مردمان وسوسه مى‌كند،</aya>
       <aya id="6">از پريان و آدميان- شيطانهاى انس و جن-.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

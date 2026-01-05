@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="bulgarian_theophanov">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">В името на Аллах, Всемилостивия, Милосърдния!</aya>
       <aya id="2">Хвала на Аллах - Господа на световете,</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">който нашепва в гърдите на хората,</aya>
       <aya id="6">[сатана] от джиновете и от хората!”</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="english_transliteration">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">Bismi All&lt;u&gt;a&lt;/U&gt;hi a&lt;b&gt;l&lt;/B&gt;rra&lt;u&gt;h&lt;/U&gt;m&lt;u&gt;a&lt;/U&gt;ni a&lt;b&gt;l&lt;/B&gt;rra&lt;u&gt;h&lt;/U&gt;eem&lt;b&gt;i&lt;/b&gt;</aya>
       <aya id="2">Al&lt;u&gt;h&lt;/U&gt;amdu lill&lt;u&gt;a&lt;/U&gt;hi rabbi alAA&lt;u&gt;a&lt;/U&gt;lameen&lt;b&gt;a&lt;/b&gt;</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">Alla&lt;u&gt;th&lt;/U&gt;ee yuwaswisu fee &lt;u&gt;s&lt;/U&gt;udoori a&lt;b&gt;l&lt;/B&gt;nn&lt;u&gt;a&lt;/U&gt;s&lt;b&gt;i&lt;/b&gt;</aya>
       <aya id="6">Mina aljinnati wa&lt;b&gt; al&lt;/B&gt;nn&lt;u&gt;a&lt;/U&gt;s&lt;b&gt;m&lt;/b&gt;</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

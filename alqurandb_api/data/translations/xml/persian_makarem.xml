@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="persian_makarem">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">به نام خداوند بخشنده بخشایشگر</aya>
       <aya id="2">ستایش مخصوص خداوندی است که پروردگار جهانیان است.</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">که در درون سینه انسانها وسوسه می‌کند،</aya>
       <aya id="6">خواه از جنّ باشد یا از انسان!</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

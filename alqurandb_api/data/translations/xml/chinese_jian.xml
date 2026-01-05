@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="chinese_jian">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">奉至仁至慈的真主之名</aya>
       <aya id="2">一切赞颂全归真主，众世界 的主，</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">他在世人的胸中教唆,</aya>
       <aya id="6">他是属于精灵和人类的。</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

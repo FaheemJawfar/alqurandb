@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="swahili_barwani">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">KWA JINA LA MWENYEZI MUNGU MWINGI WA REHEMA MWENYE KUREHEMU.</aya>
       <aya id="2">Sifa njema zote ni za Mwenyezi Mungu, Mola Mlezi wa viumbe vyote;</aya>
@@ -114,7 +114,7 @@
       <aya id="101">Na alipo wajia Mtume kutoka kwa Mwenyezi Mungu, mwenye kuthibitisha yale waliyo nayo, kundi moja miongoni mwa wale walio pewa Kitabu lilitupa Kitabu cha Mwenyezi Mungu hicho nyuma ya migongo yao kama kwamba hawajui.</aya>
       <aya id="102">Na wakafuata yale waliyo zua mashet'ani kuuzulia ufalme wa Su leiman. Na wala Suleiman hakukufuru, bali mashet'ani ndio walio kufuru, wakiwafundisha watu uchawi, na yaliyo teremshwa kwa Malaika wawili, Haaruta na Maaruta katika Baabil. Wala hao hawakumfundisha yeyote mpaka wamwambie: Hakika sisi ni mtihani; basi usikufuru. Wakajifunza kwa hao wawili yale ya kumfarikisha mtu na mkewe. Wala hawawezi kumdhuru mtu ila kwa kutaka Mwenyezi Mungu. Na wanajifunza yatayo wadhuru wala hayawanufaishi. Na hakika wanajua kwamba aliye khiari haya hatakuwa na fungu lolote katika Akhera. Na hakika ni kiovu mno walicho jiuzia nafsi zao laiti wangelijua.</aya>
       <aya id="103">Na lau kuwa wangeamini na wakaogopa, bila ya shaka malipo yatokayo kwa Mwenyezi Mungu yange kuwa bora. Laiti wangeli kuwa wanajua!</aya>
-      <aya id="104">Enyi mlio amini! Msiseme: "Raa'ina", na semeni: "Ndhurna". Na sikieni! Na makafiri watapata adhabu chungu.</aya>
+      <aya id="104">Enyi mlio amini! Msiseme: &quot;Raa'ina&quot;, na semeni: &quot;Ndhurna&quot;. Na sikieni! Na makafiri watapata adhabu chungu.</aya>
       <aya id="105">Walio kufuru miongoni mwa watu wa Kitabu na washirikina hawapendi mteremshiwe kheri yoyote kutoka kwa Mola wenu Mlezi. Na Mwenyezi Mungu humkusudia kumpa rehema yake ampendaye. Na Mwenyezi Mungu ni mwenye fadhila kubwa.</aya>
       <aya id="106">Ishara yoyote tunayo ifuta au tunayo isahaulisha tunailetea iliyo bora kuliko hiyo, au iliyo mfano wake. Hujui kwamba Mwenyezi Mungu ni Muweza wa kila kitu?</aya>
       <aya id="107">Hujui kwamba Mwenyezi Mungu ana ufalme wa mbingu na ardhi? Nanyi hamna mlinzi wala msaidizi isipo kuwa Mwenyezi Mungu.</aya>
@@ -546,7 +546,7 @@
       <aya id="43">Enyi mlio amini! Msikaribie Sala, hali mmelewa, mpaka myajue mnayo yasema, wala hali mna janaba - isipo kuwa mmo safarini - mpaka mkoge. Na mkiwa wagonjwa, au mmo safarini, au mmoja wenu ametoka chooni, au mmewagusa wanawake - na msipate maji, basi ukusudieni mchanga safi, mpake nyuso zenu na mikono yenu. Hakika Mwenyezi Mungu ni Msamehevu na Mwenye kughufiria.</aya>
       <aya id="44">Huwaoni wale walio pewa sehemu ya Kitabu wananunua upotovu na wanakutakeni nanyi mpotee njia?</aya>
       <aya id="45">Na Mwenyezi Mungu anawajua vyema maadui zenu. Na Mwenyezi Mungu anatosha kuwa ni Mlinzi, na anatosha kuwa ni Mwenye kukunusuruni.</aya>
-      <aya id="46">Miongoni mwa Mayahudi wamo ambao hubadilisha maneno kuyatoa mahala pake, na husema: Tumesikia na tumeasi, na sikia bila ya kusikilizwa. Na husema: "Raai'naa", kwa kuzipotoa ndimi zao ili kuitukana Dini. Na lau kama wangeli sema: Tumesikia na tumet'ii, na usikie na "Undhurna" (Utuangalie), ingeli kuwa ni kheri kwao na sawa zaidi. Lakini Mwenyezi Mungu amewalaani kwa kufuru yao; basi hawaamini ila wachache tu.</aya>
+      <aya id="46">Miongoni mwa Mayahudi wamo ambao hubadilisha maneno kuyatoa mahala pake, na husema: Tumesikia na tumeasi, na sikia bila ya kusikilizwa. Na husema: &quot;Raai'naa&quot;, kwa kuzipotoa ndimi zao ili kuitukana Dini. Na lau kama wangeli sema: Tumesikia na tumet'ii, na usikie na &quot;Undhurna&quot; (Utuangalie), ingeli kuwa ni kheri kwao na sawa zaidi. Lakini Mwenyezi Mungu amewalaani kwa kufuru yao; basi hawaamini ila wachache tu.</aya>
       <aya id="47">Enyi mlio pewa Kitabu! Aminini tuliyo yateremsha yenye kusadikisha yale mliyo nayo, kabla hatujazigeuza nyuso tukazipeleka kisogoni, au tukawalaani kama tulivyo walaani watu wa Sabato (Jumaamosi). Na amri ya Mwenyezi Mungu ni lazima ifanyike.</aya>
       <aya id="48">Hakika Mwenyezi Mungu hasamehe kushirikishwa, na husamehe yaliyo duni ya hilo kwa amtakaye. Na anaye mshirikisha Mwenyezi Mungu basi hakika amezua dhambi kubwa.</aya>
       <aya id="49">Jee huwaoni wale wanao dai kuwa ati wametakasika? Bali Mwenyezi Mungu humtakasa amtakaye. Na hawatadhulumiwa hata kadiri ya kijiuzi kilichomo ndani ya uwazi wa kokwa ya tende.</aya>
@@ -781,7 +781,7 @@
       <aya id="100">Sema: Haviwi sawa viovu na vyema ujapo kupendeza wingi wa viovu. Basi mcheni Mwenyezi Mungu, enyi wenye akili, ili mpate kufanikiwa.</aya>
       <aya id="101">Enyi mlio amini! Msiulize mambo ambayo mkidhihirishiwa yatakuchukizeni. Na mkiyauliza inapo teremshwa Qur'ani mtabainishiwa. Mwenyezi Mungu amesamehe hayo. Na Mwenyezi Mungu ni Mwenye maghfira Mpole.</aya>
       <aya id="102">Waliyauliza hayo watu wa kabla yenu, kisha wakawa wenye kuyakataa.</aya>
-      <aya id="103">Mwenyezi Mungu hakujaalia uharamu wowote juu ya "Bahira" wala "Saiba" wala "Wasila" wala "Hami". Lakini walio kufuru humzulia uwongo Mwenyezi Mungu, na wengi wao hawatumii akili.</aya>
+      <aya id="103">Mwenyezi Mungu hakujaalia uharamu wowote juu ya &quot;Bahira&quot; wala &quot;Saiba&quot; wala &quot;Wasila&quot; wala &quot;Hami&quot;. Lakini walio kufuru humzulia uwongo Mwenyezi Mungu, na wengi wao hawatumii akili.</aya>
       <aya id="104">Na wanapo ambiwa: Njooni kwenye yale aliyo yateremsha Mwenyezi Mungu, na kwa Mtume, husema: Yanatutosha tuliyo wakuta nayo baba zetu. Je, hata ikiwa baba zao walikuwa hawajui kitu wala hawakuongoka?</aya>
       <aya id="105">Enyi mlio amini! Kilicho lazima juu yenu ni nafsi zenu. Hawakudhuruni walio potoka ikiwa nyinyi mmeongoka. Ni kwa Mwenyezi Mungu ndio marudio yenu nyote; basi atakwambieni yale mliyo kuwa mkiyatenda.</aya>
       <aya id="106">Enyi mlio amini! Yanapo mfikia mauti mmoja wenu na akataka kutoa wasia, basi wawepo mashahidi wawili miongoni mwenu ambao ni waadilifu. Na mnapo kuwa safarini, na msiba wa mauti ukakusibuni, basi washuhudie wengineo wawili wasio kuwa katika nyinyi. Mtawazuia wawili hao baada ya Sala na waape kwa Mwenyezi Mungu, mkitilia shaka, wakisema: Hatutopokea thamani yoyote kwa haya hata kwa ajili ya jamaa; na wala hatutaficha ushahidi wa Mwenyezi Mungu; hakika hapo tutakuwa miongoni mwa wenye dhambi.</aya>
@@ -1393,7 +1393,7 @@
       <aya id="7">Hakika wasio taraji kukutana nasi, na wakaridhia maisha ya dunia na wakatua nayo, na walio ghafilika na Ishara zetu,</aya>
       <aya id="8">Hao, makaazi yao ni Motoni kwa sababu ya waliyo kuwa wakiyachuma.</aya>
       <aya id="9">Hakika walio amini na wakatenda mema, Mola wao Mlezi atawaongoa kwa sababu ya Imani yao. Itakuwa inapita mito kati yao katika Mabustani yenye neema.</aya>
-      <aya id="10">Wito wao humo utakuwa: Subhanaka Llahumma "Umetakasika Ee Mwenyezi Mungu!" Na maamkio yao humo ni "Salama". Na mwisho wa wito wao ni: Alhamdulillahi Rabbil A'lamiin "Kuhimidiwa kote ni kwa Mwenyezi Mungu, Mola Mlezi wa walimwengu wote."</aya>
+      <aya id="10">Wito wao humo utakuwa: Subhanaka Llahumma &quot;Umetakasika Ee Mwenyezi Mungu!&quot; Na maamkio yao humo ni &quot;Salama&quot;. Na mwisho wa wito wao ni: Alhamdulillahi Rabbil A'lamiin &quot;Kuhimidiwa kote ni kwa Mwenyezi Mungu, Mola Mlezi wa walimwengu wote.&quot;</aya>
       <aya id="11">Na lau kama Mwenyezi Mungu angeli wafanyia watu haraka kuwaletea shari kama wanavyo jihimizia kuletewa kheri, bila ya shaka wangelisha timiziwa ajali yao. Lakini tunawaacha wale wasio tumainia kukutana nasi wakihangaika katika upotovu wao.</aya>
       <aya id="12">Na mtu akiguswa na shida hutuomba naye kaegesha ubavu, au kakaa, au kasimama. Lakini tukimwondoshea shida yake huendelea kama kwamba hakupata kutuomba tumwondoshee shida iliyo mpata. Ndio namna hiyo wamepambiwa warukao mipaka yale waliyo kuwa wakiyatenda.</aya>
       <aya id="13">Na kwa yakini tumekwisha ziangamiza kaumu za kabla yenu walipo dhulumu, na waliwajia Mitume wao kwa Ishara zilizo wazi; lakini hawakuwa wenye kuamini. Ndio kama hivyo tunavyo walipa watu wakosefu.</aya>
@@ -3834,7 +3834,7 @@
       <aya id="55">Hakika watu wa Peponi leo wamo shughulini, wamefurahi.</aya>
       <aya id="56">Wao na wake zao wamo katika vivuli wameegemea juu ya viti vya fakhari.</aya>
       <aya id="57">Watapata humo kila namna ya matunda na watapata kila watakacho kitaka.</aya>
-      <aya id="58">"Salama!" Hiyo ndiyo kauli itokayo kwa Mola Mlezi Mwenye kurehemu.</aya>
+      <aya id="58">&quot;Salama!&quot; Hiyo ndiyo kauli itokayo kwa Mola Mlezi Mwenye kurehemu.</aya>
       <aya id="59">Na enyi wakosefu! Jitengeni leo!</aya>
       <aya id="60">Je! Sikuagana nanyi, enyi wanaadamu, kuwa msimuabudu Shet'ani? Hakika yeye ni adui dhaahiri kwenu.</aya>
       <aya id="61">Na ya kwamba mniabudu Mimi? Hii ndiyo Njia Iliyo Nyooka.</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">Anaye tia wasiwasi katika vifua vya watu,</aya>
       <aya id="6">Kutokana na majini na wanaadamu.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

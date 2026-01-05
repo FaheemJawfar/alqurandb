@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="persian_bahrampour">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">به نام خداوند هستى بخش مهربان</aya>
       <aya id="2">ستايش خداى را كه پروردگار جهانيان است</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">آن كه در سينه‌هاى مردم وسوسه مى‌كند</aya>
       <aya id="6">از پريان و آدميان</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

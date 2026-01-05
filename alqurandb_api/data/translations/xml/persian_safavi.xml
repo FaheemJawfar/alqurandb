@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="persian_safavi">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">به نام خداوندِ گسترده مهرِ مهربان</aya>
       <aya id="2">ستایش از آنِ خداست که پروردگار جهانیان است،</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">همان که در سینه‌های مردم وسوسه می‌کند،</aya>
       <aya id="6">چه از جنّیان و چه از آدمیان.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

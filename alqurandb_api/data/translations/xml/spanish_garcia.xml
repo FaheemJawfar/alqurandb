@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="spanish_garcia">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">1. En el nombre de Dios[1], el Compasivo con toda la creación, el Misericordioso con los creyentes[2].</aya>
       <aya id="2">2. Todas las alabanzas son para Dios, Señor[1] de todo cuanto existe,</aya>
@@ -6822,5 +6822,5 @@ Esto implica la promesa por parte de Dios de que en un futuro cercano podrían c
       <aya id="5">5. que susurra en los corazones de los seres humanos,</aya>
       <aya id="6">6. y existe entre los yinn y entre los seres humanos”.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

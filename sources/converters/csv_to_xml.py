@@ -46,8 +46,8 @@ def create_translation_xml(translation_id, csv_file_path, output_file):
     root = ET.Element('translation')
     root.set('id', translation_id)
 
-    # Create suras container
-    suras_container = ET.SubElement(root, 'suras')
+    # Create sura container
+    sura_container = ET.SubElement(root, 'sura')
 
     current_sura_id = None
     current_sura_elem = None
@@ -77,7 +77,7 @@ def create_translation_xml(translation_id, csv_file_path, output_file):
                 
                 # Reset for new sura
                 current_sura_id = sura_id
-                current_sura_elem = ET.SubElement(suras_container, 'sura')
+                current_sura_elem = ET.SubElement(sura_container, 'sura')
                 current_sura_elem.set('id', sura_id)
                 sura_footnotes = {}
             

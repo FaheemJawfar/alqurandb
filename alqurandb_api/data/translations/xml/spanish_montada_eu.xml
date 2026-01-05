@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="spanish_montada_eu">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">(Empiezo)[2] con el nombre de Al-lah[3], el Clemente, el Misericordioso[4].</aya>
       <aya id="2">¡Alabado sea Al-lah, Señor de toda la creación!,</aya>
@@ -7777,5 +7777,5 @@ Literalmente, María dice que ha realizado un voto de ayuno a Al-lah, que inclu�
       <aya id="5">»y susurra (el mal) en el corazón de los hombres,</aya>
       <aya id="6">»ya pertenezca a los yinn o a los hombres».</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

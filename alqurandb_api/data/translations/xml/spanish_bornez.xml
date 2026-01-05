@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="spanish_bornez">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">En el nombre de Al.lah, el Clementísimo, el Misericordiosísimo.</aya>
       <aya id="2">La alabanza es para Dios, Señor de los mundos,</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">el que susurra en el pecho de los seres humanos</aya>
       <aya id="6">y procede de los genios y de los seres humanos.»</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

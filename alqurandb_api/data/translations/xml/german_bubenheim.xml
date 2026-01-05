@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="german_bubenheim">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">Im Namen Allahs, des Allerbarmers, des Barmherzigen.</aya>
       <aya id="2">(Alles) Lob gehört Allah, dem Herrn der Welten,</aya>
@@ -6466,5 +6466,5 @@
       <aya id="5">der in die Brüste der Menschen einflüstert,</aya>
       <aya id="6">von den Ginn und den Menschen.</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <translation id="english_qarai">
-  <suras>
+  <sura>
     <sura id="1">
       <aya id="1">In the Name of Allah, the All-beneficent, the All-merciful.</aya>
       <aya id="2">All praise belongs to Allah, Lord of all the worlds,</aya>
@@ -6465,5 +6465,5 @@
       <aya id="5">who puts temptations into the breasts of humans,</aya>
       <aya id="6">from among the jinn and humans.’</aya>
     </sura>
-  </suras>
+  </sura>
 </translation>
