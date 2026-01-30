@@ -28,7 +28,7 @@ async def lifespan(app: FastAPI):
     else:
         logger.error("Failed to initialize database")
         # Note: We don't raise an exception here to allow the API to start
-        # even if database initialization fails
+        # even if database initialization fails 
 
     yield
 
